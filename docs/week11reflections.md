@@ -60,6 +60,8 @@ I'll use the keys as headers and the values of course will be the data.
 
 Example:
 
+I havent decided how much data to include from the API so this is very much subject to change.
+
 name country lat lon main descritption...id
 San Juan,PR,-66.0917,18.451,Clouds,scattered clouds...4568153
 
@@ -83,7 +85,7 @@ Section 6:
 Risks:                  Likelihood          Mitigation
 
 Time availability       Medium              Planning and setting aside most of the weekend for this project.
-                                            In addition to doing small pieces duringthe week.
+                                            In addition to doing small pieces during the week.
 
 GUI design              Medium/High         I know to design basic GUIs but this requires more skill. I will
                                             be doing a lot of document reading.                                                              
@@ -94,8 +96,5 @@ MVC implementation      Medium              Read documents, watch tutorials and 
 
 Section 7:
 
-Not really sure, it depends on the issue I am stuck in.
-
-Section 8:
-
-
+Not really sure, it depends on the issue I am stuck in. usually I get stuck when I jump the gun on coding
+before planning and I panic. Probably office hours will help me "get off the ledge".
