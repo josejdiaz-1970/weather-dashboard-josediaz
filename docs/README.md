@@ -1,17 +1,17 @@
 # weather-dashboard-josediaz
-## Jose Diaz
-## TPS25 Capstone Project
+### Jose Diaz
+### TPS25 Capstone Project
 
-# Overview:
+### Overview:
 
 This program is a weather app for the TPS25 capstone project. It reads weather 
 data from an API (https://openweathermap.org/current) and displays it on the screen. 
 
-# How to use:
+### How to use:
 
 *See **user_guide.md***
 
-# Current files:
+### Current files:
 
 1. **main.py** - This is the main program which calls the API, gets the data, and transfers it to the GUI.
 It is planned that most requests that involve acquisition or storage of data will go through main.
