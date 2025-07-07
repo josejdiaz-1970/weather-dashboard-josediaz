@@ -3,7 +3,9 @@
 import api
 from api import LoadApi, ParseData, SaveData 
 from weather_gui import WGUI
+from features import themes
 import tkinter as tk
+import customtkinter as ctk
 from tkinter import messagebox
 
 # save_dir = r'C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\data'
@@ -17,7 +19,7 @@ class App():
 
         self.root = root
         self.api = LoadApi()
-        self.gui = WGUI(self.root, self)
+        self.gui = WGUI(self.root, self, theme=themes.default_theme)
         self.save_dir = r'C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\data'
         
     #chatGPT (July, 2025)
@@ -28,27 +30,25 @@ class App():
             messagebox.showwarning("Input Required", "Please enter a city.")
             return
         
-        raw_data = self.api.getData(city)
+        raw_data, geodata = self.api.getData(city)
+       
         if raw_data:
-            parsed = ParseData(raw_data)
+
+            
+            city = geodata[0]["name"]
+            state = geodata[0].get("state", "")
+            country = geodata[0]["country"]    
+
+            parsed = ParseData(raw_data, city=city, state=state, country=country)
             self.gui.display_weather(parsed)
             #save the data
             SaveData(f"{self.save_dir}\\weather_data.csv", parsed, city)
 
-            
-                  
-     
-                       
+       
+                            
 if __name__ == "__main__": 
-    root = tk.Tk()
-    app = App(root)
-    
-    # test = app.gui.cityentry.get()
-    # print(f"Current city:{test}")    
-    # if not test.strip():  # empty or whitespace-only
-    #     print("Input Required")
-      
-     
-    # app.gui.weather_data.insert(tk.END, test, "NO CITY")
-
+    # root = tk.Tk()
+   
+    root = ctk.CTk()
+    app = App(root)   
     root.mainloop()

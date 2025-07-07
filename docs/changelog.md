@@ -30,9 +30,27 @@ To Do:
 07-05-25
 
 Added save data functionality and fixed a lot of the back and forth with data to and from main.
+The core components now all work. A city is entered in weather_gui.py then data is retrieved with api.py into main and passed back to the gui. It is also saved into a running .csv. The GUI is very basic at this time. I could just copy parts from assignments, but I think slogging through it this way helps me learn it better. Especially the MVC method. 
 
 To Do:
 
 1. Fix the gui so that text is not displayed in a text box.
 2. Clean up gui so that colors can be switched by theme switcher.
+
+Started to change over the results from one text box to a set of labels.
+
+07-06-25
+
+Started working on the the Themes feature
+Currently have dark and light themes as well as a default.
+Switched to customtkinter and am currently updating display and themes
+
+To DO:
+
+Rename: Current conditions to Get Weather
+Move the data to the left frame?
+Add "feels like" temperature
+Need to clean up the themes. there are discrepancies in how it displays. 
+
+
 
