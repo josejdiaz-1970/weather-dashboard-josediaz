@@ -106,32 +106,67 @@ class ParseData():
         
         self.city = city
         self.state = state
-        self.country = country    
+        self.country = country 
+        self.FthenC = True #Boolean to pass on to GUI to swap the Units   
 
         current = data["current"]
-        self.daily = data.get("daily", [])        
-        self.temperature = current['temp']
-        self.feels_like = current['feels_like']
+
+        #Data for left frame and bottom frame
+
+        # Checks to see if there is an alert section in the json response. If not
+        # except the KeyError and send the summary instead.
+        try:
+            if data['alerts']:
+                self.alerts = data['alerts'][0]['event']
+                self.summary = data['alerts'][0]['description']
+        except:
+            KeyError 
+            self.alerts = "No alerts."  
+            self.summary = data['daily'][0]['summary']  
+
+
+
+        #Data for right frame
+        self.daily = data.get("daily", [])
+
+        self.temperature_first = round(current['temp']) #Assign the Fahrenheit value to first temp
+        self.temperature_second = round((self.temperature_first - 32) * (5/9)) #Celsius to second
+
+        #If the country is not in the officially use fahrenheit, use celsius as first temp
+        self.uses_fahrenheit = ["US", "PR", "BS", "KY", "PW", "FM", "MH", "LR"]
+        if self.country not in self.uses_fahrenheit:
+            self.temperature_first, self.temperature_second = self.temperature_second, self.temperature_first
+            self.FthenC = False
+            
+       
+        self.feels_like = round(current['feels_like'])
         self.description = current['weather'][0]['description'].capitalize()
         self.humidity = current['humidity']
         self.pressure = current['pressure']
         self.icon_code = current['weather'][0]['icon']
         self.uv = current['uvi']
-        self.windspeed = current['wind_speed']
+        self.windspeed = round(current['wind_speed'])
         self.direction = current['wind_deg']
+        self.visibility = current['visibility']
         # self.curtime = datetime.datetime.fromtimestamp(current['dt']) 
         # self.sunup = datetime.datetime.fromtimestamp(current['sys']['sunrise'])
-        # self.sundown = datetime.datetime.fromtimestamp(current['sys']['sunset'])   
+        # self.sundown = datetime.datetime.fromtimestamp(current['sys']['sunset'])  
 
+        #Bottom Frame
+
+       
     def full_location(self):
         if self.state:
             return f"{self.city}, {self.state}, {self.country}"
         return f"{self.city}, {self.country}"
 
     def wind_deg_to_cardinal(self, deg):
+        
         dirs = ["N", "NE", "E", "SE", "S", "SW", "W", "NW"]
         ix = round(deg / 45) % 8
-        return dirs[ix]    
+        return dirs[ix]   
+
+        
 
 class SaveData():
 
@@ -158,7 +193,8 @@ class SaveData():
                     self.city,
                     self.parsed.state,
                     self.parsed.country,
-                    self.parsed.temperature,
+                    self.parsed.temperature_first,
+                    self.parsed.temperature_second,
                     self.parsed.feels_like,
                     self.parsed.description,
                     self.parsed.humidity,

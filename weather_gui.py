@@ -5,20 +5,12 @@ import customtkinter as ctk
 from tkinter import ttk, font
 from tkinter import messagebox
 import features.themes as themes
+import features.weather_icons as icons
 from datetime import datetime
 
-
-
 class WGUI():
-
-    bg_color = "#36A1E4"
-    fg_color = "#f5f5f5"
-    font_color = "#ffffff"
-    font_style = "Bell Gothic Std Black"
-    font_size = 16
-
-    #for the notebook tabs
-       
+    
+     
     
     def __init__(self, root, controller, theme=themes.default_theme):
                 
@@ -29,17 +21,16 @@ class WGUI():
         self.theme = theme
         
         self.root.title("Jose's Weather App")
-        self.root.geometry("800x600+0+0")
-        self.root.configure(fg_color= WGUI.bg_color)
-
-        #theme variables
-        self.bg_color = theme["bg_color"]
-        self.fg_color = theme["fg_color"]
-        self.font_color = theme["font_color"]
-        self.font_style = theme["font_style"]
-        self.font_size = theme["font_size"]
-        self.button_bg = theme["button_bg"]
-        self.button_fg = theme["button_fg"]
+        self.root.geometry("800x800+0+0")
+        
+        #theme variables changed to self.theme
+        self.bg_color = self.theme["bg_color"]
+        self.fg_color = self.theme["fg_color"]
+        self.font_color = self.theme["font_color"]
+        self.font_style = self.theme["font_style"]
+        self.font_size = self.theme["font_size"]
+        self.button_bg = self.theme["button_bg"]
+        self.button_fg = self.theme["button_fg"]
 
        
         # Add a menu bar and sub-menus - WORKS
@@ -51,6 +42,18 @@ class WGUI():
         themesmenu = tk.Menu(menubar, tearoff=0)
         themesmenu.add_command(label="Light Theme", font=menu_font, command=lambda: self.apply_theme(themes.light_theme))
         themesmenu.add_command(label="Dark Theme", font=menu_font, command=lambda: self.apply_theme(themes.dark_theme))
+        themesmenu.add_command(label="Rain Theme", font=menu_font, command=lambda: self.apply_theme(themes.rain_theme))
+        themesmenu.add_command(label="Sunny Theme", font=menu_font, command=lambda: self.apply_theme(themes.sunny_theme))
+        themesmenu.add_command(label="Moon Theme", font=menu_font, command=lambda: self.apply_theme(themes.moon_theme))
+        themesmenu.add_command(label="Partly Cloudy Theme", font=menu_font, command=lambda: self.apply_theme(themes.partly_cloudy_theme))
+        themesmenu.add_command(label="Cloudy Theme", font=menu_font, command=lambda: self.apply_theme(themes.cloudy_theme))
+        themesmenu.add_command(label="Haze Theme", font=menu_font, command=lambda: self.apply_theme(themes.haze_theme))
+        themesmenu.add_command(label="Snow Theme", font=menu_font, command=lambda: self.apply_theme(themes.snow_theme))
+        themesmenu.add_command(label="Thunderstorm Theme", font=menu_font, command=lambda: self.apply_theme(themes.tstorm_theme))     
+        themesmenu.add_command(label="Pink Theme", font=menu_font, command=lambda: self.apply_theme(themes.pink_theme))     
+
+
+
         themesmenu.add_command(label="Let the Weather Decide", font=menu_font, command=lambda: print("Based on current conditions"))
         themesmenu.add_command(label="Default", font=menu_font, command=lambda: self.apply_theme(themes.default_theme))
         
@@ -99,8 +102,8 @@ class WGUI():
 
 
         notebook.add(main_tab, text='Main')
-        notebook.add(graphs_tab, text='Graphs')
-        notebook.add(csv_tab, text="Saved Data")
+        notebook.add(graphs_tab, text='Summary')
+        notebook.add(csv_tab, text="Detail")
 
         
         notebook.grid(row=0, column=0, sticky='nsew')
@@ -111,14 +114,14 @@ class WGUI():
         #Create frames -changed parent to notebook
         self.left_frame = ctk.CTkFrame(main_tab, fg_color=self.bg_color, width=150, height=350)
         self.right_frame = ctk.CTkFrame(main_tab, fg_color=self.bg_color, width=650, height=350)
-        self.bottom_frame = ctk.CTkFrame(main_tab, fg_color=self.bg_color, height=50)
+        self.bottom_frame = ctk.CTkFrame(main_tab, fg_color=self.bg_color, height=100)
 
         self.left_frame.grid_propagate(False)
 
         # Layout frames
-        self.left_frame.grid(row=0, column=0, rowspan=6, sticky="nsew") 
-        self.right_frame.grid(row=0, column=1, rowspan=6, columnspan=5, sticky="nsew")
-        self.bottom_frame.grid(row=6, column=0, columnspan=6, sticky="nsew")
+        self.left_frame.grid(row=0, column=0, rowspan=7, sticky="nsew") 
+        self.right_frame.grid(row=0, column=1, rowspan=7, columnspan=5, sticky="nsew")
+        self.bottom_frame.grid(row=7, column=0, columnspan=6, sticky="nsew")
 
         #ChatGPT (July, 2025)
         self.left_frame.grid_rowconfigure(0, weight=0)  # Label
@@ -129,7 +132,7 @@ class WGUI():
         self.left_frame.grid_rowconfigure(5, weight=1)  # Spacer
         self.left_frame.grid_columnconfigure(0, weight=1)  # Stretch everything
 
-        for i in range(6):
+        for i in range(8):
             self.right_frame.grid_rowconfigure(i, weight=1)
 
 
@@ -145,16 +148,19 @@ class WGUI():
         self.sayingsbox = ctk.CTkTextbox(self.left_frame, fg_color=self.bg_color, text_color=self.font_color, height=80, font=(self.font_style, self.font_size))
     
         #Add widgets to the right frame
+      
         #Big weather icon goes here
-        self.icon_label = ctk.CTkLabel(self.right_frame, text="", width = 100, height=100, fg_color=self.bg_color)
+        self.icon_label = ctk.CTkLabel(self.right_frame, text="🌤️", width = 100, height=100, fg_color=self.bg_color, font=(self.font_style, self.font_size + 90))
 
         #Location label
         self.location_label=ctk.CTkLabel(self.right_frame, text="City, Country", font=(self.font_style, self.font_size + 2),text_color=self.font_color, fg_color=self.bg_color)
-   
-        self.temperature = ctk.CTkLabel(self.right_frame, text="",fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size))
-        self.humidity = ctk.CTkLabel(self.right_frame, text="",fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.description=ctk.CTkLabel(self.right_frame, text="Description", font=(self.font_style, self.font_size - 2),text_color=self.font_color, fg_color=self.bg_color)
+        self.temperature_first = ctk.CTkLabel(self.right_frame, text="",fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size + 30))
+        self.temperature_second = ctk.CTkLabel(self.right_frame, text="",fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size - 2))
+        self.humidity = ctk.CTkLabel(self.right_frame, text="Humidity: ",fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size))
         self.wind = ctk.CTkLabel(self.right_frame, text="Wind: ", fg_color = self.bg_color, font = (self.font_style, self.font_size))
-        self.pressure = ctk.CTkLabel(self.right_frame, text="",fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.visibility = ctk.CTkLabel(self.right_frame, text="Visibility: ",fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size))        
+        self.pressure = ctk.CTkLabel(self.right_frame, text="Barometer: ",fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size))
         self.feels_like = ctk.CTkLabel(self.right_frame, text="Feels Like: ", fg_color = self.bg_color, font = (self.font_style, self.font_size))
         self.uv_index = ctk.CTkLabel(self.right_frame, text="UV Index: ",fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size))
         
@@ -179,19 +185,22 @@ class WGUI():
             hi_label.grid(row=2, column=0)
             lo_label.grid(row=3, column=0)
 
-            day_frame.grid(row=0, column=i, padx=5, pady=5)
-            
             self.forecast_day_frames.append({
+                "frame": day_frame,
                 "day": label_day,
                 "icon": label_icon,
                 "hi": hi_label,
                 "lo": lo_label
             })
-            
+
+          
 
         # Configure widgets
         self.sayingsbox.insert("0.0", "A sunny day keeps the bugs at bay ☀️")
         self.sayingsbox.configure(state="disabled")
+
+        #Bottom Frame 
+        self.summary = ctk.CTkLabel(self.bottom_frame,fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size) ,text="Summary:")
 
 
         #Add to left as grid
@@ -207,37 +216,58 @@ class WGUI():
           
         # Top Icon and Location Centered
         self.icon_label.grid(row=0, column=0, columnspan=2, pady=(10, 0), sticky="n")
-        self.location_label.grid(row=1, column=0, columnspan=2, pady=(0, 15), sticky="n")
+        self.location_label.grid(row=1, column=0, columnspan=2, pady=(0, 15), sticky="s")
+        self.description.grid(row=2, column=0, columnspan=2, pady=(0, 15), sticky="n")
+        #Add description label here
 
         # Two-column Weather Info
-        self.temperature.grid(row=2, column=0, sticky="w", padx=20, pady=3)
-        self.humidity.grid(row=2, column=1, sticky="w", padx=20, pady=3)
+        self.temperature_first.grid(row=3, column=0, sticky="e", padx=20, pady=3)
+        self.temperature_second.grid(row=3, column=1, sticky="w",padx=10)
+       
+        self.humidity.grid(row=4, column=0, sticky="nw", padx=20, pady=3)
+        self.feels_like.grid(row=4, column=1, sticky="nw", padx=20, pady=3)
 
-        self.wind.grid(row=3, column=0, sticky="w", padx=20, pady=3)
-        self.pressure.grid(row=3, column=1, sticky="w", padx=20, pady=3)
-
-        self.feels_like.grid(row=4, column=0, sticky="w", padx=20, pady=3)
-        self.uv_index.grid(row=4, column=1, sticky="w", padx=20, pady=3)
+        self.wind.grid(row=5, column=0, sticky="nw", padx=(20), pady=3)
+        self.visibility.grid(row=5, column=1, sticky="nw",padx=20, pady=3)
+        self.pressure.grid(row=6, column=0, sticky="nw", padx=20, pady=3)        
+        self.uv_index.grid(row=6, column=1, sticky="nw", padx=20, pady=3)
 
         # Forecast below all data
-        self.forecast_frame.grid(row=5, column=0, columnspan=2, pady=(20, 10), padx=10, sticky="ew")          
+        self.forecast_frame.grid(row=7, column=0, columnspan=2, pady=(20, 10), padx=10, sticky="ew")       
 
 
         # Add widgets to bottom_frame
-        
-        self.test = ctk.CTkLabel(self.bottom_frame,fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size) ,text="Bottom Frame")
-        self.test.pack()
+        self.summary.grid(row=0, columnspan=3, sticky="nsew")
 
     #Weather display method - Need to add country and city
     def display_weather(self, parsed):
-                
+
+        #LEFT FRAME UPDATE
+        self.alertsbox.delete("0.0", "end") #clear the textbox first
+        self.alertsbox.insert("0.0", f"Alerts: {parsed.alerts}") 
+
+        #RIGHT FRAME UPDATE
+
+        self.icon_label.configure(text=f"{icons.get_icons(parsed.icon_code)}")        
         self.location_label.configure(text=parsed.full_location())
-        self.temperature.configure(text=f"{parsed.temperature}°F\n")    
        
-        self.humidity.configure(text=f"{parsed.humidity} %RH\n")
-        self.pressure.configure(text=f"{parsed.pressure} hPa\n")
-        self.uv_index.configure(text=parsed.uv)
-        self.wind.configure(text=f"{parsed.windspeed} {parsed.direction}")
+        self.temperature_first.configure(text=f"{parsed.temperature_first}°F\n")   
+
+        #Check if the first temperature is Fahrenheit by checking the FThenC flag set in api.parseData
+        if parsed.FthenC:
+            self.temperature_first.configure(text=f"{parsed.temperature_first}°F\n")
+            self.temperature_second.configure(text=f"{parsed.temperature_second}°C\n")
+        else:
+            self.temperature_first.configure(text=f"{parsed.temperature_first}°C\n")
+            self.temperature_second.configure(text=f"{parsed.temperature_second}°F\n")   
+
+        self.description.configure(text=f"{parsed.description}")    
+        self.humidity.configure(text=f"Humidity: {parsed.humidity}%RH\n")
+        self.pressure.configure(text=f"Barometer: {parsed.pressure} mbar\n")
+        self.visibility.configure(text=f"Visibility: {parsed.visibility} ft\n", anchor="nw")
+        self.uv_index.configure(text=f"UV Index: {parsed.uv}\n")
+        self.feels_like.configure(text=f"Feels Like: {parsed.feels_like}°F\n")
+        self.wind.configure(text=f"Wind: {parsed.windspeed} mph {parsed.wind_deg_to_cardinal(parsed.direction)}", anchor="nw")
         
 
         if hasattr(parsed, "daily"):
@@ -245,44 +275,72 @@ class WGUI():
         else:
             print("No forecast data available")
         
+        #Bottom Frame
+        self.summary.configure(text=f"Summary: {parsed.summary}")
 
     def apply_theme(self, theme: dict) -> None:
 
         
-        self.bg_color = theme["bg_color"]
-        self.fg_color = theme["fg_color"]
-        self.font_color = theme["font_color"]
-        self.font_style = theme["font_style"]
-        self.font_size = theme["font_size"]
-        self.button_bg = theme["button_bg"]
-        self.button_fg = theme["button_fg"] 
+        self.bg_color = theme["bg_color"] # Main background color
+        self.fg_color = theme["fg_color"] # Frame background color
+        self.font_color = theme["font_color"] # Text Label color
+        self.font_style = theme["font_style"] # Font family
+        self.font_size = theme["font_size"] # Font size
+        self.button_bg = theme["button_bg"] #Button Color
+        self.button_fg = theme["button_fg"] #Button Text Color
 
         #root update 
         self.root.configure(fg_color=self.bg_color)
 
-        #Update the widgets
+        #LEFT FRAME AND WIDGETS
+        self.left_frame.configure(fg_color=self.fg_color)
+        
         self.cityentry.configure(fg_color=self.bg_color, font=(self.font_style, self.font_size))
         self.citybutton.configure(fg_color=self.button_bg, text_color=self.button_fg,font=(self.font_style, self.font_size))
-                
         self.citylabel.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
-        self.citydisplay.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size)
-)
-        
-        self.country.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
-       
-        self.temperature.configure(fg_color=self.bg_color, text_color=self.font_color)
-        self.humidity.configure(fg_color=self.bg_color, text_color=self.font_color)
-        self.description.configure(fg_color=self.bg_color, text_color=self.font_color)
-        self.pressure.configure(fg_color=self.bg_color, text_color=self.font_color)
-        self.windspeed.configure(fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size))
-        self.winddirection.configure(fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.alertsbox.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))        
+        self.sayingsbox.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size)) 
 
-        for label in self.desc_labels:
+        #RIGHT FRAME AND WIDGETS
+        self.right_frame.configure(fg_color=self.fg_color)
+        self.forecast_frame.configure(fg_color=self.fg_color)
+        self.icon_label.configure(fg_color=self.bg_color, text_color=self.font_color)
+
+    
+        #forecast window
+        #chatgpt (July, 2025)
+        for frame_data in self.forecast_day_frames:
+
+            frame_data["frame"].configure(fg_color=self.fg_color)
+            frame_data["day"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
+            frame_data["icon"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size + 4))
+            frame_data["hi"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
+            frame_data["lo"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
+
+                
+        self.desc_labels = [
+            self.location_label,
+            self.description,
+            self.temperature_second,
+            self.humidity,
+            self.pressure,
+            self.uv_index,
+            self.feels_like,
+            self.visibility,
+            self.wind,
+            self.summary
+
+        ]
+
+        
+        # Temperature first is set separately so that the font size can be changed.
+        self.temperature_first.configure(fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size + 30))
+       
+        for label in self.desc_labels:            
             label.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
 
-        #Theme the frames
-        self.left_frame.configure(fg_color=self.fg_color)
-        self.right_frame.configure(fg_color=self.fg_color)
+        #Bottom Frame and widgets
+        self.bottom_frame.configure(fg_color=self.fg_color)
 
 
     def display_forecast(self, daily_data):
@@ -291,26 +349,12 @@ class WGUI():
             day_name = dt.strftime("%a")
 
             icon_code = day_data["weather"][0]["icon"]
-            icon = self.get_icon_for_code(icon_code)  # see below
-
+            # icon = self.get_icon_for_code(icon_code)  # see below
+            icon = icons.get_icons(icon_code)
             temp_max = round(day_data["temp"]["max"])
             temp_min = round(day_data["temp"]["min"])
 
             self.forecast_day_frames[i]["day"].configure(text=day_name)
             self.forecast_day_frames[i]["icon"].configure(text=icon)
             self.forecast_day_frames[i]["hi"].configure(text=f"↑ {temp_max}°")
-            self.forecast_day_frames[i]["lo"].configure(text=f"↓ {temp_min}°")
-
-    def get_icon_for_code(self, code):
-        icon_map = {
-            "01d": "☀️", "01n": "🌙",
-            "02d": "🌤", "02n": "☁️",
-            "03d": "☁️", "03n": "☁️",
-            "04d": "☁️", "04n": "☁️",
-            "09d": "🌧", "09n": "🌧",
-            "10d": "🌦", "10n": "🌧",
-            "11d": "⛈", "11n": "⛈",
-            "13d": "❄️", "13n": "❄️",
-            "50d": "🌫", "50n": "🌫"
-        }
-        return icon_map.get(code, "❓")    
+            self.forecast_day_frames[i]["lo"].configure(text=f"↓ {temp_min}°")   
