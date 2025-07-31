@@ -9,14 +9,17 @@ I have time will add a them to switch based on the weather conditions.
 
 # Add color icons but with colors that change based on theme
 
+
 default_theme = {
     "bg_color": "#26788D",       # Main background color
     "fg_color": "#26788D",       # Frame background color
+    # "left_fg_color": "#3590A7",       # Left Frame background color
     "font_color": "#E3ECEE",     # Text label color
     "font_style": "Helvetica",   # Font family
     "font_size": 14,             # Font size
     "button_bg": "#518D9C",      # Button color
-    "button_fg": "#ffffff"       # Button text color
+    "button_fg": "#ffffff",       # Button text color
+    "icon_color": "#E3ECEE"          #icon color for basic icons
 }
 
 # Light Theme
@@ -27,7 +30,8 @@ light_theme = {
     "font_style": "Helvetica",
     "font_size": 14,
     "button_bg": "#e0e0e0",
-    "button_fg": "#000000"
+    "button_fg": "#000000",
+    "icon_color": "#111111"
 }
 
 # Dark Theme
@@ -35,10 +39,12 @@ dark_theme = {
     "bg_color": "#242424",       
     "fg_color": "#242424",       
     "font_color": "#f5f5f5",     
-    "font_style": "Helvetica",   
+    "font_style": "Open Sans",   
     "font_size": 14,             
-    "button_bg": "#242424",     
-    "button_fg": "#ffffff"      
+    "button_bg": "#302E2E",     
+    "button_fg": "#ffffff",
+    "font_color": "#f5f5f5",
+    "icon_color": "#f5f5f5"        
 }
 
 #Future
@@ -50,17 +56,20 @@ rain_theme = {
     "font_style": "Courier",   # Font family
     "font_size": 14,             # Font size
     "button_bg": "#518D9C",      # Button color
-    "button_fg": "#ffffff"       # Button text color
+    "button_fg": "#ffffff",      # Button text color
+    "icon_color": "#52687D"    # Icon color for basic icons
 }
 
+#Make background a light sky blue. Like a summer day.
 sunny_theme = {
-    "bg_color": "#F1DEA2",       # Main background color
-    "fg_color": "#F1DEA2",       # Frame background color
+    "bg_color": "#81CFFF",       # Main background color
+    "fg_color": "#81CFFF",       # Frame background color
     "font_color": "#000000",     # Text label color
     "font_style": "Times New Roman",   # Font family
     "font_size": 14,             # Font size
-    "button_bg": "#FF9A00",      # Button color
-    "button_fg": "#000000"       # Button text color
+    "button_bg": "#FFFF70",      # Button color
+    "button_fg": "#000000",       # Button text color
+    "icon_color": "#FFFF70"      # Icon color for basic icons
 }
 
 moon_theme = {
@@ -71,7 +80,8 @@ moon_theme = {
     "font_style": "Bookman Old Style",   # Font family
     "font_size": 14,             # Font size
     "button_bg": "#595f72",      # Button color
-    "button_fg": "#000000"       # Button text color
+    "button_fg": "#000000",       # Button text color
+    "icon_color": "#f7d9c1"       #Icon color for basic icons  
 
 }
 
@@ -82,7 +92,8 @@ cloudy_theme = {
     "font_style": "Lucida",   # Font family
     "font_size": 14,             # Font size
     "button_bg": "#6384a9",      # Button color
-    "button_fg": "#000000"       # Button text color
+    "button_fg": "#000000",       # Button text color
+    "icon_color": "#d7e2ef"     #Icon color for basic icons
 }
 
 partly_cloudy_theme = {
@@ -93,7 +104,8 @@ partly_cloudy_theme = {
     "font_style": "Trebuchet MS",   # Font family
     "font_size": 14,             # Font size
     "button_bg": "#6384a9",      # Button color
-    "button_fg": "#dfef87"       # Button text color
+    "button_fg": "#dfef87",       # Button text color
+    "icon_color": "#d7e2ef"     #Icon color for basic icons
 
 }
 
@@ -105,7 +117,8 @@ haze_theme = {
     "font_style": "Arial Bold",   # Font family
     "font_size": 14,             # Font size
     "button_bg": "#c1ad9b",      # Button color
-    "button_fg": "#8d7968"       # Button text color
+    "button_fg": "#8d7968",       # Button text color
+    "icon_color": "#cdc2b9"      # Icon color for basic icons
 
 }
 snow_theme = {
@@ -116,7 +129,8 @@ snow_theme = {
     "font_style": "Verdana",   # Font family
     "font_size": 14,             # Font size
     "button_bg": "#6683a2",      # Button color
-    "button_fg": "#64647c"       # Button text color
+    "button_fg": "#64647c",       # Button text color
+    "icon_color": "#FFFAFA"       # Icon color for basic icons
 }
 
 tstorm_theme = {
@@ -127,23 +141,44 @@ tstorm_theme = {
     "font_style": "Tahoma",   # Font family
     "font_size": 14,             # Font size
     "button_bg": "#6384a9",      # Button color
-    "button_fg": "#c4eafc"       # Button text color
+    "button_fg": "#c4eafc",       # Button text color
+    "icon_color": "#7DF9FF"       # Icon color for basic icons
  
-    }
+}
 
-pink_theme = {}
+#Warning: May cause uncontrollable vomiting. Dont say you werent warned.
+pink_theme = {
 
-def weather_decides_theme(self, icon):
-    
+    "bg_color": "#f9cee7",       # Main background color
+    "fg_color": "#f9cee7",       # Frame background color
+    "font_color": "#cf62b4",     # Text label color
+    "font_style": "Arial bold",   # Font family
+    "font_size": 15,             # Font size
+    "button_bg": "#f4b8da",      # Button color
+    "button_fg": "#e68bcf",       # Button text color
+    "icon_color": "#cf62b4"       # Icon color for basic icons
+
+}
+
+def weather_decides_theme(icon):
     icon_to_theme = {
-
-        "01d":"sunny_theme",
-        "01n":"moon_theme",
-        "02d":"partly_cloudy_theme",
-        "02n": "cloudy_theme",
-        "03d": "cloudy_theme",
-        "04d": "cloudy_theme",
-        "04n": "cloudy_theme"
+        "01d": sunny_theme,
+        "01n": moon_theme,
+        "02d": partly_cloudy_theme,
+        "02n": cloudy_theme,
+        "03d": partly_cloudy_theme,
+        "03n": partly_cloudy_theme,
+        "04d": partly_cloudy_theme,
+        "04n": partly_cloudy_theme,
+        "09d": rain_theme,
+        "10d": rain_theme,
+        "10n": rain_theme,
+        "11d": tstorm_theme,
+        "11n":tstorm_theme,
+        "13d": snow_theme,
+        "13n": snow_theme,
+        "50d": haze_theme
     }
+    return icon_to_theme.get(icon, default_theme)
     
-    pass
+  

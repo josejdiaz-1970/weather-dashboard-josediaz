@@ -8,9 +8,13 @@ import features.themes as themes
 import features.weather_icons as icons
 from datetime import datetime
 
-class WGUI():
-    
-     
+#for team feature
+import team.features.word_library as wl
+from team.features.madlibs_generator import MadGenerator  
+
+
+
+class WGUI():     
     
     def __init__(self, root, controller, theme=themes.default_theme):
                 
@@ -31,12 +35,19 @@ class WGUI():
         self.font_size = self.theme["font_size"]
         self.button_bg = self.theme["button_bg"]
         self.button_fg = self.theme["button_fg"]
+        self.icon_color = self.theme["icon_color"]
 
+        #Flag to apply theme based on weather conditions
+        self.use_weather_themes = tk.BooleanVar(value=False)
+        #Toggle for dynamic themes
+        self.dynamic_icons_enabled = tk.BooleanVar(value=False)
+
+        self.mad_generator = MadGenerator(filepath=r"C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\team\data")
        
         # Add a menu bar and sub-menus - WORKS
-        menu_font=font.Font(family="Helvetica", size=16)
+        menu_font=font.Font(family="Arial", size=16)
         menubar = tk.Menu(self.root, font=menu_font)
-        style.configure('Custom.Notebook.Tab', font=menu_font) 
+        
 
         # Theme Menu
         themesmenu = tk.Menu(menubar, tearoff=0)
@@ -50,11 +61,10 @@ class WGUI():
         themesmenu.add_command(label="Haze Theme", font=menu_font, command=lambda: self.apply_theme(themes.haze_theme))
         themesmenu.add_command(label="Snow Theme", font=menu_font, command=lambda: self.apply_theme(themes.snow_theme))
         themesmenu.add_command(label="Thunderstorm Theme", font=menu_font, command=lambda: self.apply_theme(themes.tstorm_theme))     
-        themesmenu.add_command(label="Pink Theme", font=menu_font, command=lambda: self.apply_theme(themes.pink_theme))     
+        themesmenu.add_command(label="Pink Theme", font=menu_font, command=self.get_pink)#self.apply_theme(themes.pink_theme)) #Change to command=get_pink    
 
 
-
-        themesmenu.add_command(label="Let the Weather Decide", font=menu_font, command=lambda: print("Based on current conditions"))
+        # themesmenu.add_command(label="Let the Weather Decide", font=menu_font, command=self.theme_based_on_weather == True) #make it a setting
         themesmenu.add_command(label="Default", font=menu_font, command=lambda: self.apply_theme(themes.default_theme))
         
         
@@ -62,9 +72,10 @@ class WGUI():
 
         # Settings Menu
         settingsmenu = tk.Menu(menubar, tearoff=0)
-        settingsmenu.add_command(label="Preferences", font=menu_font, command=lambda: print("Preferences clicked"))
+        settingsmenu.add_checkbutton(label="Dynamic Icon Theme", font=menu_font, variable=self.dynamic_icons_enabled, command=self.toggle_icon_theme)
+        settingsmenu.add_checkbutton(label="Use Weather-Based Themes", font=menu_font, variable=self.use_weather_themes, command=controller.update_theme_based_on_toggle)
         menubar.add_cascade(label="Settings", menu=settingsmenu)
-
+        
         # Help Menu
         helpmenu = tk.Menu(menubar, tearoff=0)
         helpmenu.add_command(label="About", font=menu_font, command=lambda: print("About clicked"))
@@ -78,43 +89,61 @@ class WGUI():
         # Attach menubar to the window
         self.root.config(menu=menubar)
 
-
-        #Add a notebook and tabs - Prelim in progress
-        notebook = ttk.Notebook(self.root, style='Custom.Notebook.Tab')
-        main_tab = ttk.Frame(notebook)
-        graphs_tab = ttk.Frame(notebook)
-        csv_tab = ttk.Frame(notebook)
-
-        main_tab.grid_rowconfigure(0, weight=1)
-        main_tab.grid_rowconfigure(1, weight=1)
-        main_tab.grid_rowconfigure(2, weight=1)
-        main_tab.grid_rowconfigure(3, weight=1)
-        main_tab.grid_rowconfigure(4, weight=1)
-        main_tab.grid_rowconfigure(5, weight=1)
-        main_tab.grid_rowconfigure(6, weight=1)
-
-        main_tab.grid_rowconfigure(0, weight=1)
-        main_tab.grid_columnconfigure(0, weight=1)
-        main_tab.grid_columnconfigure(1, weight=2)
-        
-        csv_tab.grid_rowconfigure(0, weight=1)
-        csv_tab.grid_columnconfigure(0, weight=1)
-
-
-        notebook.add(main_tab, text='Main')
-        notebook.add(graphs_tab, text='Summary')
-        notebook.add(csv_tab, text="Detail")
+        #Add TabView to replace tk.notebook
+        self.tabview = ctk.CTkTabview(self.root, width=800, height=800, corner_radius=5)
+        self.tabview.grid(row=0, column=0, padx=0, pady=0)
+      
+        #Tab button configuration
+        self.tabview._segmented_button.configure(
+            fg_color=self.bg_color, 
+            text_color=self.font_color,
+            selected_color = self.button_bg,
+            selected_hover_color= self.bg_color,
+            unselected_color = self.fg_color            
+        )
+        # Add tabs
+        self.main_tab = self.tabview.add("Main")
+        self.summary_tab = self.tabview.add("Alert Details")
+        self.madlibs_tab = self.tabview.add("Madlibs")
 
         
-        notebook.grid(row=0, column=0, sticky='nsew')
+        # Resize behavior
+        self.tabview.rowconfigure(0, weight=1)
+        self.tabview.columnconfigure(0, weight=1)
+            
+       
+
+        self.main_tab.grid_rowconfigure(0, weight=1)
+        self.main_tab.grid_rowconfigure(1, weight=1)
+        self.main_tab.grid_rowconfigure(2, weight=1)
+        self.main_tab.grid_rowconfigure(3, weight=1)
+        self.main_tab.grid_rowconfigure(4, weight=1)
+        self.main_tab.grid_rowconfigure(5, weight=1)
+        self.main_tab.grid_rowconfigure(6, weight=1)
+
+        self.main_tab.grid_rowconfigure(0, weight=1)
+        self.main_tab.grid_columnconfigure(0, weight=1)
+        self.main_tab.grid_columnconfigure(1, weight=2)
+        
+        self.madlibs_tab.grid_rowconfigure(0, weight=1)
+        self.madlibs_tab.grid_columnconfigure(0, weight=1)
+
 
         self.root.grid_rowconfigure(0, weight=1)
         self.root.grid_columnconfigure(0, weight=1)
 
         #Create frames -changed parent to notebook
-        self.left_frame = ctk.CTkFrame(main_tab, fg_color=self.bg_color, width=150, height=350)
-        self.right_frame = ctk.CTkFrame(main_tab, fg_color=self.bg_color, width=650, height=350)
-        self.bottom_frame = ctk.CTkFrame(main_tab, fg_color=self.bg_color, height=100)
+        self.left_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, width=150, height=350)
+        self.right_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, width=650, height=350)
+        self.bottom_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, height=100)
+
+        #Add alerts details_frame to summary tab
+        self.alertdetails_frame = ctk.CTkFrame(self.summary_tab, fg_color = self.bg_color, width=800, height=800)
+        self.alertdetails_frame.grid_propagate(False)
+
+        #Add madlibs_frame to madlibs_tab
+        self.madlibs_frame = ctk.CTkFrame(self.madlibs_tab, fg_color = self.bg_color, width=800, height=800)
+        self.madlibs_frame.grid_propagate(False)
 
         self.left_frame.grid_propagate(False)
 
@@ -123,34 +152,39 @@ class WGUI():
         self.right_frame.grid(row=0, column=1, rowspan=7, columnspan=5, sticky="nsew")
         self.bottom_frame.grid(row=7, column=0, columnspan=6, sticky="nsew")
 
+        self.alertdetails_frame.grid(row=0, column=0, sticky="nsew")
+        self.alertdetails_frame.grid_rowconfigure(0, weight=1)
+        self.alertdetails_frame.grid_columnconfigure(0, weight=1)
+        self.madlibs_frame.grid(row=10, column=4, sticky="nsew") #Changed columns to 10 and 4
+
         #ChatGPT (July, 2025)
         self.left_frame.grid_rowconfigure(0, weight=0)  # Label
         self.left_frame.grid_rowconfigure(1, weight=0)  # Entry
         self.left_frame.grid_rowconfigure(2, weight=0)  # Button
-        self.left_frame.grid_rowconfigure(3, weight=1)  # Weather Icon
-        self.left_frame.grid_rowconfigure(4, weight=1)  # Mood/Saying
-        self.left_frame.grid_rowconfigure(5, weight=1)  # Spacer
+        self.left_frame.grid_rowconfigure(3, weight=0)  #Alert Label
+        self.left_frame.grid_rowconfigure(4, weight=1)  # Weather Icon
+        self.left_frame.grid_rowconfigure(5, weight=1)  # Mood/Saying
+        self.left_frame.grid_rowconfigure(6, weight=1)  # Spacer
         self.left_frame.grid_columnconfigure(0, weight=1)  # Stretch everything
 
         for i in range(8):
             self.right_frame.grid_rowconfigure(i, weight=1)
 
-
-
-                
+        #MAIN TAB        
         # Add widgets to left_frame
 
         self.citylabel=ctk.CTkLabel(self.left_frame, fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size), text="Enter a city:")
         self.cityentry = ctk.CTkEntry(self.left_frame, width=100)    
         self.citybutton = ctk.CTkButton(self.left_frame, fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size),text="Get Weather",command=self.controller.get_weather)
+        self.alertslabel = ctk.CTkLabel(self.left_frame, image=self.controller.get_flat_icon("warning"), text=" Alerts!", text_color=self.font_color,font=(self.font_style, self.font_size), compound="left")
         self.alertsbox = ctk.CTkTextbox(self.left_frame, fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
-        self.weather_icon = ctk.CTkLabel(self.left_frame, text="🌤️", font=("Helvetica", 40))
-        self.sayingsbox = ctk.CTkTextbox(self.left_frame, fg_color=self.bg_color, text_color=self.font_color, height=80, font=(self.font_style, self.font_size))
+        self.weather_icon = ctk.CTkLabel(self.left_frame, image=self.controller.get_flat_icon("thinking"))
+        self.sayingsbox = ctk.CTkTextbox(self.left_frame, fg_color=self.bg_color, text_color=self.font_color, height=80, font=(self.font_style, self.font_size), wrap="word")
     
         #Add widgets to the right frame
       
         #Big weather icon goes here
-        self.icon_label = ctk.CTkLabel(self.right_frame, text="🌤️", width = 100, height=100, fg_color=self.bg_color, font=(self.font_style, self.font_size + 90))
+        self.icon_label = ctk.CTkLabel(self.right_frame, text="🌤️", width = 100, height=100, bg_color=self.button_bg, fg_color=self.bg_color, text_color=self.icon_color, font=("Weather Icons", self.font_size + 90))
 
         #Location label
         self.location_label=ctk.CTkLabel(self.right_frame, text="City, Country", font=(self.font_style, self.font_size + 2),text_color=self.font_color, fg_color=self.bg_color)
@@ -176,7 +210,7 @@ class WGUI():
             day_frame.grid(row=0, column=i, padx=5, pady=5, sticky="n")
 
             label_day = ctk.CTkLabel(day_frame, text="Day", font=(self.font_style, self.font_size - 2), text_color=self.font_color)
-            label_icon = ctk.CTkLabel(day_frame, text="⛅", font=(self.font_style, self.font_size + 4), text_color=self.font_color)
+            label_icon = ctk.CTkLabel(day_frame, text="⛅", font=("Weather Icons", self.font_size + 4), text_color=self.font_color)
             hi_label = ctk.CTkLabel(day_frame, text="88°", fg_color=self.bg_color, text_color=self.font_color)
             lo_label = ctk.CTkLabel(day_frame, text="72°", fg_color=self.bg_color, text_color=self.font_color)
 
@@ -196,21 +230,152 @@ class WGUI():
           
 
         # Configure widgets
-        self.sayingsbox.insert("0.0", "A sunny day keeps the bugs at bay ☀️")
+        self.sayingsbox.insert("0.0", self.controller.update_quote(self.icon_label))
         self.sayingsbox.configure(state="disabled")
 
         #Bottom Frame 
         self.summary = ctk.CTkLabel(self.bottom_frame,fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size) ,text="Summary:")
+        #ALERTS TAB
+        #Alerts details textbox for Alert Details tab
+        self.alertdetail = ctk.CTkTextbox(self.alertdetails_frame,fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
 
+        #ADDED 7/28/25
+        #Madlibs textbox for Madlibs tab
+        self.madlibs_title = ctk.CTkLabel(self.madlibs_frame,text="Random files, Random rows Weather MadLibs", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size + 10))
+        
+        #Comboboxes for nouns, verbs,etc...
+        self.madlibs_nounlabel_1 = ctk.CTkLabel(self.madlibs_frame, text="Please select a noun", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_noun_1=ctk.CTkComboBox(self.madlibs_frame, 
+                                              values=wl.NOUNS, 
+                                              fg_color=self.bg_color,
+                                              text_color=self.font_color,
+                                              font=(self.font_style, self.font_size),
+                                              width=30
+                                             )     
+        
+        self.madlibs_nounlabel_2 = ctk.CTkLabel(self.madlibs_frame, text="Select another noun", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_noun_2=ctk.CTkComboBox(self.madlibs_frame, 
+                                              values=wl.NOUNS, 
+                                              fg_color=self.bg_color,
+                                              text_color=self.font_color,
+                                              font=(self.font_style, self.font_size)
+                                             )     
+
+        self.madlibs_verblabel_1 = ctk.CTkLabel(self.madlibs_frame, text="Select a verb", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_verb_1=ctk.CTkComboBox(self.madlibs_frame, 
+                                              values=wl.VERBS, 
+                                              fg_color=self.bg_color,
+                                              text_color=self.font_color,
+                                              font=(self.font_style, self.font_size)
+                                             )     
+        
+        self.madlibs_verblabel_2 = ctk.CTkLabel(self.madlibs_frame, text="Select another verb", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_verb_2=ctk.CTkComboBox(self.madlibs_frame, 
+                                              values=wl.VERBS, 
+                                              fg_color=self.bg_color,
+                                              text_color=self.font_color,
+                                              font=(self.font_style, self.font_size)
+                                             )     
+
+
+        self.madlibs_adverblabel_1 = ctk.CTkLabel(self.madlibs_frame, text="Select an adverb", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_adverb_1=ctk.CTkComboBox(self.madlibs_frame, 
+                                              values=wl.ADVERBS, 
+                                              fg_color=self.bg_color,
+                                              text_color=self.font_color,
+                                              font=(self.font_style, self.font_size)
+                                             )     
+        
+        self.madlibs_adverblabel_2 = ctk.CTkLabel(self.madlibs_frame, text="Select another adverb", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_adverb_2=ctk.CTkComboBox(self.madlibs_frame, 
+                                              values=wl.ADVERBS, 
+                                              fg_color=self.bg_color,
+                                              text_color=self.font_color,
+                                              font=(self.font_style, self.font_size)
+                                             )  
+
+        self.madlibs_adjectivelabel_1 = ctk.CTkLabel(self.madlibs_frame, text="Select an adjective", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_adjective_1=ctk.CTkComboBox(self.madlibs_frame, 
+                                              values=wl.ADJECTIVES, 
+                                              fg_color=self.bg_color,
+                                              text_color=self.font_color,
+                                              font=(self.font_style, self.font_size)
+                                             ) 
+        
+        self.madlibs_adjectivelabel_2 = ctk.CTkLabel(self.madlibs_frame, text="Select another adjective", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_adjective_2=ctk.CTkComboBox(self.madlibs_frame, 
+                                              values=wl.ADJECTIVES, 
+                                              fg_color=self.bg_color,
+                                              text_color=self.font_color,
+                                              font=(self.font_style, self.font_size)
+                                             ) 
+        #Get the random weather data
+        self.madlibs_weatherlabel = ctk.CTkLabel(self.madlibs_frame, text="Click the Button to get Random Weather Data", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_weatherdata = ctk.CTkButton(self.madlibs_frame, text="Get Random Weather Data", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+
+        #Generate the madlib using all the selected words and the random weather data.
+        self.madlibs_generate = ctk.CTkButton(self.madlibs_frame, text="Generate Madlib", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size),command=self.generate_madlib)
+    
+        #In this box I want to create comboboxes for nouns, verbs, etc... based on the number needed for the template      
+        self.madlibs_box = ctk.CTkTextbox(self.madlibs_frame,
+                                          fg_color=self.bg_color,
+                                          text_color=self.font_color,
+                                          font=(self.font_style, self.font_size),
+                                          height=200, 
+                                          wrap="word"
+                                         ) 
+
+        
+
+        self.madlibs_box.configure(state="disabled")
+
+
+
+        #Add to madlibs as a grid
+        self.madlibs_title.grid(row=1, column=1, columnspan=2, padx=30, pady=30, sticky="ew") 
+       
+        self.madlibs_nounlabel_1.grid(row=2, column=0, padx=5, pady=5, sticky="ew") 
+        self.madlibs_noun_1.grid(row=2, column=1, padx=5, pady=5, sticky="ew")
+      
+        self.madlibs_nounlabel_2.grid(row=2, column=2, padx=5, pady=5, sticky="ew") 
+        self.madlibs_noun_2.grid(row=2, column=3, padx=5, pady=5, sticky="ew")
+
+        self.madlibs_verblabel_1.grid(row=3, column=0, padx=5, pady=5, sticky="ew") 
+        self.madlibs_verb_1.grid(row=3, column=1, padx=5, pady=5, sticky="ew")
+
+        self.madlibs_verblabel_2.grid(row=3, column=2, padx=5, pady=5, sticky="ew") 
+        self.madlibs_verb_2.grid(row=3, column=3, padx=5, pady=5, sticky="ew")
+     
+        self.madlibs_adverblabel_1.grid(row=4, column=0, padx=5, pady=5, sticky="ew") 
+        self.madlibs_adverb_1.grid(row=4, column=1, padx=5, pady=5, sticky="ew")
+
+        self.madlibs_adverblabel_2.grid(row=4, column=2, padx=5, pady=5, sticky="ew") 
+        self.madlibs_adverb_2.grid(row=4, column=3, padx=5, pady=5, sticky="ew")
+    
+        self.madlibs_adjectivelabel_1.grid(row=5, column=0, padx=5, pady=5, sticky="ew") 
+        self.madlibs_adjective_1.grid(row=5, column=1, padx=5, pady=5, sticky="ew")
+
+        self.madlibs_adjectivelabel_2.grid(row=5, column=2, padx=5, pady=5, sticky="ew") 
+        self.madlibs_adjective_2.grid(row=5, column=3, padx=5, pady=5, sticky="ew")
+     
+        self.madlibs_weatherlabel.grid(row=6, column=2, columnspan=2, padx=5, pady=5, sticky="ew")    
+        self.madlibs_weatherdata.grid(row=7, column=2, columnspan=2, padx=5, pady=5, sticky="ew") 
+
+        self.madlibs_generate.grid(row=8, column=2, columnspan=2, padx=5, pady=5, sticky="ew")
+
+        self.madlibs_box.grid(row=9, column=0, columnspan=4, padx=10, pady=10, sticky="nsew") 
+        
+             
 
         #Add to left as grid
         self.citylabel.grid(row=0, column=0,pady=(10, 5), padx=10, sticky="w")
         self.cityentry.grid(row=1,column=0, pady=(0, 5), padx=10, sticky="ew")    
         self.citybutton.grid(row=2,column=0, pady=(0, 10),padx=10, sticky="ew")
 
-        self.alertsbox.grid(row=3, column=0, pady=(20, 10),sticky="n")
-        self.weather_icon.grid(row=4, column=0, pady=(10, 5), padx=10, sticky="n")
-        self.sayingsbox.grid(row=5,column=0, padx=10, pady=(5,10), sticky="nsew")
+        self.alertslabel.grid(row=3, column=0, pady=(20, 10),sticky="n")
+        self.alertsbox.grid(row=4, column=0, pady=(20, 10),sticky="n")
+        self.weather_icon.grid(row=5, column=0, pady=(10, 5), padx=10, sticky="n")
+        self.sayingsbox.grid(row=6,column=0, padx=10, pady=(5,10), sticky="nsew")
 
         #Add to right frame as grid
           
@@ -238,20 +403,35 @@ class WGUI():
 
         # Add widgets to bottom_frame
         self.summary.grid(row=0, columnspan=3, sticky="nsew")
+        self.alertdetail.grid(row=0, column=0, sticky="nsew")
 
-    #Weather display method - Need to add country and city
+        
+    #Weather display method
     def display_weather(self, parsed):
 
         #LEFT FRAME UPDATE
         self.alertsbox.delete("0.0", "end") #clear the textbox first
-        self.alertsbox.insert("0.0", f"Alerts: {parsed.alerts}") 
+        
+        self.alertsbox.insert("0.0", f"{parsed.alerts}") #⚠️
 
         #RIGHT FRAME UPDATE
+                
+        if self.dynamic_icons_enabled.get():
+            icon = self.controller.get_flat_icon(parsed.icon_code)
+            self.icon_label.configure(text="")
+            self.icon_label.configure(image=icon)
+        else:
+            icon = icons.get_icons(parsed.icon_code)
+            self.icon_label.configure(image="")
+            self.icon_label.configure(text=icon)
+        
+        self.current_icon_code = parsed.icon_code #added to make it work with main   
 
-        self.icon_label.configure(text=f"{icons.get_icons(parsed.icon_code)}")        
+            
         self.location_label.configure(text=parsed.full_location())
        
-        self.temperature_first.configure(text=f"{parsed.temperature_first}°F\n")   
+        self.temperature_first.configure(text=f"{parsed.temperature_first}°F\n")  
+      
 
         #Check if the first temperature is Fahrenheit by checking the FThenC flag set in api.parseData
         if parsed.FthenC:
@@ -268,7 +448,13 @@ class WGUI():
         self.uv_index.configure(text=f"UV Index: {parsed.uv}\n")
         self.feels_like.configure(text=f"Feels Like: {parsed.feels_like}°F\n")
         self.wind.configure(text=f"Wind: {parsed.windspeed} mph {parsed.wind_deg_to_cardinal(parsed.direction)}", anchor="nw")
-        
+
+        #Added to update the sayingsbox. tag_configure by ChatGPT(July, 2025)    
+        self.sayingsbox.configure(state="normal")      # unlock editing
+        self.sayingsbox.delete("1.0", "end")           # clear existing text
+        self.sayingsbox.insert("1.0", self.controller.update_quote(parsed.icon_code))    
+        self.sayingsbox.tag_add("center", "1.0", "end") # center text
+        self.sayingsbox.configure(state="disabled")    # lock editing
 
         if hasattr(parsed, "daily"):
             self.display_forecast(parsed.daily)
@@ -278,34 +464,126 @@ class WGUI():
         #Bottom Frame
         self.summary.configure(text=f"Summary: {parsed.summary}")
 
+        #Alerts details
+        self.alertdetail.delete("0.0", "end")
+        if hasattr(parsed, "alertdescription"):
+            self.alertdetail.insert("0.0", f"⚠️ Alert Description:\n\n\n {parsed.alertdescription}")
+
+
+    def get_pink(self):
+
+        pinkWarning = ctk.CTkToplevel(fg_color="#F1FFAB") 
+        pinkWarning.title("PINK THEME WARNING!")   
+        pinkWarning.geometry("400x400")
+
+        pink_text_font = ctk.CTkFont(family="Malgun Gothic", size=16, weight="bold")
+        pink_text = ctk.CTkTextbox(
+                                   master=pinkWarning, 
+                                   fg_color="#F8FFD3",
+                                   text_color="#000000", 
+                                   width=380, 
+                                   height=300, 
+                                   corner_radius=10,
+                                   font=pink_text_font,                                    
+                                   wrap="word"
+                                )
+       
+          
+       
+        pink_text.insert("0.0", "The pink theme is horrific nightmare " \
+                                "fuel not meant for weather conditions or any other conditions"
+                                " for that matter. That being said, if you REALLY want to see this" \
+                                " Lovecraftian horror of color, then press the button. " \
+                                "But, dont blame me later for any side effects. Personally, I blame Victoya Venise. " \
+                                "She 'inspired' this theme.")
+        
+        pink_text.configure(state="disabled")
+
+              
+        def activate_pink():
+
+            self.apply_theme(themes.pink_theme)
+
+            #second message after themes applied
+            def update_text():
+
+                pink_text.configure(state="normal")
+                pink_text.delete("1.0", "end")
+                pink_text.insert("0.0", "Bwahahahaha!!. Feast your eyes on the horror.\n"
+                                    "Todays forecast calls for Pepto Bismol rain, and rosy fingered dawns, "
+                                    "and probably some ill tempered bass... For good measure.\n\n"
+                                    "OR...\nEnjoy and Happy Valentine's Day or something."
+                                )
+                pink_text.configure(state="disabled")
+                
+                # Schedule popup close 3 seconds after message appears
+                pinkWarning.after(3000, pinkWarning.destroy)
+
+            pinkWarning.after(5000, update_text)
+
+
+        pink_button = ctk.CTkButton(pinkWarning,
+                                    text=f"Open Pink Theme 😨",
+                                    text_color="#FFFFFF",
+                                    bg_color="#964242",
+                                    hover_color="pink",
+                                    font=("Arial", 16),
+                                    command=activate_pink                                    
+                                )
+
+              
+        pink_text.pack(padx=20, pady=20)
+        pink_button.pack(side="bottom", padx=10, pady=10)
+
+        #Window in focusing and bring-to-front code.ChatGPT (July, 2025) 
+        # --- Ensure the window pops in front ---
+        pinkWarning.wm_transient(self.root)  # Tie to main window
+        pinkWarning.lift()                   # Bring to front
+        pinkWarning.focus_force()            # Give focus
+        pinkWarning.grab_set()               # Make modal (blocks other windows)
+        
+
+
     def apply_theme(self, theme: dict) -> None:
 
         
         self.bg_color = theme["bg_color"] # Main background color
         self.fg_color = theme["fg_color"] # Frame background color
+        # self.left_fg_color = theme["left_fg_color"] # Left Frame background color
         self.font_color = theme["font_color"] # Text Label color
         self.font_style = theme["font_style"] # Font family
         self.font_size = theme["font_size"] # Font size
         self.button_bg = theme["button_bg"] #Button Color
         self.button_fg = theme["button_fg"] #Button Text Color
+        self.icon_color = theme["icon_color"] #Icon color - Forgot this. chatgpt helped me fix it. (chatgpt, July, 2025)
 
         #root update 
         self.root.configure(fg_color=self.bg_color)
 
+        #tabs update
+        self.tabview._segmented_button.configure(
+            fg_color=self.bg_color, 
+            text_color=self.font_color,
+            selected_color = self.button_bg, 
+            selected_hover_color= self.bg_color,
+            unselected_color = self.fg_color          
+        )
+
         #LEFT FRAME AND WIDGETS
-        self.left_frame.configure(fg_color=self.fg_color)
+        self.left_frame.configure(fg_color=self.fg_color) #Change future
         
-        self.cityentry.configure(fg_color=self.bg_color, font=(self.font_style, self.font_size))
+        self.cityentry.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
         self.citybutton.configure(fg_color=self.button_bg, text_color=self.button_fg,font=(self.font_style, self.font_size))
         self.citylabel.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
+        self.alertslabel.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))  
         self.alertsbox.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))        
         self.sayingsbox.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size)) 
 
         #RIGHT FRAME AND WIDGETS
         self.right_frame.configure(fg_color=self.fg_color)
         self.forecast_frame.configure(fg_color=self.fg_color)
-        self.icon_label.configure(fg_color=self.bg_color, text_color=self.font_color)
-
+        self.icon_label.configure(fg_color=self.bg_color, text_color=self.icon_color) 
+        
     
         #forecast window
         #chatgpt (July, 2025)
@@ -313,7 +591,7 @@ class WGUI():
 
             frame_data["frame"].configure(fg_color=self.fg_color)
             frame_data["day"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
-            frame_data["icon"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size + 4))
+            frame_data["icon"].configure(fg_color=self.bg_color, text_color=self.font_color, font=("Weather Icons", self.font_size + 4))
             frame_data["hi"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
             frame_data["lo"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
 
@@ -342,6 +620,24 @@ class WGUI():
         #Bottom Frame and widgets
         self.bottom_frame.configure(fg_color=self.fg_color)
 
+        #Alerts page
+        self.alertdetails_frame.configure(fg_color=self.fg_color)
+        self.alertdetail.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
+    
+        #Madlibs page
+        self.madlibs_frame.configure(fg_color=self.fg_color)
+        self.madlibs_box.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
+
+
+
+    def toggle_icon_theme(self):
+        enabled = self.dynamic_icons_enabled.get()
+        print("Dynamic icon theme is now", "enabled" if enabled else "disabled")
+    
+        # Update the current weather display:
+        if hasattr(self, "current_parsed_data"):
+            self.display_weather(self.current_parsed_data)
+
 
     def display_forecast(self, daily_data):
         for i, day_data in enumerate(daily_data[1:6]):  # skip today, get next 5
@@ -357,4 +653,37 @@ class WGUI():
             self.forecast_day_frames[i]["day"].configure(text=day_name)
             self.forecast_day_frames[i]["icon"].configure(text=icon)
             self.forecast_day_frames[i]["hi"].configure(text=f"↑ {temp_max}°")
-            self.forecast_day_frames[i]["lo"].configure(text=f"↓ {temp_min}°")   
+            self.forecast_day_frames[i]["lo"].configure(text=f"↓ {temp_min}°")  
+
+    def show_error(message: str, title: str="Error"):
+        messagebox.showerror(title, message)   
+
+    def generate_madlib(self):
+        # 1. Get user words from ComboBoxes
+        user_words = {
+            "noun1": self.madlibs_noun_1.get(),
+            "noun2": self.madlibs_noun_2.get(),
+            "verb1": self.madlibs_verb_1.get(),
+            "verb2": self.madlibs_verb_2.get(),
+            "adverb1": self.madlibs_adverb_1.get(),
+            "adverb2": self.madlibs_adverb_2.get(),
+            "adjective1": self.madlibs_adjective_1.get(),
+            "adjective2": self.madlibs_adjective_2.get()
+        }
+
+        # 2. Generate the madlib using MadGenerator instance
+        self.mad_generator.user_inputs = user_words
+        self.mad_generator.generate_lines()  # selects weather1 and weather2
+        madlib_text = self.mad_generator.generate_madlib()
+
+        print("Weather1:", self.mad_generator.weather1) #TEMP
+        print("Weather2:", self.mad_generator.weather2) #TEMP
+
+        # 3. Show it in GUI
+        self.madlibs_box.configure(state="normal")
+        self.madlibs_box.delete("1.0", "end")
+        self.madlibs_box.insert("1.0", madlib_text)
+        self.madlibs_box.configure(state="disabled")
+
+        # 4. Log to CSV
+        self.mad_generator.log_madlib(madlib_text)          

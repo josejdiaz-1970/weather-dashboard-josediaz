@@ -133,7 +133,133 @@ except:
 moved icons to weather_icons.py
 
 Added the rest of the preliminary themes.
+Switched to Erik's Icons. Need to replace the moon icon. I like the default better.
 Going to make both day and night themes for different conditions.
 Started to write the weather selector
+
+ToDo:
+
+Need to improve the themes, add a separate color for left and right frames.
+Need to complete theme selector by weather.
+Need to make the color icons 
+Night icons are also missing from Eriks Icons. Need to make those.
+
+7-15-25
+
+Moved Summary to Summary Tab, need to expand textbox to take up the whole frame.
+Fixed moon icon to use default.
+
+7-16-25
+
+Expanded textbox but I need to center it.
+
+To Do:
+
+Fix funny sayings. Look for an icon mascot.
+Write let the weather decide.
+Can a command: lambda have more then one statement? No
+Move let the weather decide option to Settings: To toggle the Let the weather decide theme.
+Add a check option under Settings to toggle themes based on Weather.
+
+
+Center Alert Summary 
+Start working on pulling historical data for Perth Amboy for csv files.
+Need to come up with testing scheme. Unit testing, test scripts, etc...
+Fix this:
+ File "c:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\weather_gui.py", line 299, in display_weather
+    self.alertdetail.insert("0.0", f"Alert Description:\n\n\n {parsed.alertdescription}")
+                                                               ^^^^^^^^^^^^^^^^^^^^^^^
+AttributeError: 'ParseData' object has no attribute 'alertdescription'. Did you mean: 'description'?
+
+07-20-25
+
+Fixed theme switcher
+Started implementing color icons
+Started implmenting "Pink theme" Easter Egg"
+
+EasterEgg
+use tk.TopLEvel for "pink Theme"
+
+1. User selects pink theme
+2. toplevel are you sure?
+3. if yes, wait 5 secs, toplevel: ok, dont say I didnt warn you.
+4. apply theme. YES!! Embrace the horror! Bwahaha!!...Unless its Feb 14th. In that case, Happy Valentine's Day.
+5. Summary: All precipitation will now be Pepto Bismol based.
+
+7-21-25
+
+Resolved to switch to TabView which will fix an issue with ttk.Notebook in a customtkinter window and fonts not being styled
+TBD, the whole notebook needs to be converted and I'm afraid of breaking my code. MAy leave this for a weekend.
+
+7-22-25
+
+Attribute: default icon (crying unicorn) by flaticon.com user: Luvdat
+
+rain cloud : iconixar
+sun, snow, cloudy, overcast, broken clouds day, fog, thinking emoji: Freepik (http:\\www.freepik.com)
+moon: Vectors Market
+thunderstorm (both), rain shower day: justicon
+rain:Berkhaicon
+partly cloudy night: Fantasyou
+partly cloudy night 2: Peerapak Takpho
+rain night: Plastic Donut
+haze: wouldulearn
+mist: bqlqn
+alert triangle: Andrean Prabowo
+
+
+7-23-25
+
+Converted tk.notebook to ctk.Tabview. Got it working.
+Pulled some data for team project.
+Started the sayings.py file.
+
+welcometothejungle - jobs
+talentnova
+
+7-24-25
+
+Got picture icons working. Need more of them. Also got the switching to work. 
+May add color icons to 5 day as well.
+
+To Do: Need to decide on icons for all weather conditions.
+
+7-26-25
+
+Finished icon selection and integration.
+Added warning and thinking emoji icon.
+Fixed some minor errors with alert display. 
+Imported worldcities.csv for autocomplete function - future
+
+To Do:
+
+Team feature
+Autocomplete function
+
+Extra: Charts page with historical data imports
+
+Blockers: Current issue with current icon colors for text icons
+Fixed
+Need to work on cycling thru funny sayings and team project.
+
+7-27-25
+
+Completed sayings.
+Completed Easter Egg.
+Started Team project
+Created word file
+
+
+ToDo:
+
+Finalize error conditions. 
+Add one for misspelled city or consider adding an autocomplete feature with a dropdown menu.
+Testing (pytest?)
+
+Historical chart window USer selects length of time to get.
+
+7-28-25
+
+Added basic structure for Madlibs
 
 

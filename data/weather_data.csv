@@ -1,182 +1,233 @@
-City,Country,Temperature,Description,Humidity,Pressure,Wind_Speed,Direction,Time,Sunrise,Sunset
-Cleveland,US,84.63,"Clear, clear sky",59,1015,13.8,180,2025-07-06 10:14:10,05:59:33,21:03:14
-Cleveland,US,85.32,"Clear, clear sky",59,1015,13.8,180,2025-07-06 10:29:27,05:59:33,21:03:14
-"San Juan,PR",PR,86.59,"Haze, haze",70,1019,13.8,100,2025-07-06 11:00:07,05:53:07,19:04:49
-"San Juan, PR",PR,87.55,"Haze, haze",70,1019,17.27,70,2025-07-06 11:53:56,05:53:07,19:04:49
-"San Juan,PR",PR,88.5,"Haze, haze",65,1019,14.97,70,2025-07-06 13:25:50,05:53:07,19:04:49
-Oslo,NO,64.56,"Clouds, broken clouds",82,997,6.58,184,2025-07-06 13:29:30,22:06:24,16:36:46
-Oslo,NO,64.56,"Clouds, broken clouds",82,997,6.58,184,2025-07-06 13:29:30,22:06:24,16:36:46
-Nome,US,66.27,"Clear, clear sky",53,1010,3.44,360,2025-07-06 13:35:53,08:44:08,05:28:25
-Fairbanks,US,64.36,"Smoke, smoke",68,1007,0,0,2025-07-06 13:38:16,07:25:16,04:25:44
-Fairbanks,US,64.36,"Smoke, smoke",68,1007,0,0,2025-07-06 13:38:16,07:25:16,04:25:44
-"Ceiba,PR",PR,88.93,"Clouds, overcast clouds",70,1018,4,177,2025-07-06 13:40:56,05:54:10,19:05:51
-"Levittown,PR",PR,88.48,"Haze, haze",67,1018,14.97,70,2025-07-06 13:43:54,05:53:29,19:05:11
-San Juan,AR,59.45,"Clear, clear sky",32,1014,2.55,122,2025-07-06 13:47:18,07:33:45,17:43:45
-San Juan,AR,59.45,"Clear, clear sky",32,1014,2.55,122,2025-07-06 13:49:03,07:33:45,17:43:45
-San Juan,AR,59.45,"Clear, clear sky",32,1014,2.55,122,2025-07-06 13:47:18,07:33:45,17:43:45
-Oslo,NO,64.56,"Clouds, broken clouds",82,997,5.84,174,2025-07-06 13:53:42,22:06:24,16:36:46
-San Juan,AR,59.45,"Clear, clear sky",32,1014,4.23,139,2025-07-06 13:58:06,07:33:45,17:43:45
-Oslo,NO,64.56,"Clouds, broken clouds",82,997,5.84,174,2025-07-06 13:53:42,22:06:24,16:36:46
-Oslo,NO,64.56,"Clouds, broken clouds",82,998,5.84,174,2025-07-06 14:04:46,22:06:24,16:36:46
-oslo,NO,64.56,"Clouds, broken clouds",82,998,5.84,174,2025-07-06 14:04:46,22:06:24,16:36:46
-San Juan,AR,60.91,"Clear, clear sky",31,1014,4.79,147,2025-07-06 14:32:47,07:33:45,17:43:45
-Oslo,NO,63.55,"Clear, clear sky",84,997,7.23,169,2025-07-06 15:07:38,22:06:24,16:36:46
-oslo,NO,63.55,"Clear, clear sky",84,997,7.23,169,2025-07-06 15:10:55,22:06:24,16:36:46
-rome,US,92.23,"Clear, clear sky",44,1016,4.61,320,2025-07-06 15:18:00,06:34:41,20:55:51
-Oslo,NO,63.55,"Clear, clear sky",84,997,7.23,169,2025-07-06 15:22:54,22:06:24,16:36:46
-"San Juan,PR",PR,87.69,"Clouds, few clouds",69,1018,17.27,50,2025-07-06 15:22:22,05:53:07,19:04:49
-London,GB,66.56,"Clouds, few clouds",64,1006,10.36,330,2025-07-06 15:37:55,23:51:28,16:18:41
-Ponce,PR,82.44,"Rain, light rain",81,1017,10.18,146,2025-07-06 15:53:13,05:55:57,19:06:13
-"Levittown,PR",PR,86.88,"Haze, haze",70,1017,17.27,50,2025-07-06 15:57:12,05:53:29,19:05:11
-Osaka,JP,82.63,"Clouds, overcast clouds",65,1005,6.91,60,2025-07-06 16:00:05,15:51:04,06:14:16
-Fukuoka,JP,80.42,"Clouds, overcast clouds",66,1005,6.91,150,2025-07-06 16:05:04,16:14:15,06:31:46
-Perth Amboy,US,90.75,"Clear, clear sky",40,1016,8.01,273,2025-07-06 16:14:18,05:33:03,20:30:17
-Perth Amboy,US,82.15,"Clouds, scattered clouds",80,1015,3,160,2025-07-07 09:54:25,05:33:40,20:29:59
-Perth Amboy,US,82.17,"Clouds, scattered clouds",82,1015,5.01,82,2025-07-07 10:09:31,05:33:40,20:29:59
-"San Juan,PR",PR,86.16,"Clouds, scattered clouds",71,1019,19.57,60,2025-07-07 10:51:13,05:53:27,19:04:48
-"San Juan,PR",PR,86.16,"Clouds, scattered clouds",71,1019,19.57,60,2025-07-07 10:51:13,05:53:27,19:04:48
-San Juan,AR,56.03,"Clear, clear sky",42,1025,4.52,32,2025-07-07 11:04:27,07:33:36,17:44:13
-"Rome,IT",IT,85.5,"Clouds, scattered clouds",48,1008,13.8,240,2025-07-07 11:02:54,23:41:59,14:47:35
-San Juan,AR,56.03,"Clear, clear sky",42,1025,4.52,32,2025-07-07 11:10:12,07:33:36,17:44:13
-Levittown,US,86.14,"Clouds, overcast clouds",71,1015,4.61,0,2025-07-07 11:23:17,05:37:02,20:31:07
-Piscataway,US,85.37,"Clouds, scattered clouds",73,1015,1.01,0,2025-07-07 11:22:49,05:34:13,20:30:29
-San Juan,AR,56.03,"Clear, clear sky",42,1025,4.52,32,2025-07-07 11:29:17,07:33:36,17:44:13
-San Juan,AR,60.67,"Clear, clear sky",36,1023,4.09,42,2025-07-07 12:38:35,07:33:36,17:44:13
-"San juan,PR",PR,86.76,"Rain, shower rain",70,1018,16.11,100,2025-07-07 13:13:59,05:53:27,19:04:48
-"Levittown,PR",PR,87.62,"Rain, shower rain",70,1018,16.11,100,2025-07-07 13:14:14,05:53:48,19:05:10
-oslo,61.59,Overcast clouds,81,1003,6.26,44
-Perth Amboy,85.71,Moderate rain,75,1013,8.05,140
-San Juan,85.44,Broken clouds,71,1016,21.85,60
-Perth Amboy,85.82,Moderate rain,76,1013,8.05,140
-New York,85.28,Few clouds,73,1013,14.97,180
-New York,85.1,Few clouds,73,1013,14.97,180
-Oslo,60.58,Overcast clouds,82,1003,5.73,41
-Barrow,35.62,Overcast clouds,87,1008,9.22,350
-Oslo,60.58,Overcast clouds,81,1003,5.73,41
-Levittown,82.76,Broken clouds,82,1014,16.11,200
-oslo,,,58.59,58.05,Overcast clouds,83,1004,0,4.61,353
-Rome,,,78.96,78.96,Clear sky,59,1008,0,11.5,250
-Oslo,,NO,58.59,58.05,Overcast clouds,83,1004,0,4.61,353
-Perth Amboy,New Jersey,US,81.36,86.63,Clear sky,77,1013,0.28,8.05,170
-San Juan,Puerto Rico,US,82.67,89.04,Shower rain,75,1017,0,12.66,90
-Reykjavik,,IS,51.66,50.61,Overcast clouds,87,1002,0,11.5,80
-Los Angeles,California,US,77.04,77.16,Clear sky,58,1014,3.07,14.97,260
-Oslo,,NO,57.6,57.09,Overcast clouds,86,1004,0,4.59,344
-Oslo,,NO,57.6,57.09,Overcast clouds,86,1004,0,4.59,344
-La Paz,La Paz,BO,52.7,48.61,Clear sky,20,1021,0,5.75,50
-Tupelo,Mississippi,US,89.89,98.31,Clear sky,58,1016,0.23,9.22,40
-Oslo,,NO,56.59,55.94,Scattered clouds,85,1011,0,0.38,59
-Orlando,Florida,US,86.68,99.28,Overcast clouds,78,1019,0,3,216
-Perth Amboy,New Jersey,US,74.01,75.06,Clear sky,84,1016,0,3.44,270
-Ulaanbaatar,,MN,18,64,64,Few clouds,77,1006,3.27,4.47,0
-Moorcroft,Wyoming,US,83,28,82,Broken clouds,38,1005,0.08,1.01,63
-Fajardo,Puerto Rico,US,84,29,95,Haze,81,1018,0,8.05,110
-Old Toronto,Ontario,CA,28,83,86,Overcast clouds,62,1012,0.6,1.01,194
-Malmi,,FI,15,59,59,Clear sky,81,1015,0,11.01,35
-San Sebastián,Autonomous Community of the Basque Country,ES,21,69,69,Clear sky,77,1015,0,4.61,170
-Toledo,Castile-La Mancha,ES,25,77,76,Clear sky,28,1013,0,8.43,251
-Toledo,Castile-La Mancha,ES,25,77,76,Clear sky,28,1013,0,8.43,251
-Fajardo,Puerto Rico,US,83,28,92,Haze,82,1018,0,10,94
-Oslo,,NO,14,57,56,Scattered clouds,80,1019,0,2.04,351
-Oslo,,NO,13,55,54,Overcast clouds,81,1019,0,2.93,2
-Oslo,,NO,13,55,54,Overcast clouds,81,1019,0,2.93,2
-Perth Amboy,New Jersey,US,77,25,78,Clear sky,77,1014,0,4.61,150
-Perth Amboy,New Jersey,US,76,24,77,Overcast clouds,78,1014,0,1.01,107
-Perth Amboy,New Jersey,US,79,26,79,Clear sky,78,1016,0.28,9.22,140
-Oslo,,NO,16,61,60,Clear sky,76,1020,0,4.16,25
-Riyadh,Riyadh Region,SA,31,88,85,Few clouds,11,1003,0,7.45,350
-Tel Aviv-Yafo,Tel Aviv District,IL,25,77,79,Few clouds,85,1008,0,5.75,50
-Phoenix,Arizona,US,109,43,110,Few clouds,20,1006,2.23,11.01,268
-Levittown,New York,US,75,24,76,Overcast clouds,86,1016,0,8.05,150
-Levittown,New York,US,75,24,76,Overcast clouds,86,1016,0,8.05,150
-Levittown,New York,US,75,24,76,Overcast clouds,86,1016,0,8.05,150
-Levittown,New York,US,75,24,76,Overcast clouds,86,1016,0,8.05,150
-Levittown,New York,US,75,24,76,Overcast clouds,86,1016,0,8.05,150
-Toa Baja,Puerto Rico,US,82,28,91,Broken clouds,85,1020,0,5,74
-Oslo,,NO,17,62,61,Clear sky,74,1021,0,5,360
-Cleveland,Ohio,US,81,27,85,Clear sky,67,1014,0,6,190
-Cleveland,Ohio,US,81,27,85,Clear sky,67,1014,0,6,190
-Perth Amboy,New Jersey,US,76,24,77,Clear sky,81,1016,0,7,130
-Oslo,,NO,16,61,60,Clear sky,73,1020,0,5,6
-Los Angeles,California,US,75,24,76,Clear sky,66,1013,1.24,13,200
-Toa Baja,Puerto Rico,US,82,28,91,Broken clouds,86,1020,0,2,202
-Perth Amboy,New Jersey,US,80,27,84,Broken clouds,75,1018,5.3,3,216
-Oslo,,NO,30,86,84,Few clouds,31,1017,4.03,11,52
-Oslo,,NO,30,86,84,Few clouds,31,1017,4.03,11,52
-Oslo,,NO,30,86,84,Few clouds,31,1017,4.03,11,52
-Perth Amboy,New Jersey,US,81,27,85,Broken clouds,73,1018,5.3,7,123
-Perth Amboy,New Jersey,US,84,29,89,Overcast clouds,68,1018,7.66,8,170
-Osaka,Osaka Prefecture,JP,28,82,85,Broken clouds,64,1007,0,3,240
-Osaka,Osaka Prefecture,JP,28,82,85,Broken clouds,64,1007,0,3,240
-Tokyo,,JP,23,74,74,Broken clouds,76,1009,0,7,70
-Nagata,,JP,24,75,76,Overcast clouds,85,1007,0,3,124
-Fajardo,Puerto Rico,US,87,31,100,Broken clouds,75,1020,11.09,6,105
-Ponce,Puerto Rico,US,88,31,100,Broken clouds,71,1019,11.02,14,122
-Fajardo,Puerto Rico,US,87,31,100,Broken clouds,75,1020,11.09,6,98
-Perth Amboy,New Jersey,US,83,28,89,Broken clouds,69,1018,9.34,6,150
-Paris,Ile-de-France,FR,28,83,83,Clear sky,43,1011,2.39,9,40
-London,England,GB,28,83,84,Clear sky,50,1014,2.58,9,124
-Berlin,,DE,17,63,64,Broken clouds,91,1007,0.65,9,264
-Warsaw,Masovian Voivodeship,PL,19,67,67,Few clouds,73,1014,0.3,5,120
-Miami,Florida,US,89,32,102,Broken clouds,73,1020,9.87,6,140
-Miami,Florida,US,89,32,102,Broken clouds,73,1020,9.87,6,140
-San Diego,California,US,65,18,65,Overcast clouds,85,1016,3.63,8,160
-Moorcroft,Wyoming,US,69,21,68,Clear sky,50,1016,5.19,8,233
-Taiwan,,TW,17,63,64,Overcast clouds,89,1013,0,4,144
-Philadelphia,Pennsylvania,US,85,29,91,Broken clouds,68,1018,9.49,7,80
-Knoxville,Tennessee,US,86,30,95,Few clouds,68,1018,9.22,3,0
-Denver,Colorado,US,70,21,69,Scattered clouds,66,1015,5.52,3,86
-Orlando,Florida,US,89,32,101,Broken clouds,70,1020,9.76,5,0
-Havana,Havana,CU,31,88,99,Few clouds,66,1019,10.11,3,0
-Rio de Janeiro,Rio de Janeiro,BR,23,73,74,Broken clouds,69,1025,4.91,8,70
-Rio Hondo,Texas,US,88,31,100,Few clouds,78,1015,7.28,21,158
-Dallas,Texas,US,84,29,92,Scattered clouds,75,1016,7.06,14,179
-Bayamón,Puerto Rico,US,89,32,101,Haze,66,1020,11.03,16,70
-Osaka,Osaka Prefecture,JP,28,82,86,Broken clouds,67,1007,0,3,240
-Osaka,Osaka Prefecture,JP,28,82,86,Broken clouds,67,1007,0,3,240
-Tierra del Fuego,,CL,4,39,29,Scattered clouds,68,988,0.52,19,334
-Oslo,,NO,29,84,82,Broken clouds,32,1017,0.94,8,60
-Ponce,Puerto Rico,US,86,30,97,Broken clouds,77,1018,10.94,13,105
-Levittown,New York,US,80,27,85,Few clouds,77,1018,9.85,9,130
-Fajardo,Puerto Rico,US,88,31,101,Overcast clouds,72,1019,10.28,12,60
-Fajardo,Puerto Rico,US,88,31,101,Overcast clouds,72,1019,10.28,12,60
-Fajardo,Puerto Rico,US,88,31,101,Overcast clouds,72,1019,10.28,12,60
-Fajardo,Puerto Rico,US,88,31,101,Scattered clouds,75,1019,10.28,4,111
-Hong Kong Island,Hong Kong,CN,29,84,94,Overcast clouds,83,1006,0,7,195
-Beijing,Beijing,CN,24,75,76,Few clouds,76,1007,0,4,30
-Fajardo,Puerto Rico,US,88,31,101,Overcast clouds,73,1019,8.44,8,70
-Beijing,Beijing,CN,23,73,74,Few clouds,76,1007,0,4,30
-Beijing,Beijing,CN,23,73,74,Few clouds,76,1007,0,4,30
-Ceiba,Puerto Rico,US,88,31,100,Overcast clouds,73,1019,9.24,3,164
-Oslo,,NO,28,83,82,Broken clouds,39,1018,0.42,8,62
-Orlando,Florida,US,93,34,105,Broken clouds,59,1019,9.84,5,320
-Capetown,California,US,65,18,65,Few clouds,77,1013,8.06,8,326
-Boulder,Colorado,US,74,23,74,Overcast clouds,60,1012,10.84,5,0
-Trenton,New Jersey,US,88,31,97,Scattered clouds,62,1017,7.63,3,142
-Sydney,New South Wales,AU,6,43,38,Clear sky,84,1022,0,8,320
-Sydney,New South Wales,AU,6,43,38,Clear sky,84,1022,0,8,320
-Toa Baja,Puerto Rico,US,89,32,102,Scattered clouds,71,1018,6.39,4,181
-Río Piedras,Puerto Rico,US,89,32,101,Scattered clouds,68,1018,6.39,7,63
-Beijing,Beijing,CN,23,73,74,Clear sky,75,1006,0,4,38
-Böhme,Lower Saxony,DE,17,62,62,Overcast clouds,90,1010,0,5,353
-Fajardo,Puerto Rico,US,87,31,99,Overcast clouds,73,1017,3.56,10,60
-Fajardo,Puerto Rico,US,87,31,99,Overcast clouds,73,1017,3.56,10,60
-Río Piedras,Puerto Rico,US,87,31,99,Haze,70,1017,3.61,17,60
-Ceiba,Puerto Rico,US,88,31,101,Scattered clouds,74,1017,3.61,5,243
-Perth Amboy,New Jersey,US,83,28,88,Scattered clouds,72,1018,7.47,7,130
-Perth Amboy,New Jersey,US,83,28,88,Scattered clouds,72,1018,7.47,7,130
-Perth Amboy,New Jersey,US,83,28,89,Scattered clouds,72,1018,7.47,9,140
-Sydney,New South Wales,AU,12,53,51,Clear sky,58,1009,0,3,20
-Nagano,,JP,23,73,74,Clear sky,83,1004,0,4,193
-Trenton,New Jersey,US,86,30,94,Overcast clouds,66,1017,7.58,6,0
-Beijing,Beijing,CN,24,75,75,Overcast clouds,65,1005,0,4,44
-Hong Kong Island,Hong Kong,CN,29,84,94,Overcast clouds,82,1004,0,8,176
-Skippack,Pennsylvania,US,86,30,94,Broken clouds,68,1017,7.11,6,150
-Piscataway Township,New Jersey,US,83,28,91,Overcast clouds,75,1018,7.47,3,0
-Tokyo,,JP,26,78,80,Broken clouds,89,1003,0,10,40
-Tahiti,French Polynesia,FR,21,69,70,Broken clouds,79,1016,2.87,13,125
-South Amboy,New Jersey,US,83,28,89,Scattered clouds,72,1018,7.5,10,160
-Fajardo,Puerto Rico,US,86,30,98,Overcast clouds,74,1017,5.37,6,115
-Osaka,Osaka Prefecture,JP,26,78,79,Overcast clouds,64,999,0,10,80
-Sydney,New South Wales,AU,11,52,49,Clear sky,63,1010,0,6,80
-Perth Amboy,New Jersey,US,83,28,90,Clear sky,72,1017,4.72,12,170
+Current Time,City,State,Country,Temperature in Preferred Units,Temperature Alternate Units,Description,Humidity,Precipitation,Pressure,UV Index,Wind_Speed,Direction,Sunrise,Sunset
+2025-07-22 21:38:21,Nome,Alaska,US,48,9,44,Overcast clouds,93,rain : 0.018897648,1016,0.82,9,200,09:33:27,04:42:23
+2025-07-22 21:39:15,Rï¿½o Piedras,Puerto Rico,US,80,27,86,Heavy intensity rain,90,rain : 0.009448824,1018,0,15,90,05:58:36,19:02:22
+2025-07-22 21:39:15,Rï¿½o Piedras,Puerto Rico,US,80,27,86,Heavy intensity rain,90,rain : 0.009448824,1018,0,15,90,05:58:36,19:02:22
+2025-07-22 21:41:08,Perth Amboy,New Jersey,US,71,22,71,Clear sky,71,rain : 0.014173235999999999,1021,0,3,180,05:45:09,20:21:37
+2025-07-22 21:44:04,San Diego,California,US,71,22,71,Broken clouds,76,None : 0,1014,0.21,13,270,08:56:00,22:53:53
+2025-07-22 21:44:18,Kyoto,,JP,32,89,101,Few clouds,67,rain : 0.007480319,1014,10,3,166,15:59:19,06:07:14
+2025-07-22 21:44:32,Reethi Rah,Malé Atoll,MV,27,81,86,Overcast clouds,81,rain : 0.06614176799999999,1010,0.46,11,256,21:02:40,09:22:59
+2025-07-22 21:56:24,Reethi Rah,Malé Atoll,MV,27,81,86,Overcast clouds,81,rain : 0.06614176799999999,1010,0.46,11,256,21:02:40,09:22:59
+2025-07-22 21:56:45,Perth Amboy,New Jersey,US,71,22,71,Clear sky,72,rain : 0.014173235999999999,1021,0,3,170,05:45:09,20:21:37
+2025-07-22 21:57:08,San Diego,California,US,70,21,71,Broken clouds,76,None : 0,1014,0.21,13,270,08:56:00,22:53:53
+2025-07-22 21:57:20,Kyoto,,JP,32,89,101,Few clouds,67,rain : 0.007480319,1014,10,3,166,15:59:19,06:07:14
+2025-07-22 22:17:10,Kyoto,,JP,33,91,104,Few clouds,64,rain : 0.007480319,1014,10,1,208,15:59:19,06:07:14
+2025-07-22 22:18:46,San Diego,California,US,69,21,69,Broken clouds,79,None : 0,1014,0.21,9,290,08:56:00,22:53:53
+2025-07-22 22:32:10,Reethi Rah,Malé Atoll,MV,28,83,91,Overcast clouds,79,rain : 0.06614176799999999,1011,1.83,11,250,21:02:40,09:22:59
+2025-07-22 22:32:30,Río Piedras,Puerto Rico,US,80,27,86,Light rain,89,rain : 0.009448824,1018,0,13,80,05:58:36,19:02:22
+2025-07-23 19:05:59,Río Piedras,Puerto Rico,US,83,28,92,Haze,83,rain : 0.005905514999999999,1018,0,16,80,05:58:57,19:02:05
+2025-07-23 19:06:21,Kyoto,,JP,30,86,95,Clear sky,69,rain : 0.137007948,1013,3.06,2,116,16:00:02,06:06:35
+2025-07-23 19:11:33,San Diego,California,US,76,24,77,Few clouds,67,None : 0,1016,4.79,15,300,08:56:39,22:53:18
+2025-07-23 19:11:41,Reethi Rah,Malé Atoll,MV,28,82,90,Overcast clouds,79,rain : 0.467716788,1008,0,11,232,21:02:46,09:22:57
+2025-07-23 19:11:52,Perth Amboy,New Jersey,US,79,26,79,Clear sky,57,rain : 0.005905514999999999,1022,0.35,9,180,05:46:02,20:20:48
+2025-07-23 19:12:12,Nome,Alaska,US,52,11,51,Broken clouds,87,rain : 0.033464585,1015,1.43,13,230,09:36:46,04:39:09
+2025-07-23 19:20:47,Río Piedras,Puerto Rico,US,83,28,92,Haze,82,rain : 0.005905514999999999,1018,0,16,80,05:58:57,19:02:05
+2025-07-23 19:21:06,Nome,Alaska,US,52,11,51,Broken clouds,87,rain : 0.033464585,1015,1.43,13,230,09:36:46,04:39:09
+2025-07-23 19:21:11,Kyoto,,JP,31,87,97,Clear sky,68,rain : 0.137007948,1013,3.06,1,22,16:00:02,06:06:35
+2025-07-23 19:21:18,San Diego,California,US,76,24,76,Few clouds,67,None : 0,1016,4.79,15,300,08:56:39,22:53:18
+2025-07-23 19:21:26,Reethi Rah,Malé Atoll,MV,28,82,88,Overcast clouds,75,rain : 0.467716788,1008,0,11,232,21:02:46,09:22:57
+2025-07-23 19:21:36,Perth Amboy,New Jersey,US,78,26,79,Clear sky,58,rain : 0.005905514999999999,1022,0.35,9,180,05:46:02,20:20:48
+2025-07-23 19:41:06,Reethi Rah,Malé Atoll,MV,28,82,89,Overcast clouds,79,rain : 0.467716788,1009,0,10,241,21:02:46,09:22:57
+2025-07-23 19:41:14,San Diego,California,US,75,24,76,Few clouds,68,None : 0,1016,2.45,16,290,08:56:39,22:53:18
+2025-07-23 19:41:24,Perth Amboy,New Jersey,US,77,25,77,Clear sky,59,rain : 0.005905514999999999,1022,0,10,190,05:46:02,20:20:48
+2025-07-23 19:41:30,Nome,Alaska,US,52,11,51,Broken clouds,87,rain : 0.337008056,1014,1.47,13,230,09:36:46,04:39:09
+2025-07-23 19:41:35,Kyoto,,JP,31,87,97,Clear sky,68,rain : 0.137007948,1013,5.54,1,22,16:00:02,06:06:35
+2025-07-23 19:42:14,Río Piedras,Puerto Rico,US,83,28,92,Haze,83,rain : 0.005905514999999999,1018,0,16,80,05:58:57,19:02:05
+2025-07-23 19:53:46,Río Piedras,Puerto Rico,US,83,28,92,Haze,83,rain : 0.005905514999999999,1018,0,16,80,05:58:57,19:02:05
+2025-07-23 19:53:52,Reethi Rah,Malé Atoll,MV,28,82,89,Overcast clouds,79,rain : 0.467716788,1009,0,10,241,21:02:46,09:22:57
+2025-07-23 19:53:57,Kyoto,,JP,32,89,100,Clear sky,64,rain : 0.137007948,1013,5.54,3,170,16:00:02,06:06:35
+2025-07-23 19:54:03,San Diego,California,US,76,24,76,Few clouds,67,None : 0,1016,2.45,16,290,08:56:39,22:53:18
+2025-07-23 19:54:07,Nome,Alaska,US,52,11,51,Broken clouds,87,rain : 0.575197161,1015,1.47,13,230,09:36:46,04:39:09
+2025-07-23 19:54:15,Perth Amboy,New Jersey,US,77,25,77,Clear sky,61,rain : 0.005905514999999999,1022,0,8,180,05:46:02,20:20:48
+2025-07-23 20:39:31,Perth Amboy,New Jersey,US,75,24,75,Clear sky,62,rain : 0.005905514999999999,1023,0,7,180,05:46:02,20:20:48
+2025-07-23 20:40:54,Kyoto,,JP,32,90,101,Clear sky,63,rain : 0.137007948,1013,8.16,2,147,16:00:02,06:06:35
+2025-07-23 20:41:10,Río Piedras,Puerto Rico,US,82,28,91,Haze,85,rain : 0.005905514999999999,1019,0,16,90,05:58:57,19:02:05
+2025-07-23 20:41:33,Reethi Rah,Malé Atoll,MV,28,82,89,Overcast clouds,78,rain : 0.467716788,1009,0,10,233,21:02:46,09:22:57
+2025-07-23 20:41:56,Nome,Alaska,US,52,11,51,Overcast clouds,82,rain : 0.575197161,1015,1.2,14,250,09:36:46,04:39:09
+2025-07-23 20:42:02,San Diego,California,US,74,23,74,Scattered clouds,71,None : 0,1016,0.9,15,280,08:56:39,22:53:18
+2025-07-23 20:55:49,Perth Amboy,New Jersey,US,75,24,75,Clear sky,64,rain : 0.005905514999999999,1023,0,5,180,05:46:02,20:20:48
+2025-07-23 20:56:06,Kyoto,,JP,33,91,102,Clear sky,60,rain : 0.294094647,1013,8.16,2,204,16:00:02,06:06:35
+2025-07-23 20:56:45,Nome,Alaska,US,52,11,51,Overcast clouds,82,rain : 0.575197161,1015,1.2,14,250,09:36:46,04:39:09
+2025-07-23 20:57:13,San Diego,California,US,74,23,74,Scattered clouds,71,None : 0,1016,0.9,15,280,08:56:39,22:53:18
+2025-07-23 20:58:10,Reethi Rah,Malé Atoll,MV,28,82,89,Overcast clouds,78,rain : 0.24803162999999998,1009,0,10,233,21:02:46,09:22:57
+2025-07-23 20:58:30,Perth Amboy,New Jersey,US,75,24,75,Clear sky,64,rain : 0.005905514999999999,1023,0,5,180,05:46:02,20:20:48
+2025-07-23 21:04:21,Sydney,New South Wales,AU,14,57,55,Clear sky,52,rain : 0.255118248,1020,2.64,14,260,16:53:26,03:09:35
+2025-07-23 21:05:52,Reethi Rah,Malé Atoll,MV,28,82,90,Overcast clouds,80,rain : 0.24803162999999998,1009,0,10,233,21:02:46,09:22:57
+2025-07-23 21:06:05,Kyoto,,JP,33,91,102,Clear sky,60,rain : 0.294094647,1013,8.16,2,204,16:00:02,06:06:35
+2025-07-23 21:06:39,Río Piedras,Puerto Rico,US,82,28,90,Light rain,87,rain : 0.028346471999999998,1019,0,15,80,05:58:57,19:02:05
+2025-07-23 21:07:01,Perth Amboy,New Jersey,US,74,23,74,Clear sky,64,rain : 0.114566991,1023,0,6,190,05:46:02,20:20:48
+2025-07-23 21:07:07,San Diego,California,US,73,23,73,Scattered clouds,72,None : 0,1016,0.9,15,280,08:56:39,22:53:18
+2025-07-24 19:33:40,Perth Amboy,New Jersey,US,86,30,92,Clear sky,60,rain : 0.54330738,1017,0,9,280,05:46:56,20:19:58
+2025-07-24 19:33:58,Nome,Alaska,US,50,10,49,Overcast clouds,87,rain : 0.396850608,1017,1.85,7,190,09:40:05,04:35:53
+2025-07-24 19:34:03,Reethi Rah,Malé Atoll,MV,28,83,89,Overcast clouds,74,rain : 0.998032035,1008,0,12,244,21:02:53,09:22:53
+2025-07-24 19:34:11,Kyoto,,JP,31,87,98,Few clouds,71,rain : 0.290551338,1013,5.47,5,74,16:00:46,06:05:55
+2025-07-24 19:34:25,Río Piedras,Puerto Rico,US,83,28,92,Haze,80,rain : 0.022440956999999997,1018,0,13,70,05:59:18,19:01:48
+2025-07-24 19:41:08,Río Piedras,Puerto Rico,US,83,28,92,Haze,80,rain : 0.022440956999999997,1018,0,13,70,05:59:18,19:01:48
+2025-07-24 19:45:58,Reethi Rah,Malé Atoll,MV,28,83,89,Overcast clouds,74,rain : 0.998032035,1008,0,12,244,21:02:53,09:22:53
+2025-07-24 19:46:10,Kyoto,,JP,31,88,99,Few clouds,68,rain : 0.290551338,1013,5.47,4,111,16:00:46,06:05:55
+2025-07-24 19:46:18,Nome,Alaska,US,50,10,49,Light rain,87,rain : 0.659449175,1017,1.85,7,190,09:40:05,04:35:53
+2025-07-24 19:46:36,San Diego,California,US,75,24,75,Scattered clouds,68,None : 0,1017,2.29,18,310,08:57:19,22:52:42
+2025-07-24 19:46:56,Perth Amboy,New Jersey,US,86,30,91,Clear sky,61,rain : 0.54330738,1017,0,7,270,05:46:56,20:19:58
+2025-07-24 20:17:38,Perth Amboy,New Jersey,US,85,29,89,Clear sky,63,rain : 0.54330738,1017,0,8,280,05:46:56,20:19:58
+2025-07-24 20:25:51,Kyoto,,JP,31,88,98,Few clouds,67,rain : 0.290551338,1013,5.47,1,337,16:00:46,06:05:55
+2025-07-24 20:26:49,Los Angeles,California,US,78,26,78,Clear sky,57,None : 0,1016,2.8,13,280,08:58:43,22:59:56
+2025-07-24 20:29:41,Bani,West Azerbaijan Province,IR,21,70,68,Broken clouds,33,rain : 0.018110246,1008,0,4,37,21:59:04,12:16:04
+2025-07-24 20:29:52,Punta Cana,La Altagracia,DO,28,82,89,Scattered clouds,78,rain : 0.021259854,1017,0,15,80,06:08:20,19:11:20
+2025-07-24 20:30:14,Las Aguitas,Antioquia,CO,21,69,70,Overcast clouds,94,rain : 0.5456695859999999,1014,0,0,309,06:55:01,19:22:52
+2025-07-24 20:30:27,Madrid,Community of Madrid,ES,18,64,63,Clear sky,51,rain : 0.040157502,1017,0,20,30,01:05:39,15:36:43
+2025-07-24 20:50:15,Río Piedras,Puerto Rico,US,82,28,90,Light rain,83,rain : 0.016535441999999997,1018,0,13,70,05:59:18,19:01:48
+2025-07-24 20:52:53,Río Piedras,Puerto Rico,US,82,28,90,Light rain,83,rain : 0.016535441999999997,1018,0,13,70,05:59:18,19:01:48
+2025-07-24 20:56:41,Perth Amboy,New Jersey,US,83,28,87,Few clouds,65,rain : 0.014173235999999999,1017,0,6,253,05:46:56,20:19:58
+2025-07-24 20:56:48,Los Angeles,California,US,75,24,76,Clear sky,62,None : 0,1016,1.09,14,250,08:58:43,22:59:56
+2025-07-24 21:06:56,Los Angeles,California,US,75,24,75,Clear sky,62,None : 0,1016,1.09,15,270,08:58:43,22:59:56
+2025-07-24 21:07:12,Nome,Alaska,US,52,11,51,Overcast clouds,82,rain : 0.9937013239999999,1017,1.18,9,230,09:40:05,04:35:53
+2025-07-24 21:07:28,Río Piedras,Puerto Rico,US,82,28,89,Light rain,83,rain : 0.016535441999999997,1018,0,16,70,05:59:18,19:01:48
+2025-07-24 21:07:49,Sydney,New South Wales,AU,14,57,55,Clear sky,55,rain : 0.008267720999999999,1023,2.95,10,310,16:52:48,03:10:15
+2025-07-24 21:08:20,Los Angeles,California,US,75,24,75,Clear sky,62,None : 0,1016,1.09,15,270,08:58:43,22:59:56
+2025-07-24 21:23:55,Río Piedras,Puerto Rico,US,82,28,89,Light rain,83,rain : 0.016535441999999997,1018,0,16,70,05:59:18,19:01:48
+2025-07-24 21:24:14,Los Angeles,California,US,75,24,75,Clear sky,62,None : 0,1016,1.09,15,270,08:58:43,22:59:56
+2025-07-24 21:24:25,Nome,Alaska,US,52,11,51,Overcast clouds,82,rain : 0.9937013239999999,1017,1.18,9,230,09:40:05,04:35:53
+2025-07-24 21:26:24,Río Piedras,Puerto Rico,US,82,28,89,Light rain,83,rain : 0.016535441999999997,1018,0,16,70,05:59:18,19:01:48
+2025-07-24 21:26:33,Los Angeles,California,US,75,24,75,Clear sky,62,None : 0,1016,1.09,15,270,08:58:43,22:59:56
+2025-07-24 21:28:26,Nome,Alaska,US,52,11,51,Overcast clouds,82,rain : 0.9937013239999999,1017,1.18,9,230,09:40:05,04:35:53
+2025-07-24 21:28:35,Los Angeles,California,US,74,23,74,Clear sky,62,None : 0,1016,1.09,15,270,08:58:43,22:59:56
+2025-07-24 21:28:43,Reethi Rah,Malé Atoll,MV,28,82,90,Overcast clouds,85,rain : 0.85039416,1008,0,11,235,21:02:53,09:22:53
+2025-07-24 21:28:26,Nome,Alaska,US,52,11,51,Overcast clouds,82,rain : 0.9937013239999999,1017,1.18,9,230,09:40:05,04:35:53
+2025-07-24 21:28:26,Nome,Alaska,US,52,11,51,Overcast clouds,82,rain : 0.9937013239999999,1017,1.18,9,230,09:40:05,04:35:53
+2025-07-24 21:28:35,Los Angeles,California,US,74,23,74,Clear sky,62,None : 0,1016,1.09,15,270,08:58:43,22:59:56
+2025-07-24 21:29:35,Perth Amboy,New Jersey,US,82,28,85,Clear sky,66,rain : 0.014173235999999999,1017,0,5,237,05:46:56,20:19:58
+2025-07-24 21:29:35,Perth Amboy,New Jersey,US,82,28,85,Clear sky,66,rain : 0.014173235999999999,1017,0,5,237,05:46:56,20:19:58
+2025-07-24 21:33:58,Perth Amboy,New Jersey,US,82,28,85,Clear sky,66,rain : 0.014173235999999999,1017,0,5,239,05:46:56,20:19:58
+2025-07-24 21:34:16,Nome,Alaska,US,52,11,51,Overcast clouds,82,rain : 0.9937013239999999,1017,0.87,9,230,09:40:05,04:35:53
+2025-07-24 21:44:34,Kyoto,,JP,33,92,105,Clear sky,61,rain : 0.06496066499999999,1012,10.03,1,308,16:00:46,06:05:55
+2025-07-24 21:44:47,Río Piedras,Puerto Rico,US,82,28,89,Light rain,83,rain : 0.016535441999999997,1019,0,16,70,05:59:18,19:01:48
+2025-07-24 21:45:01,Reethi Rah,Malé Atoll,MV,28,83,92,Overcast clouds,81,rain : 0.85039416,1009,0.2,11,228,21:02:53,09:22:53
+2025-07-25 19:29:14,New York,New York,US,83,28,89,Few clouds,73,rain : 0.142913463,1013,0.09,15,260,05:46:15,20:18:33
+2025-07-25 19:29:26,Atlanta,Georgia,US,87,31,92,Broken clouds,57,rain : 1.581496917,1018,0.24,8,180,06:44:37,20:43:15
+2025-07-25 19:30:02,Kyoto,,JP,31,87,97,Clear sky,69,rain : 0.11338588799999999,1012,5.69,3,65,16:01:30,06:05:13
+2025-07-25 19:30:09,Reethi Rah,Malé Atoll,MV,27,81,87,Overcast clouds,80,rain : 0.25984265999999995,1009,0,8,218,21:02:59,09:22:49
+2025-07-25 19:30:31,Perth Amboy,New Jersey,US,77,25,78,Clear sky,90,rain : 0.207874128,1013,0,7,310,05:47:50,20:19:06
+2025-07-25 19:38:33,Perth Amboy,New Jersey,US,77,25,78,Clear sky,83,rain : 0.207874128,1013,0,7,310,05:47:50,20:19:06
+2025-07-25 19:38:49,Río Piedras,Puerto Rico,US,83,28,91,Scattered clouds,77,rain : 0.028346471999999998,1016,0,14,70,05:59:39,19:01:29
+2025-07-25 19:39:08,Reethi Rah,Malé Atoll,MV,27,81,87,Overcast clouds,80,rain : 0.25984265999999995,1009,0,8,218,21:02:59,09:22:49
+2025-07-25 19:39:14,Kyoto,,JP,31,87,97,Clear sky,69,rain : 0.11338588799999999,1012,5.69,3,65,16:01:30,06:05:13
+2025-07-25 20:28:10,Reethi Rah,Malé Atoll,MV,27,81,87,Overcast clouds,80,rain : 0.25984265999999995,1009,0,9,217,21:02:59,09:22:49
+2025-07-25 20:30:36,Kyoto,,JP,32,89,100,Clear sky,65,rain : 0.11338588799999999,1012,8.4,5,73,16:01:30,06:05:13
+2025-07-25 21:03:38,Kyoto,,JP,32,90,101,Clear sky,62,rain : 0.088582725,1011,8.4,5,86,16:01:30,06:05:13
+2025-07-25 21:03:38,Kyoto,,JP,32,90,101,Clear sky,62,rain : 0.088582725,1011,8.4,5,86,16:01:30,06:05:13
+2025-07-25 21:05:34,Kyoto,,JP,32,90,101,Clear sky,62,rain : 0.088582725,1011,8.4,5,86,16:01:30,06:05:13
+2025-07-25 21:05:34,Kyoto,,JP,32,90,101,Clear sky,62,rain : 0.088582725,1011,8.4,5,86,16:01:30,06:05:13
+2025-07-25 21:11:07,Kyoto,,JP,32,90,101,Clear sky,62,rain : 0.088582725,1011,8.4,5,86,16:01:30,06:05:13
+2025-07-25 21:11:07,Kyoto,,JP,32,90,101,Clear sky,62,rain : 0.088582725,1011,8.4,5,86,16:01:30,06:05:13
+2025-07-25 21:33:18,Kyoto,,JP,33,91,102,Clear sky,60,rain : 0.088582725,1011,10.12,5,101,16:01:30,06:05:13
+2025-07-25 21:33:18,Kyoto,,JP,33,91,102,Clear sky,60,rain : 0.088582725,1011,10.12,5,101,16:01:30,06:05:13
+2025-07-25 22:31:02,Perth Amboy,New Jersey,US,77,25,78,Clear sky,85,rain : 0.341338767,1015,0,3,359,05:47:50,20:19:06
+2025-07-25 22:31:19,Los Angeles,California,US,69,21,69,Clear sky,71,None : 0,1014,0,12,250,08:59:26,22:59:16
+2025-07-25 22:31:24,Nome,Alaska,US,61,16,60,Clear sky,72,rain : 0.022047256,1021,1.25,17,250,09:43:24,04:32:36
+2025-07-25 22:31:32,Sydney,New South Wales,AU,14,58,57,Broken clouds,74,rain : 0.057874047,1008,1.15,20,30,16:52:09,03:10:56
+2025-07-25 22:32:03,Arkhangelsk,Arkhangelsk Oblast,RU,16,61,61,Scattered clouds,94,rain : 0.012992133,1009,0.53,2,0,20:00:32,14:47:56
+2025-07-25 22:32:03,Arkhangelsk,Arkhangelsk Oblast,RU,16,61,61,Scattered clouds,94,rain : 0.012992133,1009,0.53,2,0,20:00:32,14:47:56
+2025-07-25 22:32:53,Arkhangelsk,Arkhangelsk Oblast,RU,16,61,61,Scattered clouds,94,rain : 0.012992133,1009,0.53,2,0,20:00:32,14:47:56
+2025-07-25 22:33:00,Berlin,,DE,18,65,65,Broken clouds,95,rain : 0.675590916,1015,0,9,310,23:16:53,15:08:46
+2025-07-26 08:53:39,Perth Amboy,New Jersey,US,80,27,80,Overcast clouds,63,rain : 0.009448824,1019,2.55,13,120,05:48:45,20:18:13
+2025-07-26 08:56:44,Perth Amboy,New Jersey,US,80,27,80,Overcast clouds,63,rain : 0.009448824,1019,2.55,13,120,05:48:45,20:18:13
+2025-07-26 09:00:40,Perth Amboy,New Jersey,US,80,27,80,Overcast clouds,63,rain : 0.009448824,1019,2.55,13,120,05:48:45,20:18:13
+2025-07-26 09:01:59,Perth Amboy,New Jersey,US,80,27,80,Overcast clouds,62,rain : 0.009448824,1019,2.55,10,100,05:48:45,20:18:13
+2025-07-26 09:04:51,Perth Amboy,New Jersey,US,80,27,82,Overcast clouds,62,rain : 0.009448824,1019,2.55,10,100,05:48:45,20:18:13
+2025-07-26 09:05:12,Kyoto,,JP,26,79,79,Broken clouds,89,rain : 0.009448824,1010,0,1,352,16:01:30,06:05:13
+2025-07-26 09:05:19,Reethi Rah,Malé Atoll,MV,28,82,87,Overcast clouds,74,rain : 0.31181119199999996,1010,0,1,247,21:02:59,09:22:49
+2025-07-26 09:05:36,Río Piedras,Puerto Rico,US,84,29,91,Light rain,71,rain : 0.010629927,1017,3.99,15,70,06:00:00,19:01:10
+2025-07-26 09:06:25,Death Valley Junction,California,US,68,20,66,Clear sky,28,None : 0,1012,0,7,161,08:47:48,22:56:17
+2025-07-26 09:10:11,Reethi Rah,MalÃ© Atoll,MV,28,82,87,Overcast clouds,74,rain : 0.31181119199999996,1010,0,1,247,21:02:59,09:22:49
+2025-07-26 09:10:21,RÃ­o Piedras,Puerto Rico,US,84,29,92,Light rain,71,rain : 0.010629927,1017,3.99,15,70,06:00:00,19:01:10
+2025-07-26 09:10:29,San Diego,California,US,64,18,64,Overcast clouds,78,None : 0,1015,0,3,80,08:58:39,22:51:25
+2025-07-26 09:10:38,Nome,Alaska,US,46,8,46,Clear sky,93,rain : 0.8795280339999999,1021,0,0,0,09:46:44,04:29:17
+2025-07-26 09:10:50,Kyoto,,JP,26,79,79,Broken clouds,89,rain : 0.021259854,1010,0,1,352,16:01:30,06:05:13
+2025-07-26 09:10:21,RÃ­o Piedras,Puerto Rico,US,84,29,92,Light rain,71,rain : 0.010629927,1017,3.99,15,70,06:00:00,19:01:10
+2025-07-26 11:14:04,New York,New York,US,82,28,84,Clear sky,53,rain : 0.004724412,1019,6.77,14,40,05:47:10,20:17:39
+2025-07-26 11:17:39,Nome,Alaska,US,46,8,46,Clear sky,93,rain : 0.8795280339999999,1020,0.12,0,0,09:46:44,04:29:17
+2025-07-26 11:17:47,RÃ­o Piedras,Puerto Rico,US,87,31,96,Scattered clouds,67,rain : 0.010629927,1017,9.58,20,60,06:00:00,19:01:10
+2025-07-26 11:18:00,Kyoto,,JP,26,78,80,Scattered clouds,90,None : 0,1011,0,2,23,16:02:14,06:04:29
+2025-07-26 11:18:20,Reethi Rah,MalÃ© Atoll,MV,28,82,86,Overcast clouds,71,rain : 0.31181119199999996,1012,0,2,6,21:02:59,09:22:49
+2025-07-26 12:33:30,Perth Amboy,New Jersey,US,83,28,85,Scattered clouds,58,rain : 0.009448824,1019,8.94,9,170,05:48:45,20:18:13
+2025-07-26 12:37:15,Perth Amboy,New Jersey,US,83,28,85,Scattered clouds,58,rain : 0.009448824,1019,8.94,9,170,05:48:45,20:18:13
+2025-07-26 12:37:26,Nome,Alaska,US,52,11,51,Clear sky,87,rain : 0.8795280339999999,1020,0.66,5,120,09:46:44,04:29:17
+2025-07-26 12:37:38,Reethi Rah,MalÃ© Atoll,MV,28,82,87,Overcast clouds,75,rain : 0.31181119199999996,1012,0,3,25,21:02:59,09:22:49
+2025-07-26 12:37:46,Kyoto,,JP,26,78,80,Few clouds,91,None : 0,1011,0,2,44,16:02:14,06:04:29
+2025-07-26 12:39:01,Nome,Alaska,US,52,11,51,Clear sky,87,rain : 0.8795280339999999,1020,0.66,5,120,09:46:44,04:29:17
+2025-07-26 12:40:22,Nome,Alaska,US,52,11,51,Clear sky,87,rain : 0.8795280339999999,1020,0.66,5,120,09:46:44,04:29:17
+2025-07-26 12:40:32,Los Angeles,California,US,67,19,67,Overcast clouds,73,None : 0,1016,5.97,8,160,09:00:08,22:58:34
+2025-07-26 12:41:08,Osaka,Osaka Prefecture,JP,29,84,91,Scattered clouds,70,None : 0,1010,0,3,250,16:03:59,06:04:47
+2025-07-26 12:41:20,Reethi Rah,MalÃ© Atoll,MV,28,82,87,Overcast clouds,75,rain : 0.31181119199999996,1012,0,3,25,21:02:59,09:22:49
+2025-07-26 12:41:36,Perth Amboy,New Jersey,US,83,28,85,Scattered clouds,58,rain : 0.009448824,1019,8.94,9,170,05:48:45,20:18:13
+2025-07-26 12:42:37,RÃ­o Piedras,Puerto Rico,US,87,31,97,Scattered clouds,67,rain : 0.010629927,1015,11.4,20,70,06:00:00,19:01:10
+2025-07-26 12:43:04,Kyoto,,JP,26,78,80,Few clouds,91,None : 0,1011,0,2,44,16:02:14,06:04:29
+2025-07-26 13:04:35,New York,New York,US,83,28,84,Haze,49,rain : 0.004724412,1019,8.94,14,50,05:47:10,20:17:39
+2025-07-26 13:05:12,Reethi Rah,MalÃ© Atoll,MV,28,82,87,Overcast clouds,76,rain : 0.31181119199999996,1012,0,3,25,21:02:59,09:22:49
+2025-07-26 13:05:26,Perth Amboy,New Jersey,US,83,28,85,Clear sky,57,rain : 0.009448824,1020,8.94,13,170,05:48:45,20:18:13
+2025-07-26 13:05:44,Kyoto,,JP,25,77,79,Few clouds,90,None : 0,1010,0,2,44,16:02:14,06:04:29
+2025-07-26 13:05:12,Reethi Rah,MalÃ© Atoll,MV,28,82,87,Overcast clouds,76,rain : 0.31181119199999996,1012,0,3,25,21:02:59,09:22:49
+2025-07-26 13:20:20,Nome,Alaska,US,52,11,51,Clear sky,93,rain : 0.8795280339999999,1020,0.66,6,100,09:46:44,04:29:17
+2025-07-26 13:20:27,Kyoto,,JP,25,77,79,Few clouds,90,None : 0,1010,0,2,44,16:02:14,06:04:29
+2025-07-26 13:20:41,Perth Amboy,New Jersey,US,83,28,85,Clear sky,56,rain : 0.009448824,1020,8.94,13,170,05:48:45,20:18:13
+2025-07-26 14:32:10,Perth Amboy,New Jersey,US,83,28,84,Clear sky,54,rain : 0.009448824,1019,6.59,12,140,05:48:45,20:18:13
+2025-07-26 15:10:25,Kyoto,,JP,26,78,80,Clear sky,89,rain : 0.6602365769999999,1010,0,2,71,16:02:14,06:04:29
+2025-07-26 15:16:02,Kyoto,,JP,26,78,80,Clear sky,89,rain : 0.6602365769999999,1010,0,2,71,16:02:14,06:04:29
+2025-07-26 15:16:34,Cincinnati,Ohio,US,93,34,106,Broken clouds,60,rain : 0.079527602,1016,8.23,8,220,06:33:23,20:55:29
+2025-07-26 16:41:29,Perth Amboy,New Jersey,US,81,27,82,Haze,55,rain : 0.08661422,1018,2.46,9,150,05:48:45,20:18:13
+2025-07-26 16:46:59,Perth Amboy,New Jersey,US,81,27,82,Haze,55,rain : 0.08661422,1018,2.46,9,140,05:48:45,20:18:13
+2025-07-26 17:20:47,Perth Amboy,New Jersey,US,80,27,82,Haze,57,rain : 0.08661422,1019,2.46,9,150,05:48:45,20:18:13
+2025-07-26 18:01:24,Perth Amboy,New Jersey,US,80,27,80,Haze,60,rain : 0.08661422,1018,0.86,8,150,05:48:45,20:18:13
+2025-07-26 18:01:36,Reethi Rah,MalÃ© Atoll,MV,28,82,86,Overcast clouds,72,rain : 0.265748175,1010,0,3,159,21:03:04,09:22:45
+2025-07-26 18:01:43,Kyoto,,JP,28,82,89,Clear sky,81,rain : 0.6602365769999999,1010,1.29,2,98,16:02:14,06:04:29
+2025-07-26 18:08:04,Perth Amboy,New Jersey,US,79,26,79,Clear sky,60,rain : 0.08661422,1018,0.86,13,140,05:48:45,20:18:13
+2025-07-26 18:08:04,Perth Amboy,New Jersey,US,79,26,79,Clear sky,60,rain : 0.08661422,1018,0.86,13,140,05:48:45,20:18:13
+2025-07-26 18:08:22,Kyoto,,JP,28,82,89,Clear sky,81,rain : 0.6602365769999999,1010,1.29,2,98,16:02:14,06:04:29
+2025-07-26 18:08:29,Reethi Rah,MalÃ© Atoll,MV,28,82,86,Overcast clouds,72,rain : 0.265748175,1010,0,3,159,21:03:04,09:22:45
+2025-07-26 18:11:57,Perth Amboy,New Jersey,US,79,26,79,Clear sky,60,rain : 0.08661422,1018,0.86,13,140,05:48:45,20:18:13
+2025-07-26 18:14:40,Perth Amboy,New Jersey,US,79,26,79,Clear sky,60,rain : 0.08661422,1018,0.86,13,140,05:48:45,20:18:13
+2025-07-26 18:14:51,Nome,Alaska,US,60,16,59,Overcast clouds,75,rain : 0.160236307,1019,3.32,4,221,09:46:44,04:29:17
+2025-07-26 18:14:56,Kyoto,,JP,28,82,89,Clear sky,81,rain : 0.6602365769999999,1010,1.29,2,98,16:02:14,06:04:29
+2025-07-26 18:15:02,Reethi Rah,MalÃ© Atoll,MV,28,82,86,Overcast clouds,72,rain : 0.265748175,1010,0,3,159,21:03:04,09:22:45
+2025-07-26 18:15:09,RÃ­o Piedras,Puerto Rico,US,84,29,93,Haze,76,rain : 0.007086617999999999,1015,0.33,16,80,06:00:00,19:01:10
+2025-07-26 18:17:45,Perth Amboy,New Jersey,US,79,26,79,Clear sky,60,rain : 0.08661422,1018,0.86,13,140,05:48:45,20:18:13
+2025-07-26 18:18:04,Reethi Rah,MalÃ© Atoll,MV,28,82,86,Overcast clouds,72,rain : 0.265748175,1010,0,3,159,21:03:04,09:22:45
+2025-07-26 18:18:17,Kyoto,,JP,28,83,91,Clear sky,79,rain : 0.6602365769999999,1010,1.29,2,98,16:02:14,06:04:29
+2025-07-26 18:18:29,RÃ­o Piedras,Puerto Rico,US,84,29,92,Haze,76,rain : 0.007086617999999999,1015,0.33,16,80,06:00:00,19:01:10
+2025-07-26 18:18:40,San Diego,California,US,73,23,73,Scattered clouds,65,None : 0,1014,7.64,13,270,08:58:39,22:51:25
+2025-07-26 18:45:43,Perth Amboy,New Jersey,US,78,26,79,Clear sky,62,rain : 0.08661422,1018,0.14,10,150,05:48:45,20:18:13
+2025-07-26 18:45:43,Perth Amboy,New Jersey,US,78,26,79,Clear sky,62,rain : 0.08661422,1018,0.14,10,150,05:48:45,20:18:13
+2025-07-27 11:15:35,Reethi Rah,MalÃ© Atoll,MV,28,83,88,Broken clouds,73,rain : 0.5905515,1012,0,4,34,21:03:04,09:22:45
+2025-07-27 11:15:59,Perth Amboy,New Jersey,US,78,26,79,Overcast clouds,83,rain : 0.009448824,1017,4.54,3,230,05:49:40,20:17:18
+2025-07-27 11:16:09,Kyoto,,JP,28,82,88,Scattered clouds,75,rain : 0.004724412,1007,0,2,243,16:02:59,06:03:44
+2025-07-27 11:16:18,San Diego,California,US,66,19,66,Broken clouds,79,None : 0,1015,1.37,8,360,08:59:20,22:50:44
+2025-07-27 11:16:27,Nome,Alaska,US,50,10,49,Light rain,100,rain : 0.015354339,1015,0.02,7,200,09:50:04,04:25:58
+2025-07-27 11:16:53,RÃ­o Piedras,Puerto Rico,US,84,29,94,Haze,81,rain : 0.216141849,1017,9.78,17,90,06:00:21,19:00:49
+2025-07-27 11:25:13,San Diego,California,US,66,19,66,Broken clouds,78,None : 0,1015,1.37,8,360,08:59:20,22:50:44
+2025-07-27 11:25:21,Nome,Alaska,US,50,10,49,Mist,100,rain : 0.015354339,1015,0.02,8,210,09:50:04,04:25:58
+2025-07-27 11:25:29,RÃ­o Piedras,Puerto Rico,US,83,28,93,Haze,82,rain : 0.216141849,1017,9.78,17,90,06:00:21,19:00:49
+2025-07-27 11:25:55,Reethi Rah,MalÃ© Atoll,MV,28,83,88,Broken clouds,73,rain : 0.5905515,1012,0,4,34,21:03:04,09:22:45
+2025-07-27 11:26:09,Perth Amboy,New Jersey,US,78,26,79,Overcast clouds,78,rain : 0.009448824,1017,4.54,5,246,05:49:40,20:17:18
+2025-07-27 11:25:21,Nome,Alaska,US,50,10,49,Mist,100,rain : 0.015354339,1015,0.02,8,210,09:50:04,04:25:58
+2025-07-27 11:30:03,Perth Amboy,New Jersey,US,78,26,79,Overcast clouds,78,rain : 0.009448824,1017,3.89,5,246,05:49:40,20:17:18
+2025-07-27 11:30:12,Nome,Alaska,US,50,10,49,Mist,100,rain : 0.015354339,1015,0.05,8,210,09:50:04,04:25:58
+2025-07-27 11:30:21,San Diego,California,US,66,19,66,Broken clouds,78,None : 0,1015,3.31,8,360,08:59:20,22:50:44
+2025-07-27 11:30:28,Reethi Rah,MalÃ© Atoll,MV,28,83,88,Broken clouds,73,rain : 0.5905515,1012,0,3,68,21:03:04,09:22:45
+2025-07-27 11:30:39,RÃ­o Piedras,Puerto Rico,US,84,29,94,Haze,82,rain : 0.216141849,1016,10.64,17,90,06:00:21,19:00:49
+2025-07-27 11:31:13,Perth Amboy,New Jersey,US,78,26,79,Overcast clouds,78,rain : 0.009448824,1017,3.89,5,359,05:49:40,20:17:18
+2025-07-27 16:15:19,San Diego,California,US,74,23,74,Few clouds,64,None : 0,1015,10.8,13,300,08:59:20,22:50:44
+2025-07-27 16:16:30,Perth Amboy,New Jersey,US,86,30,97,Scattered clouds,72,rain : 0.45629945899999996,1013,4.31,6,290,05:49:40,20:17:18
+2025-07-27 16:17:36,Kyoto,,JP,24,76,77,Scattered clouds,85,rain : 0.06496066499999999,1006,0,2,344,16:02:59,06:03:44
+2025-07-27 16:17:44,Reethi Rah,MalÃ© Atoll,MV,28,82,88,Overcast clouds,72,rain : 0.369685239,1010,0,1,265,21:03:09,09:22:39
+2025-07-27 16:17:57,RÃ­o Piedras,Puerto Rico,US,82,28,89,Thunderstorm,80,rain : 0.03543309,1015,0.82,7,120,06:00:21,19:00:49
+2025-07-28 19:44:19,Reethi Rah,MalÃ© Atoll,MV,27,81,86,Overcast clouds,78,rain : 0.298819059,1011,0,17,281,21:03:13,09:22:33
+2025-07-28 19:44:32,Kyoto,,JP,31,88,98,Few clouds,65,rain : 0.37519705299999995,1004,5.26,2,309,16:03:44,06:02:58
+2025-07-28 19:44:38,RÃ­o Piedras,Puerto Rico,US,84,29,94,Scattered clouds,82,rain : 0.018897648,1017,0,13,90,06:00:42,19:00:27
+2025-07-28 19:44:45,San Diego,California,US,73,23,73,Scattered clouds,69,None : 0,1016,2.54,15,280,09:00:01,22:50:02
+2025-07-28 19:44:58,Perth Amboy,New Jersey,US,90,32,99,Scattered clouds,58,rain : 0.13818905099999998,1014,0,6,170,05:50:36,20:16:21
+2025-07-28 19:49:34,Perth Amboy,New Jersey,US,90,32,98,Scattered clouds,59,rain : 0.13818905099999998,1014,0,6,170,05:50:36,20:16:21
+2025-07-29 19:43:54,Perth Amboy,New Jersey,US,93,34,104,Clear sky,55,rain : 0.768504352,1014,0,9,280,05:51:32,20:15:23
+2025-07-29 20:00:35,Reethi Rah,MalÃ© Atoll,MV,28,82,89,Overcast clouds,80,rain : 0.5055120839999999,1010,0,21,311,21:03:17,09:22:26
+2025-07-29 20:01:16,San Diego,California,US,75,24,75,Few clouds,67,None : 0,1016,2.57,10,300,09:00:42,22:49:19
+2025-07-29 20:01:26,Perth Amboy,New Jersey,US,92,33,104,Clear sky,59,rain : 0.768504352,1014,0,3,280,05:51:32,20:15:23
+2025-07-30 19:11:17,Perth Amboy,New Jersey,US,93,34,103,Clear sky,54,rain : 0.004724412,1013,0.28,9,300,05:52:28,20:14:23
+2025-07-30 19:27:31,New York,New York,US,86,30,92,Broken clouds,64,rain : 0.333464747,1013,0.28,15,30,05:50:55,20:13:48

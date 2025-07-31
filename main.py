@@ -13,7 +13,11 @@ from tkinter import messagebox
 #For picture icons
 from PIL import Image, ImageTk
 
-# save_dir = r'C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\data'
+#For the sayings
+from features import sayings, sayings_manager
+
+from team.features import madlibs_generator
+
 
 class App():
    
@@ -24,11 +28,24 @@ class App():
 
         self.root = root
         self.api = LoadApi()
-        self.gui = WGUI(self.root, self, theme=themes.default_theme)
+
+        #Have to create this first before the gui otherwise it fails.
+        self.sayings_manager = sayings_manager.SayingsManager(sayings.SAYINGS_BY_WEATHER, wrap_width=42)
+        
         self.save_dir = r'C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\data'
 
         self.icon="" 
+
+        self.gui = WGUI(self.root, self, theme=themes.default_theme)
+
+           
+    def update_quote(self, icon_code: str):
+        # Map icon -> weather key 
+        weather_key = sayings.ICON_TO_SAYINGS_KEY.get(icon_code, "default")
+        quote = self.sayings_manager.get_quote(weather_key)
+        wrapped, font_size = self.sayings_manager.format_for_label(quote)
         
+        return quote    
         
     #chatGPT (July, 2025)
     def get_weather(self):
@@ -53,6 +70,9 @@ class App():
             
             #save the data
             SaveData(f"{self.save_dir}\\weather_data.csv", parsed, city)
+           
+            #Save the data for the group feature
+            SaveData(f"{self.save_dir}\\weather_data_jjd.csv", parsed, city)
 
     def update_theme_based_on_toggle(self): 
 
@@ -67,19 +87,29 @@ class App():
                 self.gui.apply_theme(themes.dark_theme) 
 
     #For future color icons
-    def get_flat_icon(code):
+    def get_flat_icon(self, code):
         
         icon_path = os.path.join("assets", "icons_flat", f"{code}.png")
         if not os.path.exists(icon_path):
             icon_path = os.path.join("assets", "icons_flat", "default.png")
+
+        if code=="thinking" or code=="warning":
+            icon_size = {"thinking": (80, 80),
+                         "warning": (25, 25)
+                        }      
+                
+            img = ctk.CTkImage(Image.open(icon_path), size=(icon_size[code]))
+        
+        else:       
+            img = ctk.CTkImage(Image.open(icon_path), size=(200, 200))
+       
+        return img
     
-        img = Image.open(icon_path)
-        img = img.resize((64, 64), Image.ANTIALIAS)
-        return ImageTk.PhotoImage(img)
+    #Need to call it from main
+    # team_feature.MadGenerator(self.save_dir)
                             
 if __name__ == "__main__": 
-    # root = tk.Tk()
-   
+       
     root = ctk.CTk()
     app = App(root)   
     root.mainloop()
