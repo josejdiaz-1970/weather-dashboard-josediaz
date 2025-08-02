@@ -17,6 +17,7 @@ from PIL import Image, ImageTk
 from features import sayings, sayings_manager
 
 from team.features import madlibs_generator
+from citylist import Cities
 
 
 class App():
@@ -31,11 +32,17 @@ class App():
         
         self.save_dir = r'C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\data'
 
-        self.icon="" 
+        self.file_path_csv = self.save_dir 
 
+        self.citieslist = Cities(self.file_path_csv).load_city_names()
+
+        self.icon="" 
+        
         #ChatGPT (August, 2025) - Just for order of operations.
-        self.gui = WGUI(self.root, self, theme=themes.default_theme)  # create GUI first
+        self.gui = WGUI(self.root, self, theme=themes.default_theme, cities=self.citieslist)  # create GUI first
         self.api = LoadApi(error_handler=self.gui.show_error)  # now pass instance method
+
+        
        
            
     def update_quote(self, icon_code: str):
@@ -45,7 +52,8 @@ class App():
         wrapped, font_size = self.sayings_manager.format_for_label(quote)
         
         return quote    
-        
+
+   
     #chatGPT (July, 2025)
     def get_weather(self):
         
@@ -103,6 +111,8 @@ class App():
         else:       
             img = ctk.CTkImage(Image.open(icon_path), size=(200, 200)) #Need to fix image
        
+
+        print(code, type(img))
         return img
     
                                

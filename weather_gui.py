@@ -17,14 +17,15 @@ from team.features.madlib_logger import log_madlib_session
 
 class WGUI():     
     
-    def __init__(self, root, controller, theme=themes.default_theme):
+    def __init__(self, root, controller, theme=themes.default_theme, cities=None):
                 
         style = ttk.Style() 
         
         self.root = root
         self.controller = controller
         self.theme = theme
-        
+        self.city_list = cities
+
         self.root.title("Jose's Weather App")
         self.root.geometry("800x800+0+0")
         
@@ -42,6 +43,9 @@ class WGUI():
         self.use_weather_themes = tk.BooleanVar(value=False)
         #Toggle for dynamic themes
         self.dynamic_icons_enabled = tk.BooleanVar(value=False)
+        self.thinking_icon = self.controller.get_flat_icon("thinking") #Fixes a glitch in the icon image
+
+
 
         self.mad_generator = MG(filepath=r"C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\team\data")
        
@@ -183,14 +187,25 @@ class WGUI():
         self.citylabel=ctk.CTkLabel(self.left_frame, fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size), text="Enter a city:")
         
         
-        self.cityentry = ctk.CTkEntry(self.left_frame, width=100)    
+        # self.cityentry = ctk.CTkEntry(self.left_frame, width=100)           
         
+        #change to combobox for autocomplete functionality
+        self.cityentry = self.city_combobox = ctk.CTkComboBox(self.left_frame, variable="",
+                                                              values=self.city_list[:500],
+                                                              fg_color=self.bg_color,
+                                                              text_color=self.font_color,
+                                                              font=(self.font_style, 
+                                                              self.font_size),
+
+                                                              )
         
+        self.cityentry.bind("<KeyRelease>", self.update_suggestions)
+
         
         self.citybutton = ctk.CTkButton(self.left_frame, fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size),text="Get Weather",command=self.controller.get_weather)
         self.alertslabel = ctk.CTkLabel(self.left_frame, image=self.controller.get_flat_icon("warning"), text=" Alerts!", text_color=self.font_color,font=(self.font_style, self.font_size), compound="left")
         self.alertsbox = ctk.CTkTextbox(self.left_frame, fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
-        self.weather_icon = ctk.CTkLabel(self.left_frame, image=self.controller.get_flat_icon("thinking"))
+        self.weather_icon = ctk.CTkLabel(self.left_frame, text="", image=self.thinking_icon) 
         self.sayingsbox = ctk.CTkTextbox(self.left_frame, fg_color=self.bg_color, text_color=self.font_color, height=80, font=(self.font_style, self.font_size), wrap="word")
     
         #Add widgets to the right frame
@@ -329,7 +344,7 @@ class WGUI():
         self.madlibs_second_row = ctk.CTkLabel(self.madlibs_frame, text="Selected row: ",fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
         
         #Generate the madlib using all the selected words and the random weather data.
-        self.madlibs_generate = ctk.CTkButton(self.madlibs_frame, text="Generate Madlib", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size),command=self.generate_madlib)
+        self.madlibs_generate = ctk.CTkButton(self.madlibs_frame, text="Generate Madlib", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size +5),command=self.generate_madlib)
     
         #In this box I want to create comboboxes for nouns, verbs, etc... based on the number needed for the template      
         self.madlibs_box = ctk.CTkTextbox(self.madlibs_frame,
@@ -376,7 +391,7 @@ class WGUI():
         self.madlibs_adjective_2.grid(row=4, column=3, padx=5, pady=5, sticky="w")
 
         # Row 5: Generate Button centered
-        self.madlibs_generate.grid(row=5, column=1, columnspan=2, pady=(20, 10), sticky="ew")
+        self.madlibs_generate.grid(row=5, column=1, columnspan=2, pady=(20, 40), sticky="ew")
 
         # Row 6: File Info (split across top-left and right)
         self.madlibs_first_file.grid(row=6, column=0, columnspan=2, padx=5, pady=2, sticky="w")
@@ -428,7 +443,35 @@ class WGUI():
         self.summary.grid(row=0, columnspan=3, sticky="nsew")
         self.alertdetail.grid(row=0, column=0, sticky="nsew")
 
-        
+
+    #New for cityentry combobox
+    def update_suggestions(self, event):
+        typed = self.city_combobox.get().lower()
+
+        if typed == "":
+            matches = self.city_list
+        else:
+            matches = [city for city in self.city_list if city.lower().startswith(typed)] #if typed in city_lower()
+
+        # Avoid freezing from too many results
+        matches = matches[:100]
+
+        self.cityentry.configure(values=matches)
+
+        # Optional: open dropdown automatically (visual feedback)
+        # if matches:
+
+        if typed:
+            
+            self.cityentry.event_generate("<Down>")
+
+       
+        # Keep what user typed (manually reset it because CTkComboBox overwrites it)
+        self.city_combobox.set(typed)
+
+
+
+
     #Weather display method
     def display_weather(self, parsed):
 
@@ -538,10 +581,11 @@ class WGUI():
                                 )
                 pink_text.configure(state="disabled")
                 
-                # Schedule popup close 3 seconds after message appears
-                pinkWarning.after(3000, pinkWarning.destroy)
+                # Schedule popup close 4 seconds after message appears
+                pinkWarning.after(4000, pinkWarning.destroy)
 
-            pinkWarning.after(5000, update_text)
+            pinkWarning.after(3000, update_text)
+            
 
 
         pink_button = ctk.CTkButton(pinkWarning,
@@ -647,19 +691,39 @@ class WGUI():
         self.alertdetail.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
     
         #Madlibs page
-        self.madlibs_frame.configure(fg_color=self.fg_color)
-        self.madlibs_box.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
-        
-        #Configure the combo boxed
-        self.madlibs_noun_1.configure(width=5)
-        self.madlibs_noun_2.configure(width=5)
-        self.madlibs_verb_1.configure(width=5)
-        self.madlibs_verb_2.configure(width=5)
-        self.madlibs_adjective_1.configure(width=5)
-        self.madlibs_adjective_2.configure(width=5)
-        self.madlibs_adverb_1.configure(width=5)
-        self.madlibs_adverb_2.configure(width=5)
+        self.madlibs_title.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size + 10))
+    
+        madlibs_dropdowns = [
+            self.madlibs_adjective_1,
+            self.madlibs_adjective_2,
+            self.madlibs_adjectivelabel_1,
+            self.madlibs_adjectivelabel_2,
+            self.madlibs_adverb_1,
+            self.madlibs_adverb_2,
+            self.madlibs_adverblabel_1,
+            self.madlibs_adverblabel_2,
+            self.madlibs_noun_1,
+            self.madlibs_noun_2,
+            self.madlibs_nounlabel_1,
+            self.madlibs_nounlabel_2,
+            self.madlibs_verb_1,
+            self.madlibs_verb_2,
+            self.madlibs_verblabel_1,
+            self.madlibs_verblabel_2,
+            self.madlibs_generate, #For now. Button needs styling
+            self.madlibs_first_file,
+            self.madlibs_first_row,
+            self.madlibs_second_file,
+            self.madlibs_second_row
+        ]
 
+        for item in madlibs_dropdowns:
+            item.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
+
+        self.madlibs_frame.configure(fg_color=self.fg_color)
+        self.madlibs_box.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size + 10))
+        
+       
     def toggle_icon_theme(self):
         enabled = self.dynamic_icons_enabled.get()
         print("Dynamic icon theme is now", "enabled" if enabled else "disabled")
