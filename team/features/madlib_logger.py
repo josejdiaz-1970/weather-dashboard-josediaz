@@ -12,9 +12,11 @@ def log_madlib_session(
     file_info2,  # dict with file2 info
     madlib_text  # final madlib sentence
 ):
-    file_exists = os.path.isfile(filepath)
+    
+    filepath_full = os.path.join(filepath, "madlib_logger.csv")
+    file_exists = os.path.isfile(filepath_full)
 
-    with open(filepath, mode="a", newline="", encoding="utf-8") as f:
+    with open(filepath_full, mode="a", newline="", encoding="utf-8") as f:
         writer = csv.DictWriter(f, fieldnames=[
             "Timestamp", "Noun", "Verb", "Adjective", "Adverb",
             "File1", "Row1", "City1", "Temp1", "Humidity1", "Wind1",

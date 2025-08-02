@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 import os
 import datetime
 import csv 
+import pandas as pd
 
 class LoadApi():
 
@@ -21,6 +22,9 @@ class LoadApi():
         self.show_error = show_error or (lambda title, msg: print(f"[{title}] {msg}"))
 
         self.error_handler = error_handler #Callback function to send errors to the GUI.
+
+        #File path for csv data, worldcities.csv
+        self.file_path_csv = r"C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\data"
 
     def get_lat_lon(self, city):
     
@@ -49,29 +53,32 @@ class LoadApi():
             return None, None    
 
 
+    def load_city_names(self, csv_path="worldcities.csv"):
+        try:
+            full_file_path = os.path.join(self.file_path_csv ,csv_path)
+            df = pd.read_csv(full_file_path)
+            return sorted(set(df["city"].dropna().unique()))
+       
+        except Exception as e:
+           if self.error_handler:
+               self.error_handler("City Data Error", f"Unable to load city data:\n{e}")
+           return []
+
 
     def getData(self, city):
 
-        self.geodata = self.get_lat_lon(city)
-
-        #STill trying to fix this error handling code - TBD
-        # try:
-        #     lat = self.geodata[0]['lat']
-        #     lon = self.geodata[0]['lon']
-    
-        #     if lat is None or lon is None:
-        #         if self.show_error:
-        #             self.show_error("Geolocation error", "Latitude or longitude is missing.")
-        #     return None, None
-
-        # except (IndexError, KeyError, TypeError) as e:
-        #     if self.show_error:
-        #         self.show_error("Geolocation error", f"Invalid geolocation data: {e}")
-        #     return None, None
+        #May need to place this in a try except block and spit out an exception  DNW 
+        try:    
+            self.geodata = self.get_lat_lon(city)
         
-        if self.geodata[0]['lat'] is None or self.geodata[0]['lon'] is None:
+            if not self.geodata or self.geodata[0]['lat'] is None or self.geodata[0]['lon'] is None:
+                self.error_handler("Invalid City", "Could not retrieve valid latitude/longitude data.")
+                return None, None
             
+        except Exception as e:
+            self.error_handler("Error Retrieving GeoData", str(e))
             return None, None
+
 
         self.city=self.geodata[0]["name"]
         self.state = self.geodata[0].get("state", "")        

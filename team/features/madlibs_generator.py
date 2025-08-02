@@ -12,7 +12,7 @@ class MadGenerator:
         self.weather_files = [
             "weather_data_jjd.csv",
             "weather_data_tommy.csv",
-            "weather_data_victoya.csv",
+            # "weather_data_victoya.csv",
             "weather_reading_margarita.csv",
             "weather_reading_shanna.csv"
         ]
@@ -64,10 +64,7 @@ class MadGenerator:
         self.first_file_info = self.get_random_row_from_file(file1)
         self.second_file_info = self.get_random_row_from_file(file2)
 
-        print("First File Info:", self.first_file_info) #TESTING
-        print("Second File Info:", self.second_file_info) #TESTING
-
-
+       
     def set_user_inputs(self, noun, verb, adjective, adverb): #changed from noun to noun1
         self.user_inputs = {
             "noun1": noun,
@@ -96,55 +93,16 @@ class MadGenerator:
     def generate_madlib(self): #changed from generate
         self.template = random.choice(templates)
 
+        #Chatgpt (July, 2025)
         combined_data = {
             **self.user_inputs,
             **self.weather1,
             **self.weather2
         }
 
-        try:
-            return self.template.format(**combined_data)
+        try:                      
+            madlib_full = self.template.format(**combined_data)       
+
+            return madlib_full
         except KeyError as e:
             return f"Missing placeholder data: {e}"        
-
-    def log_madlib(self, user_words: dict, madlib_text: str, output_csv="madlib_log.csv"):
-        log_path = os.path.join(self.filepath, output_csv)
-
-        data = {
-            "Timestamp": datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
-            "First File": self.first_file_info.get("filename", ""),
-            "First City": self.first_file_info.get("data", {}).get("city", ""),
-            "Second File": self.second_file_info.get("filename", ""),
-            "Second City": self.second_file_info.get("data", {}).get("city", ""),
-            "User Words": user_words,
-            "Completed Madlib": madlib_text
-        }
-
-        # First, check if the file exists
-        file_exists = os.path.isfile(log_path)
-
-        try:
-            with open(log_path, mode="a", newline="", encoding="utf-8") as file:
-                writer = csv.DictWriter(file, fieldnames=data.keys())
-
-                if not file_exists:
-                    writer.writeheader()
-
-                writer.writerow(data)
-
-        except Exception as e:
-            print(f"Logging failed: {e}")
-
-
-# --- TEST CODE: Run this file directly to try it ---
-if __name__ == "__main__":
-    csv_folder_path = r"C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\team\data"
-
-    madlib = MadGenerator(filepath=csv_folder_path)
-    madlib.generate_lines()
-
-    # Example access
-    print("\nSummary:")
-    for i, info in enumerate([madlib.first_file_info, madlib.second_file_info], 1):
-        print(f"File {i}: {info['filename']} (row {info['row_index']})")
-        print("Data:", info['data'])

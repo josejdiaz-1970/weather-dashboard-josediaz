@@ -20,15 +20,12 @@ from team.features import madlibs_generator
 
 
 class App():
-   
-    # city = "" #default city
-   
+    
     
     def __init__(self, root):
 
         self.root = root
-        self.api = LoadApi()
-
+      
         #Have to create this first before the gui otherwise it fails.
         self.sayings_manager = sayings_manager.SayingsManager(sayings.SAYINGS_BY_WEATHER, wrap_width=42)
         
@@ -36,8 +33,10 @@ class App():
 
         self.icon="" 
 
-        self.gui = WGUI(self.root, self, theme=themes.default_theme)
-
+        #ChatGPT (August, 2025) - Just for order of operations.
+        self.gui = WGUI(self.root, self, theme=themes.default_theme)  # create GUI first
+        self.api = LoadApi(error_handler=self.gui.show_error)  # now pass instance method
+       
            
     def update_quote(self, icon_code: str):
         # Map icon -> weather key 
@@ -73,6 +72,7 @@ class App():
            
             #Save the data for the group feature
             SaveData(f"{self.save_dir}\\weather_data_jjd.csv", parsed, city)
+       
 
     def update_theme_based_on_toggle(self): 
 
@@ -101,13 +101,11 @@ class App():
             img = ctk.CTkImage(Image.open(icon_path), size=(icon_size[code]))
         
         else:       
-            img = ctk.CTkImage(Image.open(icon_path), size=(200, 200))
+            img = ctk.CTkImage(Image.open(icon_path), size=(200, 200)) #Need to fix image
        
         return img
     
-    #Need to call it from main
-    # team_feature.MadGenerator(self.save_dir)
-                            
+                               
 if __name__ == "__main__": 
        
     root = ctk.CTk()

@@ -1,4 +1,4 @@
-id,timestamp,city,country,temp,feels_like,humidity,pressure,weather_summary,weather_detail,wind_speed,wind_deg,clouds,visibility,fetched_at,created_at
+id,timestamp,city,country,temperature,feels_like,humidity,pressure,weather_summary,weather_detail,wind_speed,wind_deg,clouds,visibility,fetched_at,created_at
 904,2025-07-16T06:41:59,Knoxville,US,23.59,24.43,93,1017.0,Mist,mist,0.0,0,0,3219,2025-07-16T06:41:59.738812,2025-07-16 06:41:59
 889,2025-07-16T06:29:19,Salt Lake City,US,24.32,24.01,46,1013.0,Clouds,overcast clouds,2.95,119,89,10000,2025-07-16T06:32:49.902828,2025-07-16 06:32:49
 888,2025-07-16T06:29:19,Salt Lake City,US,24.32,24.01,46,1013.0,Clouds,overcast clouds,2.95,119,89,10000,2025-07-16T06:32:48.938402,2025-07-16 06:32:48

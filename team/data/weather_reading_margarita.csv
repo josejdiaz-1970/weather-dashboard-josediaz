@@ -1,4 +1,4 @@
-city,date,temp,humidity,description
+city,date,temperature,humidity,description
 new york,2025-07-10T13:00:00,81.27,72,moderate rain
 new york,2025-07-11T13:00:00,83.32,63,light rain
 new york,2025-07-12T13:00:00,84.42,58,scattered clouds

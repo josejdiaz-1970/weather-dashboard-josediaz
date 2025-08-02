@@ -230,6 +230,7 @@ Finished icon selection and integration.
 Added warning and thinking emoji icon.
 Fixed some minor errors with alert display. 
 Imported worldcities.csv for autocomplete function - future
+Fix the lat is None or Lat is none error in api.py
 
 To Do:
 
@@ -261,5 +262,20 @@ Historical chart window USer selects length of time to get.
 7-28-25
 
 Added basic structure for Madlibs
+
+7-31-25
+
+Working through some parsing errors with madlibs and csvs.
+
+Create a standalone installer. No
+
+8-1-25
+
+Needs a slide deck
+Needs to be tagged v1.0 in github. Under releases.
+Autocomplete, incorrect city error messsage
+Add madlibs widgets to themes
+Fix lat none error
+Fix emoji error
 
 

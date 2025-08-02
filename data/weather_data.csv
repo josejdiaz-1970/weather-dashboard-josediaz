@@ -231,3 +231,22 @@ Current Time,City,State,Country,Temperature in Preferred Units,Temperature Alter
 2025-07-29 20:01:26,Perth Amboy,New Jersey,US,92,33,104,Clear sky,59,rain : 0.768504352,1014,0,3,280,05:51:32,20:15:23
 2025-07-30 19:11:17,Perth Amboy,New Jersey,US,93,34,103,Clear sky,54,rain : 0.004724412,1013,0.28,9,300,05:52:28,20:14:23
 2025-07-30 19:27:31,New York,New York,US,86,30,92,Broken clouds,64,rain : 0.333464747,1013,0.28,15,30,05:50:55,20:13:48
+2025-07-31 14:13:41,Perth Amboy,New Jersey,US,85,29,92,Clear sky,71,rain : 0.06614176799999999,1013,3.16,12,130,05:53:25,20:13:22
+2025-07-31 14:14:39,Piscataway Township,New Jersey,US,85,29,95,Broken clouds,75,rain : 0.08267721,1013,3.16,6,66,05:54:08,20:14:11
+2025-07-31 14:33:47,Perth Amboy,New Jersey,US,84,29,92,Overcast clouds,74,rain : 0.052362233,1013,2.02,3,122,05:53:25,20:13:22
+2025-07-31 15:33:20,Perth Amboy,New Jersey,US,82,28,85,Heavy intensity rain,67,rain : 0.052362233,1014,1.43,11,124,05:53:25,20:13:22
+2025-07-31 15:53:55,Perth Amboy,New Jersey,US,77,25,79,Thunderstorm with rain,84,rain : 0.052362233,1014,1.43,9,20,05:53:25,20:13:22
+2025-07-31 16:12:52,Perth Amboy,New Jersey,US,76,24,78,Heavy intensity rain,85,rain : 0.052362233,1014,1.43,13,20,05:53:25,20:13:22
+2025-07-31 18:28:33,Perth Amboy,New Jersey,US,72,22,73,Broken clouds,86,rain : 0.052362233,1014,0.53,8,30,05:53:25,20:13:22
+2025-07-31 18:47:09,New York,New York,US,72,22,73,Mist,90,rain : 0.073622087,1015,0.03,15,10,05:51:52,20:12:46
+2025-07-31 18:47:44,Kyoto,,JP,29,84,95,Scattered clouds,81,rain : 0.33070884,1003,2.81,3,275,16:06:00,06:00:30
+2025-07-31 18:48:15,London,England,GB,17,62,61,Scattered clouds,75,rain : 0.043700811,1015,0,9,300,00:22:47,15:50:50
+2025-07-31 18:48:19,Maui,Hawaii,US,75,24,75,Broken clouds,70,rain : 0.180708759,1019,12.64,2,299,11:59:12,01:03:51
+2025-07-31 18:49:31,Perth Amboy,New Jersey,US,71,22,72,Overcast clouds,84,rain : 0.052362233,1014,0.03,9,20,05:53:25,20:13:22
+2025-07-31 20:05:15,Oslo,,NO,17,63,64,Overcast clouds,91,rain : 0.873622519,1006,0,1,335,22:58:32,15:48:04
+2025-07-31 21:03:06,Perth Amboy,New Jersey,US,69,21,70,Overcast clouds,81,rain : 0.207874128,1016,0,9,20,05:53:25,20:13:22
+2025-07-31 21:14:03,Perth Amboy,New Jersey,US,69,21,69,Overcast clouds,82,rain : 0.207874128,1016,0,9,20,05:53:25,20:13:22
+2025-08-01 19:38:24,Perth Amboy,New Jersey,US,72,22,72,Overcast clouds,71,rain : 0.15944890499999997,1022,0,1,74,05:54:23,20:12:19
+2025-08-02 08:27:19,Mars,Auvergne-Rhône-Alpes,FR,19,66,64,Clear sky,42,rain : 0.09803154900000001,1015,7.97,12,355,00:29:06,15:08:44
+2025-08-02 08:27:37,Pluto,West Virginia,US,62,17,62,Overcast clouds,95,None : 0,1025,0.19,6,90,06:28:36,20:31:43
+2025-08-02 09:40:54,New York,New York,US,70,21,70,Clear sky,67,None : 0,1024,4.5,13,10,05:53:48,20:10:38

@@ -10,9 +10,10 @@ from datetime import datetime
 
 #for team feature
 import team.features.word_library as wl
-from team.features.madlibs_generator import MadGenerator  
+from team.features.madlibs_generator import MadGenerator as MG
 
-
+#To log the final madlib and other data to a csv file.
+from team.features.madlib_logger import log_madlib_session
 
 class WGUI():     
     
@@ -42,7 +43,7 @@ class WGUI():
         #Toggle for dynamic themes
         self.dynamic_icons_enabled = tk.BooleanVar(value=False)
 
-        self.mad_generator = MadGenerator(filepath=r"C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\team\data")
+        self.mad_generator = MG(filepath=r"C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\team\data")
        
         # Add a menu bar and sub-menus - WORKS
         menu_font=font.Font(family="Arial", size=16)
@@ -155,7 +156,8 @@ class WGUI():
         self.alertdetails_frame.grid(row=0, column=0, sticky="nsew")
         self.alertdetails_frame.grid_rowconfigure(0, weight=1)
         self.alertdetails_frame.grid_columnconfigure(0, weight=1)
-        self.madlibs_frame.grid(row=10, column=4, sticky="nsew") #Changed columns to 10 and 4
+        # self.madlibs_frame.grid(row=10, column=4, sticky="nsew") #Changed columns to 10 and 4
+        self.madlibs_frame.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
 
         #ChatGPT (July, 2025)
         self.left_frame.grid_rowconfigure(0, weight=0)  # Label
@@ -170,11 +172,21 @@ class WGUI():
         for i in range(8):
             self.right_frame.grid_rowconfigure(i, weight=1)
 
+        #Madlibs Frame row and column configure
+        
+        for i in range(4):
+            self.madlibs_frame.grid_columnconfigure(i, weight=1)
+
         #MAIN TAB        
         # Add widgets to left_frame
 
         self.citylabel=ctk.CTkLabel(self.left_frame, fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size), text="Enter a city:")
+        
+        
         self.cityentry = ctk.CTkEntry(self.left_frame, width=100)    
+        
+        
+        
         self.citybutton = ctk.CTkButton(self.left_frame, fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size),text="Get Weather",command=self.controller.get_weather)
         self.alertslabel = ctk.CTkLabel(self.left_frame, image=self.controller.get_flat_icon("warning"), text=" Alerts!", text_color=self.font_color,font=(self.font_style, self.font_size), compound="left")
         self.alertsbox = ctk.CTkTextbox(self.left_frame, fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
@@ -249,8 +261,7 @@ class WGUI():
                                               values=wl.NOUNS, 
                                               fg_color=self.bg_color,
                                               text_color=self.font_color,
-                                              font=(self.font_style, self.font_size),
-                                              width=30
+                                              font=(self.font_style, self.font_size)                                              
                                              )     
         
         self.madlibs_nounlabel_2 = ctk.CTkLabel(self.madlibs_frame, text="Select another noun", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
@@ -309,10 +320,14 @@ class WGUI():
                                               text_color=self.font_color,
                                               font=(self.font_style, self.font_size)
                                              ) 
-        #Get the random weather data
-        self.madlibs_weatherlabel = ctk.CTkLabel(self.madlibs_frame, text="Click the Button to get Random Weather Data", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
-        self.madlibs_weatherdata = ctk.CTkButton(self.madlibs_frame, text="Get Random Weather Data", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
 
+
+        #To show what files and rows were randomly chosen.        
+        self.madlibs_first_file = ctk.CTkLabel(self.madlibs_frame, text="First file: ", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_second_file = ctk.CTkLabel(self.madlibs_frame, text="Second file: ",fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_first_row = ctk.CTkLabel(self.madlibs_frame, text="Selected row: ", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.madlibs_second_row = ctk.CTkLabel(self.madlibs_frame, text="Selected row: ",fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        
         #Generate the madlib using all the selected words and the random weather data.
         self.madlibs_generate = ctk.CTkButton(self.madlibs_frame, text="Generate Madlib", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size),command=self.generate_madlib)
     
@@ -320,9 +335,9 @@ class WGUI():
         self.madlibs_box = ctk.CTkTextbox(self.madlibs_frame,
                                           fg_color=self.bg_color,
                                           text_color=self.font_color,
-                                          font=(self.font_style, self.font_size),
+                                          font=(self.font_style, self.font_size+10),
                                           height=200, 
-                                          wrap="word"
+                                          wrap="word"                                          
                                          ) 
 
         
@@ -332,40 +347,48 @@ class WGUI():
 
 
         #Add to madlibs as a grid
-        self.madlibs_title.grid(row=1, column=1, columnspan=2, padx=30, pady=30, sticky="ew") 
-       
-        self.madlibs_nounlabel_1.grid(row=2, column=0, padx=5, pady=5, sticky="ew") 
-        self.madlibs_noun_1.grid(row=2, column=1, padx=5, pady=5, sticky="ew")
-      
-        self.madlibs_nounlabel_2.grid(row=2, column=2, padx=5, pady=5, sticky="ew") 
-        self.madlibs_noun_2.grid(row=2, column=3, padx=5, pady=5, sticky="ew")
 
-        self.madlibs_verblabel_1.grid(row=3, column=0, padx=5, pady=5, sticky="ew") 
-        self.madlibs_verb_1.grid(row=3, column=1, padx=5, pady=5, sticky="ew")
+        # Title centered across all columns
+        self.madlibs_title.grid(row=0, column=0, columnspan=4, pady=(20, 10), sticky="ew")
 
-        self.madlibs_verblabel_2.grid(row=3, column=2, padx=5, pady=5, sticky="ew") 
-        self.madlibs_verb_2.grid(row=3, column=3, padx=5, pady=5, sticky="ew")
-     
-        self.madlibs_adverblabel_1.grid(row=4, column=0, padx=5, pady=5, sticky="ew") 
-        self.madlibs_adverb_1.grid(row=4, column=1, padx=5, pady=5, sticky="ew")
+        # Row 1: Nouns
+        self.madlibs_nounlabel_1.grid(row=1, column=0, padx=5, pady=5, sticky="e")
+        self.madlibs_noun_1.grid(row=1, column=1, padx=5, pady=5, sticky="w")
+        self.madlibs_nounlabel_2.grid(row=1, column=2, padx=5, pady=5, sticky="e")
+        self.madlibs_noun_2.grid(row=1, column=3, padx=5, pady=5, sticky="w")
 
-        self.madlibs_adverblabel_2.grid(row=4, column=2, padx=5, pady=5, sticky="ew") 
-        self.madlibs_adverb_2.grid(row=4, column=3, padx=5, pady=5, sticky="ew")
-    
-        self.madlibs_adjectivelabel_1.grid(row=5, column=0, padx=5, pady=5, sticky="ew") 
-        self.madlibs_adjective_1.grid(row=5, column=1, padx=5, pady=5, sticky="ew")
+        # Row 2: Verbs
+        self.madlibs_verblabel_1.grid(row=2, column=0, padx=5, pady=5, sticky="e")
+        self.madlibs_verb_1.grid(row=2, column=1, padx=5, pady=5, sticky="w")
+        self.madlibs_verblabel_2.grid(row=2, column=2, padx=5, pady=5, sticky="e")
+        self.madlibs_verb_2.grid(row=2, column=3, padx=5, pady=5, sticky="w")
 
-        self.madlibs_adjectivelabel_2.grid(row=5, column=2, padx=5, pady=5, sticky="ew") 
-        self.madlibs_adjective_2.grid(row=5, column=3, padx=5, pady=5, sticky="ew")
-     
-        self.madlibs_weatherlabel.grid(row=6, column=2, columnspan=2, padx=5, pady=5, sticky="ew")    
-        self.madlibs_weatherdata.grid(row=7, column=2, columnspan=2, padx=5, pady=5, sticky="ew") 
+        # Row 3: Adverbs
+        self.madlibs_adverblabel_1.grid(row=3, column=0, padx=5, pady=5, sticky="e")
+        self.madlibs_adverb_1.grid(row=3, column=1, padx=5, pady=5, sticky="w")
+        self.madlibs_adverblabel_2.grid(row=3, column=2, padx=5, pady=5, sticky="e")
+        self.madlibs_adverb_2.grid(row=3, column=3, padx=5, pady=5, sticky="w")
 
-        self.madlibs_generate.grid(row=8, column=2, columnspan=2, padx=5, pady=5, sticky="ew")
+        # Row 4: Adjectives
+        self.madlibs_adjectivelabel_1.grid(row=4, column=0, padx=5, pady=5, sticky="e")
+        self.madlibs_adjective_1.grid(row=4, column=1, padx=5, pady=5, sticky="w")
+        self.madlibs_adjectivelabel_2.grid(row=4, column=2, padx=5, pady=5, sticky="e")
+        self.madlibs_adjective_2.grid(row=4, column=3, padx=5, pady=5, sticky="w")
 
-        self.madlibs_box.grid(row=9, column=0, columnspan=4, padx=10, pady=10, sticky="nsew") 
-        
-             
+        # Row 5: Generate Button centered
+        self.madlibs_generate.grid(row=5, column=1, columnspan=2, pady=(20, 10), sticky="ew")
+
+        # Row 6: File Info (split across top-left and right)
+        self.madlibs_first_file.grid(row=6, column=0, columnspan=2, padx=5, pady=2, sticky="w")
+        self.madlibs_second_file.grid(row=6, column=2, columnspan=2, padx=5, pady=2, sticky="w")
+
+        # Row 7: Selected rows
+        self.madlibs_first_row.grid(row=7, column=0, columnspan=2, padx=5, pady=2, sticky="w")
+        self.madlibs_second_row.grid(row=7, column=2, columnspan=2, padx=5, pady=2, sticky="w")
+
+        # Row 8: Final madlib output box
+        self.madlibs_frame.grid_rowconfigure(8, weight=1)  # let it expand
+        self.madlibs_box.grid(row=8, column=0, columnspan=4, padx=10, pady=(10, 5), sticky="nsew")
 
         #Add to left as grid
         self.citylabel.grid(row=0, column=0,pady=(10, 5), padx=10, sticky="w")
@@ -468,7 +491,6 @@ class WGUI():
         self.alertdetail.delete("0.0", "end")
         if hasattr(parsed, "alertdescription"):
             self.alertdetail.insert("0.0", f"⚠️ Alert Description:\n\n\n {parsed.alertdescription}")
-
 
     def get_pink(self):
 
@@ -627,8 +649,16 @@ class WGUI():
         #Madlibs page
         self.madlibs_frame.configure(fg_color=self.fg_color)
         self.madlibs_box.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
-
-
+        
+        #Configure the combo boxed
+        self.madlibs_noun_1.configure(width=5)
+        self.madlibs_noun_2.configure(width=5)
+        self.madlibs_verb_1.configure(width=5)
+        self.madlibs_verb_2.configure(width=5)
+        self.madlibs_adjective_1.configure(width=5)
+        self.madlibs_adjective_2.configure(width=5)
+        self.madlibs_adverb_1.configure(width=5)
+        self.madlibs_adverb_2.configure(width=5)
 
     def toggle_icon_theme(self):
         enabled = self.dynamic_icons_enabled.get()
@@ -655,7 +685,7 @@ class WGUI():
             self.forecast_day_frames[i]["hi"].configure(text=f"↑ {temp_max}°")
             self.forecast_day_frames[i]["lo"].configure(text=f"↓ {temp_min}°")  
 
-    def show_error(message: str, title: str="Error"):
+    def show_error(self, message: str, title: str="Oops! An unexpected error occurred."):
         messagebox.showerror(title, message)   
 
     def generate_madlib(self):
@@ -679,11 +709,33 @@ class WGUI():
         print("Weather1:", self.mad_generator.weather1) #TEMP
         print("Weather2:", self.mad_generator.weather2) #TEMP
 
-        # 3. Show it in GUI
+        #Generate weather data
+        data1 = self.mad_generator.first_file_info["data"]
+        data2 = self.mad_generator.second_file_info["data"]
+        
+        self.mad_generator.set_weather_data(data1, data2)
+
+        # Generate madlib
+        madlib_text = self.mad_generator.generate_madlib()
+
+        # Show it in GUI
+        self.madlibs_first_file.configure(text=f"First file: {self.mad_generator.first_file_info.get('filename', "None")}",wraplength = 300, anchor="w")
+        self.madlibs_first_row.configure(text=f"Selected row: {self.mad_generator.first_file_info.get('row_index', "None")}", wraplength = 300, anchor="w")
+        self.madlibs_second_file.configure(text=f"Second file: {self.mad_generator.second_file_info.get('filename', "None")}")
+        self.madlibs_second_row.configure(text=f"Selected row: {self.mad_generator.second_file_info.get('row_index', "None")}")
+
         self.madlibs_box.configure(state="normal")
         self.madlibs_box.delete("1.0", "end")
         self.madlibs_box.insert("1.0", madlib_text)
         self.madlibs_box.configure(state="disabled")
 
         # 4. Log to CSV
-        self.mad_generator.log_madlib(madlib_text)          
+        madlib_text = self.mad_generator.generate_madlib()
+
+        log_madlib_session(
+            filepath=self.mad_generator.filepath,
+            file_info1=self.mad_generator.first_file_info,   
+            file_info2=self.mad_generator.second_file_info,
+            user_words=self.mad_generator.user_inputs,
+            madlib_text=madlib_text
+            )
