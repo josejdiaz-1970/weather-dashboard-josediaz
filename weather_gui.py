@@ -171,20 +171,25 @@ class WGUI():
         self.tabview.rowconfigure(0, weight=1)
         self.tabview.columnconfigure(0, weight=1)
             
-       
-
         self.main_tab.grid_rowconfigure(0, weight=1)
-        self.main_tab.grid_rowconfigure(1, weight=1)
-        self.main_tab.grid_rowconfigure(2, weight=1)
-        self.main_tab.grid_rowconfigure(3, weight=1)
-        self.main_tab.grid_rowconfigure(4, weight=1)
-        self.main_tab.grid_rowconfigure(5, weight=1)
-        self.main_tab.grid_rowconfigure(6, weight=1)
+        self.main_tab.grid_rowconfigure(1, weight=1)    
 
-        self.main_tab.grid_rowconfigure(0, weight=1)
-        self.main_tab.grid_columnconfigure(0, weight=1)
-        self.main_tab.grid_columnconfigure(1, weight=2)
-        
+        # self.main_tab.grid_rowconfigure(0, weight=1)
+        # self.main_tab.grid_rowconfigure(1, weight=1)
+        # self.main_tab.grid_rowconfigure(2, weight=1)
+        # self.main_tab.grid_rowconfigure(3, weight=1)
+        # self.main_tab.grid_rowconfigure(4, weight=1)
+        # self.main_tab.grid_rowconfigure(5, weight=1)
+        # self.main_tab.grid_rowconfigure(6, weight=1)
+     
+        #Left frame goes in here
+        self.main_tab.grid_columnconfigure(0, weight=1) 
+
+        #Right frame will take up these 3 columns
+        self.main_tab.grid_columnconfigure(1, weight=1)
+        self.main_tab.grid_columnconfigure(2, weight=0)
+        self.main_tab.grid_columnconfigure(3, weight=1)
+
         self.madlibs_tab.grid_rowconfigure(0, weight=1)
         self.madlibs_tab.grid_columnconfigure(0, weight=1)
 
@@ -193,8 +198,10 @@ class WGUI():
         self.root.grid_columnconfigure(0, weight=1)
 
         #Create frames -changed parent to notebook
-        self.left_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, width=150, height=350)
-        self.right_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, width=650, height=350)
+        self.left_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, width=250, height=350)
+        self.spacer_left = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color,height=350)  # or fg_color="transparent"
+        self.spacer_right = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, height=350)
+        self.right_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, width=560, height=350)
         self.bottom_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, height=100)
 
         #Add alerts details_frame to summary tab
@@ -206,10 +213,16 @@ class WGUI():
         self.madlibs_frame.grid_propagate(False)
 
         self.left_frame.grid_propagate(False)
+        
+        self.left_frame.configure(width=250)
 
         # Layout frames
-        self.left_frame.grid(row=0, column=0, rowspan=7, sticky="nsew") 
-        self.right_frame.grid(row=0, column=1, rowspan=7, columnspan=5, sticky="nsew")
+        self.left_frame.grid(row=0, column=0, rowspan=7, sticky="nsw") #nsew
+        # self.right_frame.grid(row=0, column=1, rowspan=7, columnspan=5, sticky="nsew")
+        self.spacer_left.grid(row=0, column=1, rowspan=7, sticky="nsew")
+        self.right_frame.grid(row=0, column=2, rowspan=7, sticky="nsew") #set row to 1 , nsew
+        self.spacer_right.grid(row=0, column=3, rowspan=7, sticky="nsew")
+   
         self.bottom_frame.grid(row=7, column=0, columnspan=6, sticky="nsew")
 
         self.alertdetails_frame.grid(row=0, column=0, sticky="nsew")
@@ -225,15 +238,24 @@ class WGUI():
         self.left_frame.grid_rowconfigure(4, weight=1)  # Weather Icon
         self.left_frame.grid_rowconfigure(5, weight=1)  # Mood/Saying
         self.left_frame.grid_rowconfigure(6, weight=1)  # Spacer
-        self.left_frame.grid_columnconfigure(0, weight=1)  # Stretch everything
+        self.left_frame.grid_columnconfigure(0, weight=0, minsize=250)  # Stretch everything
 
         for i in range(8):
             self.right_frame.grid_rowconfigure(i, weight=1)
 
+        self.right_frame.grid_columnconfigure(1, weight=1) 
+        self.right_frame.grid_columnconfigure(2, weight=1) 
+        self.right_frame.grid_columnconfigure(3, weight=1) 
         #Madlibs Frame row and column configure
         
         for i in range(4):
             self.madlibs_frame.grid_columnconfigure(i, weight=1)
+
+        # To center the right frame
+        self.spacer_left.configure(width=125)
+        self.spacer_right.configure(width=125)
+        
+        
 
         #MAIN TAB        
         # Add widgets to left_frame
@@ -780,7 +802,7 @@ class WGUI():
         
         self.bg_color = theme["bg_color"] # Main background color
         self.fg_color = theme["fg_color"] # Frame background color
-        # self.left_fg_color = theme["left_fg_color"] # Left Frame background color
+        
         self.font_color = theme["font_color"] # Text Label color
         self.font_style = theme["font_style"] # Font family
         self.font_size = theme["font_size"] # Font size
@@ -813,6 +835,9 @@ class WGUI():
         self.sayingsbox.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size)) 
 
         #RIGHT FRAME AND WIDGETS
+
+        self.spacer_left.configure(fg_color=self.fg_color)
+        self.spacer_right.configure(fg_color=self.fg_color)
         self.right_frame.configure(fg_color=self.fg_color)
         self.forecast_frame.configure(fg_color=self.fg_color)
         self.icon_label.configure(fg_color=self.bg_color, text_color=self.icon_color) 
