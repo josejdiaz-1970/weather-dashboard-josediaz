@@ -27,7 +27,7 @@ templates = [
     "It's a beautiful {adjective1} day today! The sun is {verb1}, and the temperature is a {adjective2} \
     {temperature1} degrees. A {noun1} is blowing with a {adjective1} breeze. We might even see some {noun2} in the sky. \
     It's a great day for a {noun1} outside if your're in {city2}, but be if you're in {city1}, be sure to wear your \
-    {noun2} to protect yourself from the {humidity1}."    
+    {noun2} to protect yourself from the {noun1}."    
 
 ]
 

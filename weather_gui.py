@@ -329,7 +329,7 @@ class WGUI():
         self.summary = ctk.CTkLabel(self.bottom_frame,fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size) ,text="Summary:")
         #ALERTS TAB
         #Alerts details textbox for Alert Details tab
-        self.alertdetail = ctk.CTkTextbox(self.alertdetails_frame,fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
+        self.alertdetail = ctk.CTkTextbox(self.alertdetails_frame,fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size + 3),width=780, height=780, wrap="word")
 
         #ADDED 7/28/25
         #Madlibs textbox for Madlibs tab
@@ -762,7 +762,7 @@ class WGUI():
         font=("Arial", 16),
         command=activate_pink
         )
-        
+
         pink_button.pack(side="bottom", padx=10, pady=10)      
         pink_text.pack(padx=20, pady=20)
         

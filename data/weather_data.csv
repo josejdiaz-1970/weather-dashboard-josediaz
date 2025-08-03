@@ -376,3 +376,13 @@ Current Time,City,State,Country,Temperature in Preferred Units,Temperature Alter
 2025-08-02 18:09:38,Aarhus,Central Denmark Region,DK,16,61,61,Broken clouds,94,rain : 0.05551184099999999,1007,0,2,213,23:26:15,15:24:19
 2025-08-02 19:51:39,Aba,Abia State,NG,23,73,75,Moderate rain,97,rain : 0.044094512,1014,0,7,253,01:26:44,13:46:38
 2025-08-03 10:58:28,Perth Amboy,New Jersey,US,79,26,79,Clear sky,51,rain : 0.010629927,1022,6.23,8,40,05:56:18,20:10:09
+2025-08-03 14:58:56,San Diego,California,US,76,24,76,Clear sky,67,None : 0,1016,10.68,7,260,09:04:10,22:45:22
+2025-08-03 15:06:33,Reethi Rah,Malé Atoll,MV,27,81,86,Overcast clouds,78,rain : 0.235039497,1012,0,16,313,21:03:30,09:21:42
+2025-08-03 15:06:43,Osaka,Osaka Prefecture,JP,29,84,89,Overcast clouds,64,rain : 0.35905531199999996,1005,0,6,236,16:09:58,05:58:13
+2025-08-03 15:06:53,Old Toronto,Ontario,CA,28,83,83,Clear sky,46,rain : 0.007086617999999999,1020,4.5,4,151,06:09:01,20:38:18
+2025-08-03 15:11:58,Old Toronto,Ontario,CA,28,83,83,Clear sky,46,rain : 0.007086617999999999,1020,4.5,4,151,06:09:01,20:38:18
+2025-08-03 15:12:59,Toruń,Kuyavian-Pomeranian Voivodeship,PL,17,62,62,Few clouds,82,rain : 0.068503974,1014,0,7,272,23:06:33,14:36:58
+2025-08-03 15:13:07,Old Toronto,Ontario,CA,28,83,83,Clear sky,46,rain : 0.007086617999999999,1020,4.5,4,151,06:09:01,20:38:18
+2025-08-03 15:29:17,Fajardo,Puerto Rico,US,89,32,102,Light rain,73,rain : 0.7511815079999999,1016,6.96,12,110,06:01:12,18:56:16
+2025-08-03 15:31:22,Fajardo,Puerto Rico,US,89,32,102,Light rain,73,rain : 0.7511815079999999,1016,3.78,12,110,06:01:12,18:56:16
+2025-08-03 15:35:07,Perth Amboy,New Jersey,US,83,28,83,Clear sky,43,rain : 0.07795279799999999,1019,4.13,7,170,05:56:18,20:10:09
