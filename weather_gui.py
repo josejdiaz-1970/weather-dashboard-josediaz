@@ -265,9 +265,7 @@ class WGUI():
                                         hover=True                                        
                                         )
         
-        self.citybutton.bind("<Enter>", self.on_enter)
-        print("Bound <Enter> to my_button")
-
+        self.citybutton.bind("<Enter>", self.on_enter)        
         self.citybutton.bind("<Leave>", self.on_leave)
         
         self.alertslabel = ctk.CTkLabel(self.left_frame, image=self.controller.get_flat_icon("warning"), text=" Alerts!", text_color=self.font_color,font=(self.font_style, self.font_size), compound="left")
@@ -525,6 +523,7 @@ class WGUI():
         self.summary.grid(row=0, columnspan=3, sticky="nsew")
         self.alertdetail.grid(row=0, column=0, sticky="nsew")
 
+    #Event methods for buttons
     def on_enter(self, event):
         if isinstance(event.widget, ctk.CTkButton):           
             event.widget.configure(fg_color=self.button_hover, text_color="#000000", text=event.widget.cget("text_color"))
@@ -628,7 +627,7 @@ class WGUI():
     def about(self):
         self.info_window = ctk.CTkToplevel(fg_color=self.fg_color) 
         self.info_window.title("Jose's Weather App")
-        self.info_window.geometry("300x300")
+        self.info_window.geometry("600x450")
 
 
         def on_close():
@@ -637,21 +636,51 @@ class WGUI():
 
         self.info_window.protocol("WM_DELETE_WINDOW", on_close)
 
-
+        self.info_marquis=ctk.CTkLabel(master=self.info_window, text="Weather App by Jose J. Diaz\nJuly and August of 2025",
+                              fg_color=self.fg_color,
+                              text_color=self.font_color,
+                              font=(self.font_style, self.font_size+7))
+        
         self.info_text=ctk.CTkTextbox(master=self.info_window,
                               fg_color=self.fg_color,
                               text_color=self.font_color,
-                              font=(self.font_style, self.font_size+5),
-                                          height=250, 
+                              font=(self.font_style, self.font_size),
+                                          width=600, height=420, 
                                           wrap="word"
                              )  
-        self.info_text.insert("1.0", "Weather App by Jose J. Diaz\n") 
+        
+        self.info_text._textbox.tag_configure("left-justify", justify='left')
+        
+        self.info_text.insert("0.0", """\
+                              
+                              Default (text-based) icons: Erik Flower's icons 
+                              (https://erikflowers.github.io/weather-icons/)
+
+                              Color icons: All come from flaticon.com by deifferent users.
+
+                              default icon (crying unicorn) by flaticon.com user: Luvdat  
+                              rain cloud : iconixar 
+                              sun, snow, cloudy, overcast, broken clouds day, 
+                              fog, thinking emoji: Freepik (http:\\www.freepik.com) 
+                              moon: Vectors Market 
+                              thunderstorm (both), rain shower day: justicon 
+                              rain:Berkhaicon 
+                              partly cloudy night: Fantasyou 
+                              partly cloudy night 2: Peerapak Takpho 
+                              rain night: Plastic Donut 
+                              haze: wouldulearn 
+                              mist: bqlqn 
+                              alert triangle: Andrean Prabowo
+                              """           
+                              ) 
+        
+        self.info_text._textbox.tag_add("left-justify", "0.0", "end-1c")
+
+        self.info_text.configure(state="disabled")
         
         
-        
-        
-        #Insert icon credits here
-        self.info_text.pack(padx=20, pady=20, fill="both", expand=True)
+        self.info_marquis.pack(padx=20, pady=5)
+        self.info_text.pack(padx=5, pady=5, fill="both", expand=True, side="left")
         self.info_window.wm_transient(self.root)  # Tie to main window
         self.info_window.lift()                   # Bring to front
         self.info_window.focus_force()            # Give focus
@@ -673,7 +702,7 @@ class WGUI():
                                    fg_color="#F8FFD3",
                                    text_color="#000000", 
                                    width=380, 
-                                   height=300, 
+                                   height=380, 
                                    corner_radius=10,
                                    font=pink_text_font,                                    
                                    wrap="word"
@@ -688,6 +717,7 @@ class WGUI():
                                 "But, dont blame me later for any side effects. Personally, I blame Victoya Venise. " \
                                 "She 'inspired' this theme.")
         
+       
         pink_text.configure(state="disabled")
 
               
@@ -714,19 +744,28 @@ class WGUI():
             
 
 
-        pink_button = ctk.CTkButton(pinkWarning,
-                                    text=f"Open Pink Theme 😨",
-                                    text_color="#FFFFFF",
-                                    bg_color="#964242",
-                                    hover_color="pink",
-                                    font=("Arial", 16),
-                                    command=activate_pink                                    
-                                )
+        # pink_button = ctk.CTkButton(master=pinkWarning,
+        #                             text=f"Open Pink Theme 😨",
+        #                             text_color="#FFFFFF",
+        #                             bg_color="#964242",
+        #                             hover_color="pink",
+        #                             font=("Arial", 16),
+        #                             command=activate_pink                                    
+        #                         )
 
+        pink_button = ctk.CTkButton(
+        master=pinkWarning,
+        text="Open Pink Theme 😨",
+        text_color="#FFFFFF",
+        fg_color="#964242",        # <- This controls the button face
+        hover_color="pink",        # <- On hover
+        font=("Arial", 16),
+        command=activate_pink
+        )
         
-              
+        pink_button.pack(side="bottom", padx=10, pady=10)      
         pink_text.pack(padx=20, pady=20)
-        pink_button.pack(side="bottom", padx=10, pady=10)
+        
 
         #Window in focusing and bring-to-front code.ChatGPT (July, 2025) 
         # --- Ensure the window pops in front ---
