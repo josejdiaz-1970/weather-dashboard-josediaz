@@ -278,4 +278,8 @@ Add madlibs widgets to themes
 Fix lat none error
 Fix emoji error
 
+Reverted to previous build after chatgpt runaround with icons. Will suppress warnings instead.
+ToDo:
 
+Change default color of rain button
+Change focus color of button on sunny theme

@@ -24,14 +24,16 @@ class App():
     
     
     def __init__(self, root):
+        super().__init__()
 
         self.root = root
-      
+
+             
         #Have to create this first before the gui otherwise it fails.
         self.sayings_manager = sayings_manager.SayingsManager(sayings.SAYINGS_BY_WEATHER, wrap_width=42)
         
         self.save_dir = r'C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\data'
-
+        
         self.file_path_csv = self.save_dir 
 
         self.citieslist = Cities(self.file_path_csv).load_city_names()
@@ -41,10 +43,7 @@ class App():
         #ChatGPT (August, 2025) - Just for order of operations.
         self.gui = WGUI(self.root, self, theme=themes.default_theme, cities=self.citieslist)  # create GUI first
         self.api = LoadApi(error_handler=self.gui.show_error)  # now pass instance method
-
-        
-       
-           
+          
     def update_quote(self, icon_code: str):
         # Map icon -> weather key 
         weather_key = sayings.ICON_TO_SAYINGS_KEY.get(icon_code, "default")
@@ -53,6 +52,7 @@ class App():
         
         return quote    
 
+      
    
     #chatGPT (July, 2025)
     def get_weather(self):
@@ -80,6 +80,9 @@ class App():
            
             #Save the data for the group feature
             SaveData(f"{self.save_dir}\\weather_data_jjd.csv", parsed, city)
+            
+             # Reset combo after search
+            self.gui.cityentry.set("Select a city")  
        
 
     def update_theme_based_on_toggle(self): 
@@ -94,9 +97,9 @@ class App():
             elif "n" in self.icon:    
                 self.gui.apply_theme(themes.dark_theme) 
 
-    #For future color icons
+    #For color icons
     def get_flat_icon(self, code):
-        
+       
         icon_path = os.path.join("assets", "icons_flat", f"{code}.png")
         if not os.path.exists(icon_path):
             icon_path = os.path.join("assets", "icons_flat", "default.png")
@@ -109,13 +112,11 @@ class App():
             img = ctk.CTkImage(Image.open(icon_path), size=(icon_size[code]))
         
         else:       
-            img = ctk.CTkImage(Image.open(icon_path), size=(200, 200)) #Need to fix image
-       
-
-        print(code, type(img))
+        
+            img = ctk.CTkImage(Image.open(icon_path), size=(200, 200)) 
+ 
         return img
-    
-                               
+                              
 if __name__ == "__main__": 
        
     root = ctk.CTk()

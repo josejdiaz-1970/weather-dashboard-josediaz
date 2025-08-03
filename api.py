@@ -2,6 +2,7 @@ import requests
 from dotenv import load_dotenv
 import os
 import datetime
+import json
 import csv 
 import pandas as pd
 
@@ -16,7 +17,7 @@ class LoadApi():
 
         self.api_geocode = "http://api.openweathermap.org/geo/1.0/direct"
         self.api_site = "https://api.openweathermap.org/data/3.0/onecall"
-        self.api_historical = "https://api.openweathermap.org/data/3.0/onecall/timemachine" #To get historical data for charts.
+        self.api_historical = "https://api.openweathermap.org/data/3.0/onecall/timemachine" #To get historical data for charts. Future
 
 
         self.show_error = show_error or (lambda title, msg: print(f"[{title}] {msg}"))
@@ -140,8 +141,7 @@ class ParseData():
         self.state = state
         self.country = country 
         self.FthenC = True #Boolean to pass on to GUI to swap the Units 
-        
-        print(f"DATA: \n {self.city} {self.state} {self.country}")
+            
         current = data["current"]
 
         #Data for left frame and bottom frame
@@ -224,9 +224,9 @@ class ParseData():
         ix = round(deg / 45) % 8
         return dirs[ix]   
 
-import json 
-import csv
-import pandas as pd      
+# import json 
+# import csv
+# import pandas as pd      
 
 class SaveData():
 

@@ -15,6 +15,8 @@ from team.features.madlibs_generator import MadGenerator as MG
 #To log the final madlib and other data to a csv file.
 from team.features.madlib_logger import log_madlib_session
 
+import warnings
+
 class WGUI():     
     
     def __init__(self, root, controller, theme=themes.default_theme, cities=None):
@@ -38,6 +40,8 @@ class WGUI():
         self.button_bg = self.theme["button_bg"]
         self.button_fg = self.theme["button_fg"]
         self.icon_color = self.theme["icon_color"]
+        self.button_bg = self.theme["button_bg"]
+        self.button_hover = self.theme["button_hover"]
 
         #Flag to apply theme based on weather conditions
         self.use_weather_themes = tk.BooleanVar(value=False)
@@ -45,10 +49,11 @@ class WGUI():
         self.dynamic_icons_enabled = tk.BooleanVar(value=False)
         self.thinking_icon = self.controller.get_flat_icon("thinking") #Fixes a glitch in the icon image
 
-
-
         self.mad_generator = MG(filepath=r"C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\team\data")
        
+        #Warning supress
+        warnings.filterwarnings("ignore", category=UserWarning, module="customtkinter")
+
         # Add a menu bar and sub-menus - WORKS
         menu_font=font.Font(family="Arial", size=16)
         menubar = tk.Menu(self.root, font=menu_font)
@@ -83,7 +88,7 @@ class WGUI():
         
         # Help Menu
         helpmenu = tk.Menu(menubar, tearoff=0)
-        helpmenu.add_command(label="About", font=menu_font, command=lambda: print("About clicked"))
+        helpmenu.add_command(label="About", font=menu_font, command=self.about)
         menubar.add_cascade(label="Help", menu=helpmenu)
 
         # Exit
@@ -160,7 +165,6 @@ class WGUI():
         self.alertdetails_frame.grid(row=0, column=0, sticky="nsew")
         self.alertdetails_frame.grid_rowconfigure(0, weight=1)
         self.alertdetails_frame.grid_columnconfigure(0, weight=1)
-        # self.madlibs_frame.grid(row=10, column=4, sticky="nsew") #Changed columns to 10 and 4
         self.madlibs_frame.grid(row=0, column=0, sticky="nsew", padx=10, pady=10)
 
         #ChatGPT (July, 2025)
@@ -186,10 +190,7 @@ class WGUI():
 
         self.citylabel=ctk.CTkLabel(self.left_frame, fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size), text="Enter a city:")
         
-        
-        # self.cityentry = ctk.CTkEntry(self.left_frame, width=100)           
-        
-        #change to combobox for autocomplete functionality
+        #changed to combobox for autocomplete functionality
         self.cityentry = self.city_combobox = ctk.CTkComboBox(self.left_frame, variable="",
                                                               values=self.city_list[:500],
                                                               fg_color=self.bg_color,
@@ -202,7 +203,21 @@ class WGUI():
         self.cityentry.bind("<KeyRelease>", self.update_suggestions)
 
         
-        self.citybutton = ctk.CTkButton(self.left_frame, fg_color=self.bg_color, text_color=self.font_color,font=(self.font_style, self.font_size),text="Get Weather",command=self.controller.get_weather)
+        self.citybutton = ctk.CTkButton(self.left_frame, 
+                                        fg_color=self.bg_color, 
+                                        text_color=self.font_color,
+                                        hover_color=self.button_hover,
+                                        border_width=2,
+                                        border_color = self.font_color,
+                                        font=(self.font_style, self.font_size),
+                                        text="Get Weather",
+                                        command=self.controller.get_weather,
+                                        hover=True                                        
+                                        )
+        
+        self.citybutton.bind("<Enter>", self.on_enter)
+        self.citybutton.bind("<Leave>", self.on_leave)
+        
         self.alertslabel = ctk.CTkLabel(self.left_frame, image=self.controller.get_flat_icon("warning"), text=" Alerts!", text_color=self.font_color,font=(self.font_style, self.font_size), compound="left")
         self.alertsbox = ctk.CTkTextbox(self.left_frame, fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
         self.weather_icon = ctk.CTkLabel(self.left_frame, text="", image=self.thinking_icon) 
@@ -344,7 +359,22 @@ class WGUI():
         self.madlibs_second_row = ctk.CTkLabel(self.madlibs_frame, text="Selected row: ",fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size))
         
         #Generate the madlib using all the selected words and the random weather data.
-        self.madlibs_generate = ctk.CTkButton(self.madlibs_frame, text="Generate Madlib", fg_color=self.bg_color,text_color=self.font_color,font=(self.font_style, self.font_size +5),command=self.generate_madlib)
+        self.madlibs_generate = ctk.CTkButton(self.madlibs_frame, 
+                                              text="Generate Madlib", 
+                                              fg_color=self.bg_color,
+                                              text_color=self.font_color,
+                                              border_width=2,
+                                              border_color = self.font_color,
+                                              hover_color=self.button_hover,
+                                              font=(self.font_style, self.font_size +5),
+                                              command=self.generate_madlib,
+                                              hover=True
+                                              
+                                              )
+        
+        self.madlibs_generate.bind("<Enter>", self.on_enter)
+        self.madlibs_generate.bind("<Leave>", self.on_leave)
+
     
         #In this box I want to create comboboxes for nouns, verbs, etc... based on the number needed for the template      
         self.madlibs_box = ctk.CTkTextbox(self.madlibs_frame,
@@ -443,6 +473,15 @@ class WGUI():
         self.summary.grid(row=0, columnspan=3, sticky="nsew")
         self.alertdetail.grid(row=0, column=0, sticky="nsew")
 
+    def on_enter(self, event):
+        if isinstance(event.widget, ctk.CTkButton):
+            event.widget.configure(fg_color=self.button_hover, text_color="black")
+        
+
+    def on_leave(self, event):
+        if isinstance(event.widget, ctk.CTkButton):
+            event.widget.configure(fg_color=self.button_bg, text_color=self.button_fg)
+        
 
     #New for cityentry combobox
     def update_suggestions(self, event):
@@ -535,6 +574,29 @@ class WGUI():
         if hasattr(parsed, "alertdescription"):
             self.alertdetail.insert("0.0", f"⚠️ Alert Description:\n\n\n {parsed.alertdescription}")
 
+    def about(self):
+        self.info_window = ctk.CTkToplevel(fg_color=self.fg_color) 
+        self.info_window.title("Jose's Weather App")
+        self.info_window.geometry("300x300")
+        self.info_text=ctk.CTkTextbox(master=self.info_window,
+                              fg_color=self.fg_color,
+                              text_color=self.font_color,
+                              font=(self.font_style, self.font_size+5),
+                                          height=250, 
+                                          wrap="word"
+                             )  
+        self.info_text.insert("1.0", "Weather App by Jose J. Diaz\n") 
+        #Insert icon credits here
+        self.info_text.pack(padx=20, pady=20, fill="both", expand=True)
+        self.info_window.wm_transient(self.root)  # Tie to main window
+        self.info_window.lift()                   # Bring to front
+        self.info_window.focus_force()            # Give focus
+        self.info_window.grab_set()   
+
+        self.info_window.after(4000, self.info_text.destroy)
+
+
+
     def get_pink(self):
 
         pinkWarning = ctk.CTkToplevel(fg_color="#F1FFAB") 
@@ -597,6 +659,7 @@ class WGUI():
                                     command=activate_pink                                    
                                 )
 
+        
               
         pink_text.pack(padx=20, pady=20)
         pink_button.pack(side="bottom", padx=10, pady=10)
@@ -606,8 +669,7 @@ class WGUI():
         pinkWarning.wm_transient(self.root)  # Tie to main window
         pinkWarning.lift()                   # Bring to front
         pinkWarning.focus_force()            # Give focus
-        pinkWarning.grab_set()               # Make modal (blocks other windows)
-        
+        pinkWarning.grab_set()               # Make modal (blocks other windows)       
 
 
     def apply_theme(self, theme: dict) -> None:
@@ -622,7 +684,8 @@ class WGUI():
         self.button_bg = theme["button_bg"] #Button Color
         self.button_fg = theme["button_fg"] #Button Text Color
         self.icon_color = theme["icon_color"] #Icon color - Forgot this. chatgpt helped me fix it. (chatgpt, July, 2025)
-
+        self.button_bg = self.theme["button_bg"]
+        self.button_hover = self.theme["button_hover"]
         #root update 
         self.root.configure(fg_color=self.bg_color)
 
@@ -639,7 +702,8 @@ class WGUI():
         self.left_frame.configure(fg_color=self.fg_color) #Change future
         
         self.cityentry.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
-        self.citybutton.configure(fg_color=self.button_bg, text_color=self.button_fg,font=(self.font_style, self.font_size))
+        self.citybutton.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size), border_color = self.font_color)
+        
         self.citylabel.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
         self.alertslabel.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))  
         self.alertsbox.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))        
@@ -709,8 +773,7 @@ class WGUI():
             self.madlibs_verb_1,
             self.madlibs_verb_2,
             self.madlibs_verblabel_1,
-            self.madlibs_verblabel_2,
-            self.madlibs_generate, #For now. Button needs styling
+            self.madlibs_verblabel_2,            
             self.madlibs_first_file,
             self.madlibs_first_row,
             self.madlibs_second_file,
@@ -720,9 +783,13 @@ class WGUI():
         for item in madlibs_dropdowns:
             item.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
 
+        self.madlibs_generate.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size), border_color = self.font_color)
         self.madlibs_frame.configure(fg_color=self.fg_color)
         self.madlibs_box.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size + 10))
         
+        #About page
+        self.info_text.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size + 10))
+
        
     def toggle_icon_theme(self):
         enabled = self.dynamic_icons_enabled.get()
@@ -739,7 +806,7 @@ class WGUI():
             day_name = dt.strftime("%a")
 
             icon_code = day_data["weather"][0]["icon"]
-            # icon = self.get_icon_for_code(icon_code)  # see below
+            
             icon = icons.get_icons(icon_code)
             temp_max = round(day_data["temp"]["max"])
             temp_min = round(day_data["temp"]["min"])
@@ -769,9 +836,6 @@ class WGUI():
         self.mad_generator.user_inputs = user_words
         self.mad_generator.generate_lines()  # selects weather1 and weather2
         madlib_text = self.mad_generator.generate_madlib()
-
-        print("Weather1:", self.mad_generator.weather1) #TEMP
-        print("Weather2:", self.mad_generator.weather2) #TEMP
 
         #Generate weather data
         data1 = self.mad_generator.first_file_info["data"]
