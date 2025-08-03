@@ -1,4 +1,22 @@
 #main.py 
+#Tps25-Capstone
+#Date: 02-Aug-2025
+
+'''
+class App:
+
+The App class instantiates the application and serves as the controller. It is responsible for most of the data 
+interaction between the API and UI layers.
+
+App implements the following methods:
+
+update_quote(): Updates the weather sayings on the bottom left pane whenever the city is updated.
+
+update_theme_based_on_toggle(): Toggles the theme based on the toggle setting, if toggle is not set then it defaults
+to checking the icon to see if its a "day" icon or "night" icon. Then applies a basic light/dark theme respectively. 
+
+get_flat_icon(): Sets the icon image or text based on the icon code received from the API.
+'''
 
 import os
 import api
@@ -18,7 +36,6 @@ from features import sayings, sayings_manager
 
 from team.features import madlibs_generator
 from citylist import Cities
-
 
 class App():
     

@@ -1,4 +1,20 @@
 # sayings_manager.py
+#Tps25-Capstone
+#Date: 02-Aug-2025
+
+'''
+class SayingsManager:
+
+This class obtains quotes from sayings.py and outputs it to the UI. This class was mostly written by
+ChatGPT(August, 2025).
+
+SayingManager implements the following methods:
+
+get_quote(): Gets a quote based on the weather. Sayings are broken up by weather.
+
+format_for_label(): Formats saying for the output to the ctk.CTkLabel widget. Takes a quote parameter.
+
+'''
 
 import random
 import textwrap

@@ -1,4 +1,11 @@
 #sayings.py
+#Tps25-Capstone
+#Date: 02-Aug-2025
+
+'''
+File for sayings. Sayings are broken up by weather type and are tied to icons.
+
+'''
 
 
 SUNNY = [

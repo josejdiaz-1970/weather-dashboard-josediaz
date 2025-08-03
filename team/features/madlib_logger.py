@@ -1,5 +1,17 @@
 #madlib_logger.py
+#Tps25-Capstone
+#Date: 02-Aug-2025
+
+'''
 #Logs all of the choices made by the user, the randomly selected weather data, and final madlibs
+madlib_logger writes the completed madlib to a csv file. 
+
+The following methods are implemented:
+
+log_madlib_session():Logs user selections from dropdowns, randomly generated file data, and randomly selected madlib.
+
+'''
+
 
 import csv
 import os

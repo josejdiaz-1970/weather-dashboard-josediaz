@@ -1,4 +1,40 @@
 #weather_gui.py
+#Tps25-Capstone
+#Date: 02-Aug-2025
+'''
+class WGUI:
+The main class for the gui. It basically encompasses all of the functionality of the displays for the weather app.
+The class uses customtkinter for most of its windows and widgets. Tkinter is only used for tk.Menu, to which 
+customtkinter currently has no equivalent. Since the functionality of this application is mostly visual,
+this is tends to be the largest file. The class represents the UI component in a mostly MVC architecture.
+
+WGUI implements the following methods:
+
+on_enter(), on_leave(): For button functionality of hover. Background color changes but text color does not.
+
+update_suggestions(): This method updates the city entry and display combobox.
+
+display_weather(): responsible for updating the widgets based on the data acquired from the API.
+
+about(): Displays credits.
+
+get_pink(): Easter egg, flair or whatever. Responsible for the hideous pink theme. Have your eye bleach nearby.
+
+apply_theme(): Applies the theme to widgets based on the selected theme. Updates dynamically. Takes a theme dictionary 
+and applies the color preferences to the widgets.
+
+toggle_icon_theme(): Toggles between dynamic (color icons) and text based icons.
+
+display_forecast(): Displays the 5-day forecast at the bottom right pane of the main window.
+
+show_error(): responsible for showing errors in the gui as pop up windows.
+
+generate_madlib(): Generates the madlib incorporating user selections on the drop downs in 
+the madlibs page. If user doesnt select anything, it will use defaults.
+
+'''
+
+
 
 import tkinter as tk
 import customtkinter as ctk
@@ -49,8 +85,21 @@ class WGUI():
         self.dynamic_icons_enabled = tk.BooleanVar(value=False)
         self.thinking_icon = self.controller.get_flat_icon("thinking") #Fixes a glitch in the icon image
 
+        #Instance for Madlibs generator
         self.mad_generator = MG(filepath=r"C:\Development\Learning\JTC\Tech Pathways\Weeks\capstone\weather-dashboard-josediaz\team\data")
        
+        #About 
+        self.info_text = None
+
+        #If statement to check if window is created before styling info_text. ChatGPT(August, 2025)
+        if self.info_text is not None and self.info_text.winfo_exists():
+           
+            self.info_text.configure(
+                fg_color=self.bg_color,
+                text_color=self.font_color,
+                font=(self.font_style, self.font_size)
+            )
+
         #Warning supress
         warnings.filterwarnings("ignore", category=UserWarning, module="customtkinter")
 
@@ -109,7 +158,8 @@ class WGUI():
             text_color=self.font_color,
             selected_color = self.button_bg,
             selected_hover_color= self.bg_color,
-            unselected_color = self.fg_color            
+            unselected_color = self.fg_color,
+            font=(self.font_style, self.font_size)            
         )
         # Add tabs
         self.main_tab = self.tabview.add("Main")
@@ -216,6 +266,8 @@ class WGUI():
                                         )
         
         self.citybutton.bind("<Enter>", self.on_enter)
+        print("Bound <Enter> to my_button")
+
         self.citybutton.bind("<Leave>", self.on_leave)
         
         self.alertslabel = ctk.CTkLabel(self.left_frame, image=self.controller.get_flat_icon("warning"), text=" Alerts!", text_color=self.font_color,font=(self.font_style, self.font_size), compound="left")
@@ -474,9 +526,9 @@ class WGUI():
         self.alertdetail.grid(row=0, column=0, sticky="nsew")
 
     def on_enter(self, event):
-        if isinstance(event.widget, ctk.CTkButton):
-            event.widget.configure(fg_color=self.button_hover, text_color="black")
-        
+        if isinstance(event.widget, ctk.CTkButton):           
+            event.widget.configure(fg_color=self.button_hover, text_color="#000000", text=event.widget.cget("text_color"))
+            
 
     def on_leave(self, event):
         if isinstance(event.widget, ctk.CTkButton):
@@ -496,13 +548,12 @@ class WGUI():
         matches = matches[:100]
 
         self.cityentry.configure(values=matches)
-
-        # Optional: open dropdown automatically (visual feedback)
+        
         # if matches:
 
-        if typed:
+        if matches:
             
-            self.cityentry.event_generate("<Down>")
+            self.cityentry.event_generate("<Down>") 
 
        
         # Keep what user typed (manually reset it because CTkComboBox overwrites it)
@@ -578,6 +629,15 @@ class WGUI():
         self.info_window = ctk.CTkToplevel(fg_color=self.fg_color) 
         self.info_window.title("Jose's Weather App")
         self.info_window.geometry("300x300")
+
+
+        def on_close():
+            self.info_text = None
+            self.info_window.destroy()
+
+        self.info_window.protocol("WM_DELETE_WINDOW", on_close)
+
+
         self.info_text=ctk.CTkTextbox(master=self.info_window,
                               fg_color=self.fg_color,
                               text_color=self.font_color,
@@ -586,6 +646,10 @@ class WGUI():
                                           wrap="word"
                              )  
         self.info_text.insert("1.0", "Weather App by Jose J. Diaz\n") 
+        
+        
+        
+        
         #Insert icon credits here
         self.info_text.pack(padx=20, pady=20, fill="both", expand=True)
         self.info_window.wm_transient(self.root)  # Tie to main window
@@ -593,7 +657,7 @@ class WGUI():
         self.info_window.focus_force()            # Give focus
         self.info_window.grab_set()   
 
-        self.info_window.after(4000, self.info_text.destroy)
+        # self.info_window.after(4000, self.info_text.destroy)
 
 
 
@@ -788,7 +852,8 @@ class WGUI():
         self.madlibs_box.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size + 10))
         
         #About page
-        self.info_text.configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size + 10))
+        if hasattr(self, "info_text") and self.info_text is not None and self.info_text.winfo_exists():
+            self.info_text.configure(fg_color=self.font_color, text_color=self.bg_color, font=(self.font_style, self.font_size))
 
        
     def toggle_icon_theme(self):

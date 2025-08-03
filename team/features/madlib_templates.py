@@ -1,7 +1,11 @@
 #madlib_templates.py
+#Tps25-Capstone
+#Date: 02-Aug-2025
+'''
+This is where all the madlibs templates will reside. There will not be that many to begin with and may not be that funny.
+Consider yourself warned.
+'''
 
-#This is where all the madlibs templates will reside. There will not be that many to begin with and may not be that funny.
-#Consider yourself warned.
 
 templates = [
     "It was a {adjective1} day in {city1} with temperatures reaching {temperature1}°F. \
@@ -19,5 +23,11 @@ templates = [
      I {verb1}ed through the wind, which was blowing at {wind_speed1} mph. \
      When I arrived in {city2}, I immediately dropped my {noun1} because the humidity hit {humidity2}%. \
      I won’t be making that trip again — not without a better {noun2}."
+
+    "It's a beautiful {adjective1} day today! The sun is {verb1}, and the temperature is a {adjective2} \
+    {temperature1} degrees. A {noun1} is blowing with a {adjective1} breeze. We might even see some {noun2} in the sky. \
+    It's a great day for a {noun1} outside if your're in {city2}, but be if you're in {city1}, be sure to wear your \
+    {noun2} to protect yourself from the {humidity1}."    
+
 ]
 

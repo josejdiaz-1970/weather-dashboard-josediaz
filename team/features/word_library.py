@@ -1,6 +1,11 @@
 #word_library.py
+#Tps25-Capstone
+#Date: 02-Aug-2025
 
-#Storage for the different word types that we will pull to make the madlibs
+'''
+Storage for the different word types that we will pull to make the madlibs.
+Lists broken up by word type. They feed the dropdowns in the madlibs page.
+'''
 
 NOUNS=[
         "chair", "ball", "bat", "plane", "car", "bus", "sofa", "woman", "brother", "sister",

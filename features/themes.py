@@ -1,7 +1,10 @@
-#theme selector 
+#themes.py
+#Tps25-Capstone
+#Date: 02-Aug-2025 
+
 '''
-The code for theme selection in the GUI. Will have light and dark modes. If 
-I have time will add a them to switch based on the weather conditions.
+themes.py contains the dictionaries for the various themes as well as the icon dictionaries.
+Also ties themes to icons.
 
 '''
 

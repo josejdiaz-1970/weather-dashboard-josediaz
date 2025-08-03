@@ -1,3 +1,31 @@
+#madlibs_generator.py
+#Tps25-Capstone
+#Date: 02-Aug-2025
+
+'''
+class MadGenerator:
+This class is responsible for genrating the final madlib. It pulls in the team files, and selects two random files,
+then from those files, it selects two random lines. It uses some data in the two rows as part of the madlib along 
+with words selected by the user in the gui.
+
+MadGenerator implements the following methods:
+
+get_unique_file_pair(self): Selects a random pair of files from the team files provided.
+
+get_random_row_from_file(self, filename): Selects a random row from each file selected.
+
+generate_lines(self): Sets selctions to parameters for use by both the gui and other methods.
+
+set_user_inputs(self, noun, verb, adjective, adverb): user inputs are stored from the selections
+made at the time that the "generate madlib" button on the UI is pressed.
+
+set_weather_data(self, data1, data2): sets the user inputs dictionary.
+
+generate_madlib(self): Selects a random madlib template from templates.py and generates the madlib 
+with all the information acquired
+
+'''
+
 import os
 import csv
 import random
@@ -89,7 +117,7 @@ class MadGenerator:
 
     #Using **to unpack a dictionary into its key/value pairs. Function selects a random template and combines it with the user data
     #stored in dictionaries to generate the madlib.
-
+    #ChatGPT(July, 2025)    
     def generate_madlib(self): #changed from generate
         self.template = random.choice(templates)
 

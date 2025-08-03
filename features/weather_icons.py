@@ -1,6 +1,9 @@
-#weather icons
+#weather icons.py
+#Tps25-Capstone
+#Date: 02-Aug-2025
 '''
-Will load icons based on the current conditions.
+weather_icons.py loads icons based on the current conditions. Uses Erik Flower's icons
+and if the fail, it defaults to open weather maps icons. Erik's icons are now default.
 
 '''
 
