@@ -195,14 +195,19 @@ class WGUI():
 
 
         self.root.grid_rowconfigure(0, weight=1)
-        self.root.grid_columnconfigure(0, weight=1)
+        self.root.grid_columnconfigure(0, weight=1, uniform="a")
+
+        #testing maintab color
+        self.main_tab.configure(fg_color=self.bg_color)
 
         #Create frames -changed parent to notebook
-        self.left_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, width=250, height=350)
-        self.spacer_left = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color,height=350)  # or fg_color="transparent"
-        self.spacer_right = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, height=350)
-        self.right_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, width=560, height=350)
-        self.bottom_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, height=100)
+        self.left_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, width=250, height=350, border_width=0)
+        self.spacer_left = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color,height=350, border_width=0)  # or fg_color="transparent"
+        self.spacer_right = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, height=350, border_width=0)
+       
+        # self.right_frame_outer = ctk.CTkFrame(self.main_tab, fg_color=self.fg_color, width=560, height=350)
+        self.right_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, width=570, height=350, border_width=0)
+        self.bottom_frame = ctk.CTkFrame(self.main_tab, fg_color=self.bg_color, height=100, border_width=0)
 
         #Add alerts details_frame to summary tab
         self.alertdetails_frame = ctk.CTkFrame(self.summary_tab, fg_color = self.bg_color, width=800, height=800)
@@ -217,13 +222,14 @@ class WGUI():
         self.left_frame.configure(width=250)
 
         # Layout frames
-        self.left_frame.grid(row=0, column=0, rowspan=7, sticky="nsw") #nsew
+        self.left_frame.grid(row=0, column=0, rowspan=7, padx=0, pady=0, sticky="nsw") #nsew
         # self.right_frame.grid(row=0, column=1, rowspan=7, columnspan=5, sticky="nsew")
-        self.spacer_left.grid(row=0, column=1, rowspan=7, sticky="nsew")
-        self.right_frame.grid(row=0, column=2, rowspan=7, sticky="nsew") #set row to 1 , nsew
-        self.spacer_right.grid(row=0, column=3, rowspan=7, sticky="nsew")
+        self.spacer_left.grid(row=0, column=1, rowspan=7, padx=0, pady=0, sticky="nsew")
+        
+        self.right_frame.grid(row=0, column=2, rowspan=7, padx=0, pady=0, sticky="nsew") #set row to 1 , nsew
+        self.spacer_right.grid(row=0, column=3, rowspan=7, padx=0, pady=0,sticky="nsew")
    
-        self.bottom_frame.grid(row=7, column=0, columnspan=6, sticky="nsew")
+        self.bottom_frame.grid(row=7, column=0, columnspan=6, padx=0, pady=0, sticky="nsew")
 
         self.alertdetails_frame.grid(row=0, column=0, sticky="nsew")
         self.alertdetails_frame.grid_rowconfigure(0, weight=1)
@@ -675,6 +681,9 @@ class WGUI():
         
         self.info_text.insert("0.0", """\
                               
+                              world cities csv from Kaggle: 
+                              (https://www.kaggle.com/datasets/juanmah/world-cities)  
+
                               Default (text-based) icons: Erik Flower's icons 
                               (https://erikflowers.github.io/weather-icons/)
 
@@ -823,6 +832,9 @@ class WGUI():
             unselected_color = self.fg_color          
         )
 
+        #MAIN TAB
+        self.main_tab.configure(fg_color=self.bg_color)
+        
         #LEFT FRAME AND WIDGETS
         self.left_frame.configure(fg_color=self.fg_color) #Change future
         
@@ -849,7 +861,7 @@ class WGUI():
 
             frame_data["frame"].configure(fg_color=self.fg_color)
             frame_data["day"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
-            frame_data["icon"].configure(fg_color=self.bg_color, text_color=self.font_color, font=("Weather Icons", self.font_size + 4))
+            frame_data["icon"].configure(fg_color=self.bg_color, text_color=self.icon_color, font=("Weather Icons", self.font_size + 4))
             frame_data["hi"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
             frame_data["lo"].configure(fg_color=self.bg_color, text_color=self.font_color, font=(self.font_style, self.font_size))
 
